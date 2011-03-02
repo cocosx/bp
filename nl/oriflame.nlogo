@@ -18,7 +18,7 @@ to setup
       ;;set size 1
       set color blue
       set netmember? false
-      set consumption random-normal 1000 500
+      set consumption round random-normal 1000 500
       if consumption < 100 [ set consumption 200]
       set size consumption / 1000
       create-link-with one-of other persons
@@ -55,14 +55,26 @@ end
 
 to spread-network
   ask persons with [netmember?] [
-    ifelse not (consumption * margin > monthly-fee)
-    [ set netmember? false]
-    [
-      ask link-neighbors with [not netmember?] [
-        if consumption * margin > monthly-fee
-        [ set netmember? true ]      
-      ]
+    ;;let myrev consumption * margin
+    let my rev 0
+    ask link-neighbors with [not netmember?] [
+      set myrev myrev + ((consumption * margin) / count link-neighbors with [netmember?])
     ]
+    if myrev < monthly-fee
+    [ set netmember? false]
+    ;;set label round (myrev - consumption * margin)
+    set label round myrev
+  ]
+  ask persons with [netmember?] [
+    
+      ask link-neighbors with [not netmember?] [
+         let myrev consumption * margin
+         ask link-neighbors with [not netmember?] [
+           set myrev myrev + ((consumption * margin) / (count link-neighbors with [netmember?] + 1 ))
+         ]
+         if myrev >= monthly-fee
+         [ set netmember? true]
+      ]
   ]
   ask persons with [netmember?] [
     set color green
@@ -128,13 +140,13 @@ NIL
 SLIDER
 10
 40
-189
+197
 73
 number-of-nodes
 number-of-nodes
 0
-100
-87
+1000
+128
 1
 1
 NIL
@@ -165,7 +177,7 @@ number-of-links
 number-of-links
 0
 100
-38
+85
 1
 1
 NIL
@@ -196,7 +208,7 @@ monthly-fee
 monthly-fee
 0
 1000
-121
+325
 1
 1
 NIL
@@ -211,7 +223,7 @@ margin
 margin
 0
 1
-0.29
+0.23
 0.01
 1
 NIL
@@ -224,7 +236,7 @@ MONITOR
 469
 NIL
 network-sale-revenue
-17
+0
 1
 11
 
@@ -276,45 +288,22 @@ PENS
 @#$#@#$#@
 WHAT IS IT?
 -----------
-This example demonstrates how to make a network in NetLogo.  The network consists of a collection of nodes, some of which are connected by links.
-
-This example doesn't do anything in particular with the nodes and links.  You can use it as the basis for your own model that actually does something with them.
 
 
 THINGS TO NOTICE
 ----------------
-In this particular example, the links are undirected.  NetLogo supports directed links too, though.
 
 
 EXTENDING THE MODEL
 -------------------
-Try making it so you can drag the nodes around using the mouse.
-
-Use the turtle variable LABEL to label the nodes and/or links with some information.
-
-Try calculating some statistics about the network that forms, for example the average degree.
-
-Try other rules for connecting nodes besides totally randomly.  For example, you could:
-- Connect every node to every other node.
-- Make sure each node has at least one link going in or out.
-- Only connect nodes that are spatially close to each other.
-- Make some nodes into "hubs" (with lots of links).
-And so on.
-
-Make two kinds of nodes, differentiated by color, then only allow links to connect two nodes that are different colors.  This makes the network "bipartite."  (You might position the two kinds of nodes in two straight lines.)
 
 
 NETLOGO FEATURES
 ----------------
-Nodes and edges are both agents.  Nodes are turtles, edges are links.
 
 
 RELATED MODELS
 --------------
-Random Network Example
-Fully Connected Network Example
-Preferential Attachment
-Small Worlds
 @#$#@#$#@
 default
 true
