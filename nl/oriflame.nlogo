@@ -1,5 +1,5 @@
 breed [persons person]
-persons-own [consumption netmember?]
+persons-own [consumption netmember? membership-length]
 
 globals [network-sale-revenue network-fee-revenue]
 
@@ -56,14 +56,19 @@ end
 to spread-network
   ask persons with [netmember?] [
     ;;let myrev consumption * margin
-    let my rev 0
+    let myrev 0
     ask link-neighbors with [not netmember?] [
       set myrev myrev + ((consumption * margin) / count link-neighbors with [netmember?])
     ]
-    if myrev < monthly-fee
-    [ set netmember? false]
+    ifelse myrev < monthly-fee
+    [ 
+      set netmember? false
+      set membership-length 0
+    ]
+    [ set membership-length membership-length + 1 ]
     ;;set label round (myrev - consumption * margin)
-    set label round myrev
+    ;;set label round myrev
+    set label membership-length
   ]
   ask persons with [netmember?] [
     
@@ -146,7 +151,7 @@ number-of-nodes
 number-of-nodes
 0
 1000
-128
+279
 1
 1
 NIL
@@ -177,7 +182,7 @@ number-of-links
 number-of-links
 0
 100
-85
+68
 1
 1
 NIL
@@ -208,7 +213,7 @@ monthly-fee
 monthly-fee
 0
 1000
-325
+96
 1
 1
 NIL
@@ -223,7 +228,7 @@ margin
 margin
 0
 1
-0.23
+0.1
 0.01
 1
 NIL
