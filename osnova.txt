@@ -1,0 +1,20 @@
+uvod
+oriflame
+  -historie
+  -popis site
+    -marze
+    -poplatky
+    -katalogy
+    -body
+    -urovne,sponzorstvi
+model
+  -technika
+    -nlogo,agenti
+  -generovani soc. vazeb
+  -histogram
+  -chovani agentu, zjednodusovani uvah
+analyza,experimenty
+  -optimalni margin+fee
+  -reakce na soky
+  -sireni site, zavislost na zdroji?
+  -stabilita
