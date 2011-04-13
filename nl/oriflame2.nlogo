@@ -1,7 +1,8 @@
 breed [persons person]
 persons-own [consumption netmember? membership-length be-point]
-directed-link-breed [sponsors sponsor]
 undirected-link-breed [friends friend]
+directed-link-breed [sponsors sponsor]
+
 
 globals [network-sale-revenue network-fee-revenue]
 
@@ -69,7 +70,7 @@ to spread-network
       set netmember? false
       set membership-length 0
       
-      let sp one-of my-out-sponsors 
+      let sp one-of out-sponsor-neighbors 
       ask in-sponsor-neighbors [
         create-sponsor-to sp
         
@@ -104,7 +105,7 @@ to spread-network
   ]
   ask sponsors [
     set color red
-    set thickness 0.2
+    ;;set thickness 0.2
   ]
 end
 
@@ -232,7 +233,7 @@ monthly-fee
 monthly-fee
 0
 1000
-108
+185
 1
 1
 NIL
@@ -247,7 +248,7 @@ margin
 margin
 0
 1
-0.25
+0.27
 0.01
 1
 NIL
