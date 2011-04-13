@@ -64,11 +64,18 @@ to spread-network
     ask friend-neighbors with [not netmember?] [
       set myrev myrev + ((consumption * margin) / count friend-neighbors with [netmember?])
     ]
-    ifelse myrev < be-point ;;leave condition
+    ifelse myrev < (be-point + monthly-fee)  ;;leave condition
     [ 
       set netmember? false
       set membership-length 0
+      
+      let sp one-of my-out-sponsors 
+      ask in-sponsor-neighbors [
+        create-sponsor-to sp
+        
+      ]
       ask my-out-sponsors [die]
+      ask my-in-sponsors [die]
     ]
     [ set membership-length membership-length + 1 ]
     ;;set label round (myrev - consumption * margin)
@@ -82,7 +89,7 @@ to spread-network
          ask friend-neighbors with [not netmember?] [
            set myrev myrev + ((consumption * margin) / (count friend-neighbors with [netmember?] + 1 ))
          ]
-         if myrev >= be-point ;;join condition
+         if myrev >= (be-point + monthly-fee) ;;join condition
          [
            set netmember? true
            create-sponsor-to p
@@ -97,6 +104,7 @@ to spread-network
   ]
   ask sponsors [
     set color red
+    set thickness 0.2
   ]
 end
 
@@ -224,7 +232,7 @@ monthly-fee
 monthly-fee
 0
 1000
-242
+108
 1
 1
 NIL
@@ -239,7 +247,7 @@ margin
 margin
 0
 1
-0.13
+0.25
 0.01
 1
 NIL
@@ -604,7 +612,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 4.1.2
+NetLogo 4.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
