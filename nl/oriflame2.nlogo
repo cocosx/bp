@@ -1,5 +1,5 @@
 breed [persons person]
-persons-own [consumption netmember? membership-length be-point]
+persons-own [consumption netmember? membership-length be-point exp-srev-init srev-level my-subnetrev my-rev]
 undirected-link-breed [friends friend]
 directed-link-breed [sponsors sponsor]
 
@@ -16,7 +16,7 @@ to setup
     set netmember? true
     set consumption 10000
   ]
-  repeat number-of-nodes [
+  repeat number-of-nodes [ ;;prvni ma velkou sanci mit hodne kamosu - opravit?
     create-persons 1 [
       ;;set size 1
       set color blue
@@ -30,19 +30,32 @@ to setup
     ]
   ]
   repeat number-of-links [
-    ask one-of turtles [ 
+    ask one-of persons [ 
       create-friend-with one-of other persons
     ]
+  ]
+  ask persons [
+    set srev-level 0
+    set exp-srev-init 0
+    let sum-friend-rev 0
+    ask friend-neighbors [
+       set sum-friend-rev sum-friend-rev + consumption
+    ]
+    let a (sum-friend-rev * (count friend-neighbors) ^ 2)
+    set exp-srev-init (round (rev-to-srev a))
   ]
   layout-radial persons links (turtle 0)
   repeat 20 [
     layout
   ]
+  ask persons [
+    set label exp-srev-init
+  ]
 end
 
 to layout
   repeat 12 [
-    layout-spring persons links 0.05 1 1.2
+    layout-spring persons friends 0.05 1 1.2
     display
   ]
 end
@@ -56,6 +69,31 @@ to update-revenue
   set network-sale-revenue rev
   set-current-plot "revenue"
   plot network-fee-revenue + network-sale-revenue
+end
+
+to-report rev-to-srev [rev]
+  report rev * 0.09  
+end
+
+to update-points
+  ask persons [
+    set my-subnetrev 0
+    set my-rev consumption * margin
+    ask friend-neighbors with [not netmember?] [
+      set my-rev my-rev + ((consumption * margin) / count friend-neighbors with [netmember?])
+    ]
+  ]
+  ask persons with [netmember? and ((count my-in-sponsors) = 0)] [ ;;listy
+    set my-subnetrev my-rev
+    while [(count out-sponsor-neighbors) > 0] [
+      let sp one-of out-sponsor-neighbors
+      let subrev 0
+      ask sp [
+        set my-subnetrev (my-subnetrev)
+      ]
+    ]
+    
+  ]
 end
 
 to spread-network
@@ -72,8 +110,7 @@ to spread-network
       
       let sp one-of out-sponsor-neighbors 
       ask in-sponsor-neighbors [
-        create-sponsor-to sp
-        
+        create-sponsor-to sp        
       ]
       ask my-out-sponsors [die]
       ask my-in-sponsors [die]
@@ -90,11 +127,15 @@ to spread-network
          ask friend-neighbors with [not netmember?] [
            set myrev myrev + ((consumption * margin) / (count friend-neighbors with [netmember?] + 1 ))
          ]
-         if myrev >= (be-point + monthly-fee) ;;join condition
+         if (myrev + exp-srev-init) >= (be-point + monthly-fee) ;;join condition
          [
            set netmember? true
            create-sponsor-to p
+           set srev-level 0
          ]
+         
+         
+         
       ]
   ]
   ask persons with [netmember?] [
@@ -233,7 +274,7 @@ monthly-fee
 monthly-fee
 0
 1000
-185
+236
 1
 1
 NIL
@@ -248,7 +289,7 @@ margin
 margin
 0
 1
-0.27
+0.36
 0.01
 1
 NIL
