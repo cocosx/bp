@@ -1,4 +1,6 @@
 uvod
+  -co budu popisovat, proc
+  -o sitovem prodeji obecne
 oriflame
   -historie
   -popis site

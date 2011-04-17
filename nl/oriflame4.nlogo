@@ -314,7 +314,7 @@ number-of-links
 number-of-links
 0
 100
-71
+90
 1
 1
 NIL
@@ -345,7 +345,7 @@ monthly-fee
 monthly-fee
 0
 1000
-178
+210
 1
 1
 NIL
@@ -360,7 +360,7 @@ margin
 margin
 0.07
 1
-0.7
+0.34
 0.01
 1
 NIL
