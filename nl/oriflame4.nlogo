@@ -1,10 +1,10 @@
 breed [persons person]
-persons-own [consumption netmember? membership-length be-point exp-srev-init sum-exp-rev srev-level my-subnetrev my-rev explored?]
+persons-own [consumption netmember? membership-length be-point exp-srev-init sum-exp-rev exp-srev-list srev-level my-subnetrev my-rev my-srev explored?]
 undirected-link-breed [friends friend]
 directed-link-breed [sponsors sponsor]
 
 
-globals [network-sale-revenue network-fee-revenue net-seed]
+globals [network-sale-revenue network-fee-revenue net-seed network-sponsor-cost]
 
 to setup
   clear-all
@@ -25,7 +25,7 @@ to setup
       set consumption round random-normal 1000 500
       if consumption < 100 [ set consumption 200]
       set size consumption / 1000
-      set be-point round (consumption * random-normal 2 0.5)
+      set be-point round (consumption * random-normal 1 0.5)
       if be-point < consumption * 0.5 [ set be-point (consumption * 0.5) ]
       create-friend-with one-of other persons
     ]
@@ -42,8 +42,10 @@ to setup
     ask friend-neighbors [
        set sum-friend-rev (sum-friend-rev + consumption)
     ]
-    let a (sum-friend-rev * (count friend-neighbors) ^ 1.5)
+    let a (sum-friend-rev * (count friend-neighbors) ^ 1.3)
     set exp-srev-init (round (rev-to-srev a))
+    set exp-srev-list []
+    repeat 10 [set exp-srev-list lput exp-srev-init exp-srev-list]
   ]
   ask net-seed [
     set sum-exp-rev (exp-srev-init * 6)
@@ -67,23 +69,44 @@ end
 to update-revenue
   set network-fee-revenue count persons with [netmember?] * monthly-fee
   let rev 0
+  let scost 0
   ask persons with [netmember?] [
-    set rev rev + consumption * (1 - margin)
+    set rev (rev + (consumption * (1 - margin)))
+    set scost scost + my-srev
   ]
   set network-sale-revenue rev
+  set network-sponsor-cost scost
   set-current-plot "revenue"
   plot network-fee-revenue + network-sale-revenue
+  set-current-plot "scost"
+  plot network-sponsor-cost
+  set-current-plot "profit"
+  plot network-fee-revenue + network-sale-revenue - network-sponsor-cost
 end
 
 to-report rev-to-srev [rev]
   report rev * 0.09  
 end
 
+to-report rev-to-level [rev]
+  let cons rev / margin
+  let brackets [200 600 1200 2400 4000 6600 10000]
+  let perc [0 0.03 0.06 0.09 0.12 0.15 0.18 0.21]
+  let points cons / 20
+  let i 0
+  if-else points > 10000 [set i 6]
+  [
+    while [points > (item i brackets)] [set i i + 1]
+  ]
+  report item i perc
+end
 
 to-report update-my-subnetrev ;;vcetne my-rev
   ifelse ((count in-sponsor-neighbors) = 0)
   [
     set my-subnetrev round my-rev
+    set srev-level rev-to-level my-subnetrev
+    set my-srev round my-rev * srev-level
     report my-subnetrev
   ]
   [
@@ -92,6 +115,15 @@ to-report update-my-subnetrev ;;vcetne my-rev
       set revsum (revsum + update-my-subnetrev)
     ]
     set my-subnetrev round (revsum)
+    set srev-level rev-to-level my-subnetrev
+    let msl srev-level
+    let srevsum 0
+    ask in-sponsor-neighbors [
+      let dperc msl - srev-level
+      if dperc < 0 [set dperc 0]
+      set srevsum srevsum + (dperc * (my-rev / margin))
+    ]
+    set my-srev round srevsum
     report my-subnetrev
   ]
 end
@@ -99,6 +131,8 @@ end
 to update-points
   ask persons with [netmember?] [
     set my-subnetrev 0
+    set srev-level 0
+    set my-srev 0
     let mr consumption * margin
     ask friend-neighbors with [not netmember?] [
       set mr (mr + ((consumption * margin) / count friend-neighbors with [netmember?]))
@@ -126,11 +160,14 @@ to spread-network
     ;;ask friend-neighbors with [not netmember?] [
     ;;  set myrev myrev + ((consumption * margin) / count friend-neighbors with [netmember?])
     ;;]
-    set sum-exp-rev (sum-exp-rev + my-subnetrev)
-    let exp-rev sum-exp-rev / (6 + membership-length)
+    set exp-srev-list lput my-srev exp-srev-list
+    set exp-srev-list remove-item 0 exp-srev-list
+    let avg-exp-rev (sum exp-srev-list) / (length exp-srev-list)
+    ;;set sum-exp-rev (sum-exp-rev + my-srev)
+    ;;let exp-rev sum-exp-rev / (6 + membership-length)
     ;;let exp-rev ((exp-srev-init * 6) + my-subnetrev * membership-length) / (6 + membership-length)
-    set label round exp-rev
-    ifelse exp-rev < (be-point + monthly-fee)  ;;leave condition
+    set label round (avg-exp-rev + my-rev) - (be-point + monthly-fee)
+    ifelse avg-exp-rev + my-rev < (be-point + monthly-fee)  ;;leave condition
     [ 
       set netmember? false
       set membership-length 0
@@ -142,7 +179,8 @@ to spread-network
       ask my-out-sponsors [die]
       ask my-in-sponsors [die]
       
-      set exp-srev-init exp-rev - my-rev ;;pamatuje si pro priste svuj ocekavany prijem
+      ;;set exp-srev-init exp-rev - my-rev ;;pamatuje si pro priste svuj ocekavany prijem
+      set srev-level 0
     ]
     [ set membership-length membership-length + 1 ]
     ;;set label round (myrev - consumption * margin)
@@ -155,13 +193,15 @@ to spread-network
          ask friend-neighbors with [not netmember?] [
            set myrev myrev + ((consumption * margin) / (count friend-neighbors with [netmember?] + 1 ))
          ]
-         if (myrev + exp-srev-init) >= (be-point + monthly-fee) ;;join condition
+         let avg-exp-rev (sum exp-srev-list) / (length exp-srev-list)
+         if (myrev + (avg-exp-rev * 1.2)) >= (be-point + monthly-fee) ;;join condition
          [
            set netmember? true
            create-sponsor-to p
            set srev-level 0
            set membership-length 0
            set sum-exp-rev (exp-srev-init * 6)
+           ;;set exp-rev-list 
          ]         
       ]
   ]
@@ -177,7 +217,7 @@ to spread-network
     ;;set thickness 0.2
   ]
   ask persons [
-    ;;set label exp-srev-init
+    ;set label my-srev
   ]
 end
 
@@ -305,7 +345,7 @@ monthly-fee
 monthly-fee
 0
 1000
-236
+178
 1
 1
 NIL
@@ -320,7 +360,7 @@ margin
 margin
 0.07
 1
-0.35
+0.7
 0.01
 1
 NIL
@@ -381,6 +421,40 @@ false
 PENS
 "default" 1.0 0 -16777216 true
 "revenue" 1.0 0 -16777216 true
+
+PLOT
+27
+711
+227
+861
+scost
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+PENS
+"default" 1.0 0 -16777216 true
+
+PLOT
+993
+20
+1193
+170
+profit
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+PENS
+"default" 1.0 0 -16777216 true
 
 @#$#@#$#@
 WHAT IS IT?
