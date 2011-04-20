@@ -3,12 +3,14 @@ uvod
   -o sitovem prodeji obecne
 oriflame
   -historie
+  -sortiment
   -popis site
     -marze
     -poplatky
     -katalogy
     -body
     -urovne,sponzorstvi
+ 
 model
   -technika
     -nlogo,agenti
