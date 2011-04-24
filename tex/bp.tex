@@ -9,13 +9,16 @@
 \usepackage[czech]{babel}
 %\usepackage{fullpage}
 \usepackage[top=22mm, bottom=30mm, left=35mm, right=25mm]{geometry}
+\usepackage{tikz}
 \title{sds}
 \author{Marek Bryša}
 \date{Brno 2011}
 \begin{document}
+\tableofcontents
 
-
-\chapter{Úvod}
+\chapter*{Úvod}
+\addcontentsline{toc}{chapter}{Úvod}
+\chapter{Prodejní síť Oriflame}
 \section{Historie firmy Oriflame}
 Firma Oriflame byla založena v roce 1967 ve Švédsku bratry Jonasem a Robertem Jochnick. Cílem bylo nabídnout lidem přirozenou a přírodní péči o svou pleť. Místo aby nákladně budovali kamenné obchody, rozhodli se dostat prodej přímo do domovů a využít tak vrozenou podnikavost lidí. Tento základní koncept zůstáva po více než 40 let nezměněn. V roce 1990, po po pádu železné opony, firma expanduje po střední a východní Evropě a zakládá pobočku i v České republice. V roce 2001 dosahuje počet kosmetických poradců jednoho miliónu a obrat téměř 450 miliónů EUR.
 
@@ -37,12 +40,12 @@ Také jsou k dispozici úvěry do výše 7000 Kč na zaplacení za zobží, kter
 Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez udání důvodu a to i v případě, že výrobek obsahuje minimálně 80\% původního objemu.
 \subsection{Skupiny a slevy z obratu}
 Každému výrobku jsou v ceníku přiděleny čtyři hodnoty:
-\begin{itemize}
-\item PC - doporučená prodejní cena spotřebitelům.
-\item NC - nákupní cena včetně DPH. Za tu poradci mohou zobží zakoupit v centrech Oriflame.
-\item OO - obchodní obrat. Typicky je roven nákupní ceně bez DPH. V případě nespotřebních produktů (např. kartáč na vlasy, houba na mytí) je ještě přibližně poloviční.
-\item BO - bodové ohodnocení. Na inflaci nezávislý počet bodů, které poradce nákupem zboží získá. V současnoti odpovídá přibližně 13,80 Kč obchodního obratu.
-\end{itemize}
+\begin{description}
+\item[PC] Doporučená prodejní cena spotřebitelům.
+\item[NC] Nákupní cena včetně DPH. Za tu poradci mohou zobží zakoupit v centrech Oriflame.
+\item[OO] Obchodní obrat. Typicky je roven nákupní ceně bez DPH. V případě nespotřebních produktů (např. kartáč na vlasy, houba na mytí) je ještě přibližně poloviční.
+\item[BO] Bodové ohodnocení. Na inflaci nezávislý počet bodů, které poradce nákupem zboží získá. V současnoti odpovídá přibližně 13,80 Kč obchodního obratu.
+\end{description}
 Výjimku tvoří např. tiskoviny, vzorky a oblečení s logem Oriflame, které mají pouze nákupní cenu,  nejsou určeny k dalšímu prodeji a slouží jen jako pomůcka pro poradce.
 
 Poradce dále získá body všech lidí které přivedl a těch pod nimi. Na konci každého katalogového období dochází k vyhodnocení. Sečtou se všechny body a podle následujícího klíče se určí procentní úroveň:
@@ -59,10 +62,41 @@ Všechny tyto peníze poradce dostane na účet. Podmínkou je, že jeho vlastn�
 
 Při dosažení 12\% úrovně se poradce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
 \\TODO: priklad grafu skupiny?
+\\\tikz
+\node {Computational Complexity\\dsa} % root
+child { node {Computational Problems}
+child { node {Problem Measures} }
+child { node {Problem Aspects} }
+child { node {Problem Domains} }
+child { node {Key Problems} }
+}
+child { node {Computational Models}
+child { node {Turing Machines} }
+child { node {Random-Access Machines} }
+child { node {Circuits} }
+child { node {Binary Decision Diagrams} }
+child { node {Oracle Machines} }
+child { node {Programming in Logic} }
+}
+child { node {Measuring Complexity}
+child { node {Complexity Measures} }
+child { node {Classifying Complexity} }
+child { node {Comparing Complexity} }
+child { node {Describing Complexity} }
+}
+child { node {Solving Problems}
+child { node {Exact Algorithms} }
+child { node {Randomization} }
+child { node {Fixed-Parameter Algorithms} }
+child { node {Parallel Computation} }
+child { node {Partial Solutions} }
+child { node {Approximation} }
+};
+
 \chapter{Popis modelu}
 V této kapitole se budeme věnovat popisu modelu sítě Oriflame z technického a ekonomického pohledu.
 \section{Technický popis}
-Pro vytvoření experimentálního modelu bylo zvoleno prostředí NetLogo ve verzi 4.1.3. Je to oteřený a volně šiřitelný software umožňující snadnou tvorbu agentových a systémově-dynamických modelů. Běh modelu pak zahrnuje zpravidla dvě části:
+Pro vytvoření experimentálního modelu bylo zvoleno prostředí NetLogo ve verzi 4.1.3. Je to oteřený a volně šiřitelný software umožňující snadnou tvorbu agentových a systémově-dynamických modelů. Běh modelu zahrnuje zpravidla dvě části:
 \begin{enumerate}
 \item Inicializace (setup). Zde se nastaví všechny proměnné na výchozí hodnoty, většinou také dojde k vygenerování náhodných parametrů a vztahů pro jednotlivé agenty.
 \item Vlastní běh. Ten probíhá v opakovaných oddělených krocích. V každém z nich dojde k projevu chování agentů a tím změně promenných, vztahů mezi agenty atd.
@@ -72,7 +106,14 @@ V tomto modelu se pracuje zejména s agenty \texttt{person}, obousměrným vztah
 \subsection{Generování sociálních vazeb}
 Je nutné, aby model věrně zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet náhodných přátelství mezi nimi. Je nutné aby graf tovřil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. To je zajištěno tak, že ihned po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má. Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na následujících dvou grafech jsou histogramy jednoho běhu generování přátelství pro \texttt{number-of-persons}=\texttt{number-of-friendships}=300 před a po přidání náhodných přátelství:\\
 \begin{center}\includegraphics{hist_fr_v1.eps}\includegraphics{hist_fr_v2.eps}\end{center}
-\subsection{Agent \texttt{person}}
+\subsection{global}
+\subsection{Vlastnosti a chování agenta \texttt{person}}
+Agent \texttt{person} představuje v modelu jednoho člověka. Má tyto vlastnosti:
+\begin{description}
+\item[\texttt{consupmtion}] Množství peněz, které daná osoba během jednom období může utratit za kosmetické výrobky, které je možno koupit v síti Oriflame. Je to ekvivalent rozpočtového omezení a považuje se za konstantní. Ve výchozím nastavení je generováno jako $\max\{100,$\texttt{random-normal(1000,500)}$\}$, tj. náhodná hodnota z normálního rozdělení se střední hodnotou 1000, rozptylem 500, zdola omezená 100 (spořeba nižší než 100 by byla nevýznamná).
+\item[\texttt{netmember?}] Značí, zda je agent členem sítě --- poradcem.
+\item[\texttt{be-point}] 
+\end{description}
 \chapter{Experimenty}
 \begin{thebibliography}{9}
 

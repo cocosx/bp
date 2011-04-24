@@ -1,0 +1,13 @@
+\select@language {czech}
+\contentsline {chapter}{\IeC {\'U}vod}{2}
+\contentsline {chapter}{\numberline {1}Prodejn\IeC {\'\i } s\IeC {\'\i }\IeC {\v t} Oriflame}{3}
+\contentsline {section}{\numberline {1.1}Historie firmy Oriflame}{3}
+\contentsline {section}{\numberline {1.2}Podm\IeC {\'\i }nky s\IeC {\'\i }\IeC {\v t}ov\IeC {\'e}ho prodeje}{3}
+\contentsline {subsection}{\numberline {1.2.1}Skupiny a slevy z obratu}{4}
+\contentsline {chapter}{\numberline {2}Popis modelu}{6}
+\contentsline {section}{\numberline {2.1}Technick\IeC {\'y} popis}{6}
+\contentsline {section}{\numberline {2.2}Ekonomick\IeC {\'y} popis}{6}
+\contentsline {subsection}{\numberline {2.2.1}Generov\IeC {\'a}n\IeC {\'\i } soci\IeC {\'a}ln\IeC {\'\i }ch vazeb}{6}
+\contentsline {subsection}{\numberline {2.2.2}global}{7}
+\contentsline {subsection}{\numberline {2.2.3}Vlastnosti a chov\IeC {\'a}n\IeC {\'\i } agenta \texttt {person}}{7}
+\contentsline {chapter}{\numberline {3}Experimenty}{8}

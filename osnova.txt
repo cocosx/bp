@@ -22,3 +22,7 @@ analyza,experimenty
   -reakce na soky
   -sireni site, zavislost na zdroji?
   -stabilita
+  
+zadani naskenovat??
+citace "prirucka kos. poradce"
+histogram->subfloat
