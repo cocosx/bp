@@ -7,6 +7,8 @@
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage[czech]{babel}
+%\usepackage{fullpage}
+\usepackage[top=22mm, bottom=30mm, left=35mm, right=25mm]{geometry}
 \title{sds}
 \author{Marek Bryša}
 \date{Brno 2011}
@@ -53,10 +55,24 @@ body & $\geq$200 & $\geq$600 & $\geq$1200 & $\geq$2400 & $\geq$4000 & $\geq$6600
 \end{center}
 Toto se provede i pro všechny podskupiny. Poradce pak získá za každou podskupinu: obchodní obrat skupiny $\cdot$ (procentní úroveň poradce $-$ procentní úroveň skupiny). Tím je zajištěno, že člověk, který se stal poradcem Oriflame později, ale je schopnější, může dosáhnout vyššího výdělku než ten, kdo jej přivedl. Poradce také obdrží přímo podle své procetní úrovně slevu ze svého vlastního prodeje.
 
-Všechny tyto peníze poradce dostane na účet. Podmínkou je, že jeho vlastní prodej musí dosáhnout 100 bodů. To je zdůvodněno tím, že poradce musí být sám schopným prodejcem, aby mohl učit ostatní.
+Všechny tyto peníze poradce dostane na účet. Podmínkou je, že jeho vlastní prodej musí dosáhnout 100 bodů. To firma zdůvodňuje tím, že poradce musí být sám schopným prodejcem, aby mohl učit ostatní.
 
-Při dosažení 12\% úrovně se poradce stává tzv. manažerem, pří 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních aj.
+Při dosažení 12\% úrovně se poradce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
+\\TODO: priklad grafu skupiny?
 \chapter{Popis modelu}
+V této kapitole se budeme věnovat popisu modelu sítě Oriflame z technického a ekonomického pohledu.
+\section{Technický popis}
+Pro vytvoření experimentálního modelu bylo zvoleno prostředí NetLogo ve verzi 4.1.3. Je to oteřený a volně šiřitelný software umožňující snadnou tvorbu agentových a systémově-dynamických modelů. Běh modelu pak zahrnuje zpravidla dvě části:
+\begin{enumerate}
+\item Inicializace (setup). Zde se nastaví všechny proměnné na výchozí hodnoty, většinou také dojde k vygenerování náhodných parametrů a vztahů pro jednotlivé agenty.
+\item Vlastní běh. Ten probíhá v opakovaných oddělených krocích. V každém z nich dojde k projevu chování agentů a tím změně promenných, vztahů mezi agenty atd.
+\end{enumerate}
+V tomto modelu se pracuje zejména s agenty \texttt{person}, obousměrným vztahem \texttt{friend} a jednosměrným \texttt{sponsor}.
+\section{Ekonomický popis}
+\subsection{Generování sociálních vazeb}
+Je nutné, aby model věrně zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet náhodných přátelství mezi nimi. Je nutné aby graf tovřil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. To je zajištěno tak, že ihned po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má. Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na následujících dvou grafech jsou histogramy jednoho běhu generování přátelství pro \texttt{number-of-persons}=\texttt{number-of-friendships}=300 před a po přidání náhodných přátelství:\\
+\begin{center}\includegraphics{hist_fr_v1.eps}\includegraphics{hist_fr_v2.eps}\end{center}
+\subsection{Agent \texttt{person}}
 \chapter{Experimenty}
 \begin{thebibliography}{9}
 
@@ -66,5 +82,6 @@ Při dosažení 12\% úrovně se poradce stává tzv. manažerem, pří 21\% dir
 \url{http://www.oriflame.com/About_Oriflame/History/}
 cenik 4/2011
 manual kosmetickeho poradce
+http://ccl.northwestern.edu/netlogo/download.shtml
 \end{document}
 

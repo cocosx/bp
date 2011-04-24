@@ -10,7 +10,7 @@ oriflame
     -katalogy
     -body
     -urovne,sponzorstvi
- 
+TODO: priklad site?
 model
   -technika
     -nlogo,agenti
