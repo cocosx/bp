@@ -9,5 +9,7 @@
 \contentsline {section}{\numberline {2.2}Ekonomick\IeC {\'y} popis}{6}
 \contentsline {subsection}{\numberline {2.2.1}Generov\IeC {\'a}n\IeC {\'\i } soci\IeC {\'a}ln\IeC {\'\i }ch vazeb}{6}
 \contentsline {subsection}{\numberline {2.2.2}global}{7}
-\contentsline {subsection}{\numberline {2.2.3}Vlastnosti a chov\IeC {\'a}n\IeC {\'\i } agenta \texttt {person}}{7}
-\contentsline {chapter}{\numberline {3}Experimenty}{8}
+\contentsline {subsection}{\numberline {2.2.3}Vlastnosti agenta \texttt {person}}{7}
+\contentsline {subsection}{\numberline {2.2.4}Chov\IeC {\'a}n\IeC {\'\i } agenta \texttt {person}}{8}
+\contentsline {subsubsection}{Vstupn\IeC {\'\i } podm\IeC {\'\i }nka}{8}
+\contentsline {chapter}{\numberline {3}Experimenty}{9}
