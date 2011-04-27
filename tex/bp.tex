@@ -107,8 +107,14 @@ V tomto modelu se pracuje zejména s agenty \texttt{person}, obousměrným vztah
 \subsection{Generování sociálních vazeb}
 Je nutné, aby model věrně zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet náhodných přátelství mezi nimi. Je nutné aby graf tovřil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. To je zajištěno tak, že ihned po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má. Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na následujících dvou grafech jsou histogramy jednoho běhu generování přátelství pro \texttt{number-of-persons}=\texttt{number-of-friendships}=300 před a po přidání náhodných přátelství:\\
 \begin{center}\includegraphics{hist_fr_v1.eps}\includegraphics{hist_fr_v2.eps}\end{center}
-\subsection{global}
-sireni site,be-point,fee
+\subsection{Prostředí}
+Agenti jsou generování v izolovaném prostředí. Na začátku je jeden z nich určen jako zdrojový a od něj se pak síť může postupně po jednotlivých kolech šířit. Je možne také zapnout volbu \texttt{random-join?}, která znamená, že v každém kole je nabídnuto členství jednomu náhodnému agentovi --- nečlenovi. To modeluje případ, kdy se poradci snaží o nábor lidí např. u stánků.
+
+Dále jsou přítomny tyto za běhu měnitelné konstanty:
+\begin{description}
+\item[\texttt{margin}] Marže pro prodejce.
+\item[\texttt{monthly-fee}] Poplatek za členství placený v každém kole. Firma Oriflame jej nevybírá, je tedy určen spíše pro experimenty.
+\end{description}
 \subsection{Vlastnosti agenta \texttt{person}}
 Agent \texttt{person} představuje v modelu jednoho člověka. Má tyto důležité vlastnosti:
 \begin{description}
