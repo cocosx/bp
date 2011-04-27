@@ -1,5 +1,5 @@
 breed [persons person]
-persons-own [consumption netmember? membership-length be-point exp-srev-init sum-exp-rev exp-srev-list srev-level my-subnetrev my-rev my-srev explored?]
+persons-own [consumption netmember? membership-length be-point exp-srev-init sum-exp-rev exp-srev-list srev-level my-subnetrev my-rev my-srev explored? last-margin]
 undirected-link-breed [friends friend]
 directed-link-breed [sponsors sponsor]
 
@@ -35,18 +35,18 @@ to setup
   ask persons [
     create-friend-with one-of other persons with [count friend-neighbors > 0]
   ]
-  ask persons [
-    output-print count friend-neighbors
-  ]
+  ;ask persons [
+  ;  output-print count friend-neighbors
+  ;]
   repeat number-of-friendships [
     ask one-of persons [ 
       create-friend-with one-of other persons
     ]
   ]
-  output-print "-------"
-  ask persons [
-    output-print count friend-neighbors
-  ]
+  ;output-print "-------"
+  ;ask persons [
+  ;  output-print count friend-neighbors
+  ;]
   ask persons [
     set srev-level 0
     set exp-srev-init 0
@@ -58,6 +58,7 @@ to setup
     set exp-srev-init (round (rev-to-srev a))
     set exp-srev-list []
     repeat 10 [set exp-srev-list lput exp-srev-init exp-srev-list]
+    set last-margin margin
   ]
   ask net-seed [
     set sum-exp-rev (exp-srev-init * 6)
@@ -194,6 +195,7 @@ to spread-network
       
       ;;set exp-srev-init exp-rev - my-rev ;;pamatuje si pro priste svuj ocekavany prijem
       set srev-level 0
+      set last-margin margin
     ]
     [ set membership-length membership-length + 1 ]
     ;;set label round (myrev - consumption * margin)
@@ -207,7 +209,10 @@ to spread-network
            set myrev myrev + ((consumption * margin) / (count friend-neighbors with [netmember?] + 1 ))
          ]
          let avg-exp-rev (sum exp-srev-list) / (length exp-srev-list)
-         if (myrev + (avg-exp-rev * 1.2)) >= (be-point + monthly-fee) ;;join condition
+         ;;if (myrev + (avg-exp-rev * 1.2)) >= (be-point + monthly-fee) ;;join condition
+         let d-margin 1 + (margin - last-margin)
+         if d-margin > 0 [set d-margin 0]
+         if ((myrev + avg-exp-rev) * (1 + d-margin)) >= (be-point + monthly-fee) ;;join condition
          [
            set netmember? true
            create-sponsor-to p
@@ -225,7 +230,9 @@ to spread-network
             set myrev myrev + ((consumption * margin) / (count friend-neighbors with [netmember?] + 1 ))
           ]
           let avg-exp-rev (sum exp-srev-list) / (length exp-srev-list)
-          if (myrev + (avg-exp-rev * 1.2)) >= (be-point + monthly-fee) ;;join condition
+          let d-margin (margin - last-margin)
+          if d-margin > 0 [set d-margin 0]
+          if ((myrev + avg-exp-rev) * (1 + d-margin)) >= (be-point + monthly-fee) ;;join condition
           [
             create-sponsor-to one-of persons with [netmember?]
             set netmember? true
@@ -392,7 +399,7 @@ margin
 margin
 0.07
 1
-0.25
+0.5
 0.01
 1
 NIL

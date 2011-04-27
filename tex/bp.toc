@@ -12,4 +12,5 @@
 \contentsline {subsection}{\numberline {2.2.3}Vlastnosti agenta \texttt {person}}{7}
 \contentsline {subsection}{\numberline {2.2.4}Chov\IeC {\'a}n\IeC {\'\i } agenta \texttt {person}}{8}
 \contentsline {subsubsection}{Vstupn\IeC {\'\i } podm\IeC {\'\i }nka}{8}
+\contentsline {subsubsection}{Podm\IeC {\'\i }nka setrv\IeC {\'a}n\IeC {\'\i }}{8}
 \contentsline {chapter}{\numberline {3}Experimenty}{9}

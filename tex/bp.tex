@@ -108,7 +108,7 @@ V tomto modelu se pracuje zejména s agenty \texttt{person}, obousměrným vztah
 Je nutné, aby model věrně zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet náhodných přátelství mezi nimi. Je nutné aby graf tovřil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. To je zajištěno tak, že ihned po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má. Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na následujících dvou grafech jsou histogramy jednoho běhu generování přátelství pro \texttt{number-of-persons}=\texttt{number-of-friendships}=300 před a po přidání náhodných přátelství:\\
 \begin{center}\includegraphics{hist_fr_v1.eps}\includegraphics{hist_fr_v2.eps}\end{center}
 \subsection{global}
-sireni site
+sireni site,be-point,fee
 \subsection{Vlastnosti agenta \texttt{person}}
 Agent \texttt{person} představuje v modelu jednoho člověka. Má tyto důležité vlastnosti:
 \begin{description}
@@ -123,13 +123,20 @@ $$\max\{\texttt{consumption}\cdot 0.5,\texttt{consumption}\cdot\texttt{random-no
 Chování vychází z jednoduché racionálni úvahy --- vyplatí se do sítě vstoupit a zůstat v ní? Lze jej tedy rozdělit na dvě části: podmínku vstupní a podmínku setrvání.
 \subsubsection{Vstupní podmínka}
 Pokud je agentovi nabídnuto členství, přijme ho pokud:
-$$\texttt{myrev} + (\texttt{avg-exp-rev} \cdot 1.2) \geq \texttt{be-point} + \texttt{monthly-fee}$$
+$$(\texttt{myrev} + \texttt{avg-exp-rev}) \cdot (1+\texttt{d-margin}) \geq \texttt{be-point} + \texttt{monthly-fee}$$
 kde:
 \begin{description}
-\item[\texttt{myrev}] je očekávaný příjem z přímeho prodeje přátelům agenta. Vypočítá se jako: $$\sum_{p\in F} \texttt{consumption}_p\cdot\texttt{margin}$$
+\item[\texttt{myrev}] je očekávaný příjem z přímeho prodeje přátelům agenta. Vypočítá se jako: $$\sum_{p\in F}(\texttt{consumption}_p\cdot\texttt{margin})$$
 kde $F$ je množina přátel. Pokud některému z nich může zboží dodávat více poradců, je spotřeba rozdělena rovnoměrně mezi ně.
-\item[\texttt{avg-exp-rev}] je očekávaný příjem ze sponzoringu a skupin.
+\item[\texttt{avg-exp-rev}] je očekávaný příjem ze sponzoringu a skupin. Protože v rozhodování člověka je jistá setrvačnost, je dán jako průměr posledních deseti skutečných příjmů z této činnosti. Při inicializaci je naplněn těmito hodnotami:
+\[ 0.09\cdot (\sum_{p\in F}\texttt{consumption}_p)\cdot |F|^{1.3} \]
+To odpovídá odhadu uváděnému při nabídce členství v síti.
+\item[\texttt{d-margin}] je rozdíl mezi současnou \texttt{margin} a tou při posledním odchodu agenta ze sítě, nejméně 0. To proto, že pokud se marže od posledního pokusu o nábor člena zvýšila, bude to použito jako argument, v opačném případě spíše zamlčeno.
 \end{description}
+\subsubsection{Podmínka setrvání}
+Ta je dána velmi podobně:
+\[ \texttt{avg-exp-rev} + \texttt{my-rev} \geq \texttt{be-point} + \texttt{monthly-fee} \]
+\texttt{my-rev} v tomto případě již není odhad, ale skutečná hodnota.
 \chapter{Experimenty}
 \begin{thebibliography}{9}
 
