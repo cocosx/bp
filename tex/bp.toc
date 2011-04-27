@@ -14,3 +14,6 @@
 \contentsline {subsubsection}{Vstupn\IeC {\'\i } podm\IeC {\'\i }nka}{8}
 \contentsline {subsubsection}{Podm\IeC {\'\i }nka setrv\IeC {\'a}n\IeC {\'\i }}{8}
 \contentsline {chapter}{\numberline {3}Experimenty}{9}
+\contentsline {chapter}{P\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka pro studenty}{10}
+\contentsline {section}{\numberline {3.1}velky model}{10}
+\contentsline {section}{\numberline {3.2}zjednoduseny model?}{10}

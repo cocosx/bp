@@ -18,6 +18,10 @@
 
 \chapter*{Úvod}
 \addcontentsline{toc}{chapter}{Úvod}
+co,jak,proc\\
+zduvodneni "pro vyuku mikroekonomie"\\
+o sitovem marketingu obecne\\
+$\pm$1s
 \chapter{Prodejní síť Oriflame}
 \section{Historie firmy Oriflame}
 Firma Oriflame byla založena v roce 1967 ve Švédsku bratry Jonasem a Robertem Jochnick. Cílem bylo nabídnout lidem přirozenou a přírodní péči o svou pleť. Místo aby nákladně budovali kamenné obchody, rozhodli se dostat prodej přímo do domovů a využít tak vrozenou podnikavost lidí. Tento základní koncept zůstáva po více než 40 let nezměněn. V roce 1990, po po pádu železné opony, firma expanduje po střední a východní Evropě a zakládá pobočku i v České republice. V roce 2001 dosahuje počet kosmetických poradců jednoho miliónu a obrat téměř 450 miliónů EUR.
@@ -128,7 +132,7 @@ $$\max\{\texttt{consumption}\cdot 0.5,\texttt{consumption}\cdot\texttt{random-no
 \subsection{Chování agenta \texttt{person}}
 Chování vychází z jednoduché racionálni úvahy --- vyplatí se do sítě vstoupit a zůstat v ní? Lze jej tedy rozdělit na dvě části: podmínku vstupní a podmínku setrvání.
 \subsubsection{Vstupní podmínka}
-Pokud je agentovi nabídnuto členství, přijme ho pokud:
+Pokud je agentovi nabídnuto členství, přijme ho jestliže:
 $$(\texttt{myrev} + \texttt{avg-exp-rev}) \cdot (1+\texttt{d-margin}) \geq \texttt{be-point} + \texttt{monthly-fee}$$
 kde:
 \begin{description}
@@ -144,6 +148,16 @@ Ta je dána velmi podobně:
 \[ \texttt{avg-exp-rev} + \texttt{my-rev} \geq \texttt{be-point} + \texttt{monthly-fee} \]
 \texttt{my-rev} v tomto případě již není odhad, ale skutečná hodnota.
 \chapter{Experimenty}
+  -optimalni margin+fee, zrusit fee z psychologickych duvodu?\\
+  -maji smysl pobidky pro prvnich asi 6 obdobi?\\
+  -sireni site, zavislost na zdroji\\
+  -reakce na soky\\
+  
+\chapter*{Příručka pro studenty}
+\addcontentsline{toc}{chapter}{Příručka pro studenty}
+\section{velky model}
+\section{zjednoduseny model?}
+bez sponzorovani - je tam lepe videt neprima umera mezi ziskem firmy a vysi margin+fee
 \begin{thebibliography}{9}
 
 \bibitem{fd}
