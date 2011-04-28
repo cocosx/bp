@@ -10,6 +10,7 @@
 %\usepackage{fullpage}
 \usepackage[top=22mm, bottom=30mm, left=35mm, right=25mm]{geometry}
 \usepackage{tikz}
+\hyphenation{NetLogo}
 \title{sds}
 \author{Marek Bryša}
 \date{Brno 2011}
@@ -120,6 +121,7 @@ Dále jsou přítomny tyto za běhu měnitelné konstanty:
 \item[\texttt{monthly-fee}] Poplatek za členství placený v každém kole. Firma Oriflame jej nevybírá, je tedy určen spíše pro experimenty.
 \end{description}
 \subsection{Vlastnosti agenta \texttt{person}}
+\label{sec:vl_agenta}
 Agent \texttt{person} představuje v modelu jednoho člověka. Má tyto důležité vlastnosti:
 \begin{description}
 \item[\texttt{consupmtion}] Množství peněz, které daná osoba během jednom období může utratit za kosmetické výrobky, které je možno koupit v síti Oriflame. Je to ekvivalent rozpočtového omezení a považuje se za konstantní. Ve výchozím nastavení je generováno jako:
@@ -148,11 +150,14 @@ Ta je dána velmi podobně:
 \[ \texttt{avg-exp-rev} + \texttt{my-rev} \geq \texttt{be-point} + \texttt{monthly-fee} \]
 \texttt{my-rev} v tomto případě již není odhad, ale skutečná hodnota.
 \chapter{Experimenty}
-  -optimalni margin+fee, zrusit fee z psychologickych duvodu?\\
-  -maji smysl pobidky pro prvnich asi 6 obdobi?\\
-  -sireni site, zavislost na zdroji\\
-  -reakce na soky\\
-  
+V této kapitole budeme provádět experimenty na modelu prodejní sítě Oriflame a analyzovat jejich výsledky. Pokud nebude uvedeno jinak pracujeme s výchozím modelem a základními parametry:\\\texttt{number-of-persons}=\texttt{number-of-friendships}=300, \\\texttt{margin}=0.3,\\\texttt{monthly-fee}=100 a\\vlastnosti agenta \texttt{person} uvedené v sekci \ref{sec:vl_agenta}.
+
+Data budou získána pomocí nástroje BehaviorSpace obsaženého v programu NetLogo. Ten umožňuje opakovaný běh modelu se stejnými náhodnými složkami, ale při různých parametrech, čímž lze získat velké a robustní datové soubory.
+\section{Šíření sítě}
+\section{Závislost na zdroji}
+\section{Reakce na šoky}
+\section{Optimální \texttt{margin} a \texttt{monthly-fee}}
+\section{Pobídky}
 \chapter*{Příručka pro studenty}
 \addcontentsline{toc}{chapter}{Příručka pro studenty}
 \section{velky model}

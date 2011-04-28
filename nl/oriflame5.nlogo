@@ -4,7 +4,7 @@ undirected-link-breed [friends friend]
 directed-link-breed [sponsors sponsor]
 
 
-globals [network-sale-revenue network-fee-revenue net-seed network-sponsor-cost]
+globals [network-sale-revenue network-fee-revenue net-seed network-sponsor-cost last-revenue current-revenue]
 
 to setup
   clear-all
@@ -67,20 +67,22 @@ to setup
   repeat 20 [
     layout
   ]
+  display
   ask persons [
     set label exp-srev-init
   ]
- 
+  set last-revenue -1
+  set current-revenue -1
 end
 
 to layout
   repeat 12 [
     layout-spring persons friends 0.05 1 1.2
-    display
   ]
 end
 
 to update-revenue
+  set last-revenue current-revenue
   set network-fee-revenue count persons with [netmember?] * monthly-fee
   let rev 0
   let scost 0
@@ -89,6 +91,7 @@ to update-revenue
     set scost scost + my-srev
   ]
   set network-sale-revenue rev
+  set current-revenue rev
   set network-sponsor-cost scost
   set-current-plot "revenue"
   plot network-fee-revenue + network-sale-revenue
@@ -96,6 +99,12 @@ to update-revenue
   plot network-sponsor-cost
   set-current-plot "profit"
   plot network-fee-revenue + network-sale-revenue - network-sponsor-cost
+  
+  
+end
+
+to-report net-stable?
+  report (round last-revenue = round current-revenue) and (current-revenue > 0)
 end
 
 to-report rev-to-srev [rev]
@@ -384,7 +393,7 @@ monthly-fee
 monthly-fee
 0
 1000
-229
+100
 1
 1
 NIL
@@ -399,7 +408,7 @@ margin
 margin
 0.07
 1
-0.5
+0.3
 0.01
 1
 NIL
@@ -820,6 +829,30 @@ NetLogo 4.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="spread1" repetitions="100" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <exitCondition>net-stable?</exitCondition>
+    <metric>count persons with [netmember?]</metric>
+    <metric>current-revenue</metric>
+    <enumeratedValueSet variable="random-join?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-friendships">
+      <value value="300"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-persons">
+      <value value="300"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="margin">
+      <value value="0.3"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="monthly-fee">
+      <value value="100"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default

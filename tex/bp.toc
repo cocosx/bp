@@ -14,6 +14,11 @@
 \contentsline {subsubsection}{Vstupn\IeC {\'\i } podm\IeC {\'\i }nka}{8}
 \contentsline {subsubsection}{Podm\IeC {\'\i }nka setrv\IeC {\'a}n\IeC {\'\i }}{8}
 \contentsline {chapter}{\numberline {3}Experimenty}{9}
+\contentsline {section}{\numberline {3.1}\IeC {\v S}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } s\IeC {\'\i }t\IeC {\v e}}{9}
+\contentsline {section}{\numberline {3.2}Z\IeC {\'a}vislost na zdroji}{9}
+\contentsline {section}{\numberline {3.3}Reakce na \IeC {\v s}oky}{9}
+\contentsline {section}{\numberline {3.4}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{9}
+\contentsline {section}{\numberline {3.5}Pob\IeC {\'\i }dky}{9}
 \contentsline {chapter}{P\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka pro studenty}{10}
-\contentsline {section}{\numberline {3.1}velky model}{10}
-\contentsline {section}{\numberline {3.2}zjednoduseny model?}{10}
+\contentsline {section}{\numberline {3.6}velky model}{10}
+\contentsline {section}{\numberline {3.7}zjednoduseny model?}{10}
