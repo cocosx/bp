@@ -110,7 +110,7 @@ Pro vytvoření experimentálního modelu bylo zvoleno prostředí NetLogo ve ve
 V tomto modelu se pracuje zejména s agenty \texttt{person}, obousměrným vztahem \texttt{friend} a jednosměrným \texttt{sponsor}.
 \section{Ekonomický popis}
 \subsection{Generování sociálních vazeb}
-Je nutné, aby model věrně zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet náhodných přátelství mezi nimi. Je nutné aby graf tovřil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. To je zajištěno tak, že ihned po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má. Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na následujících dvou grafech jsou histogramy jednoho běhu generování přátelství pro \texttt{number-of-persons}=\texttt{number-of-friendships}=300 před a po přidání náhodných přátelství:\\
+Je nutné, aby model věrně zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet náhodných přátelství mezi nimi. Je nutné aby graf tovřil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. To je zajištěno tak, že ihned po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má. Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na následujících dvou grafech jsou histogramy jednoho běhu generování přátelství pro $\texttt{number-of-persons}=\texttt{number-of-friendships}=300$ před a po přidání náhodných přátelství:\\
 \begin{center}\includegraphics{hist_fr_v1.eps}\includegraphics{hist_fr_v2.eps}\end{center}
 \subsection{Prostředí}
 Agenti jsou generování v izolovaném prostředí. Na začátku je jeden z nich určen jako zdrojový a od něj se pak síť může postupně po jednotlivých kolech šířit. Je možne také zapnout volbu \texttt{random-join?}, která znamená, že v každém kole je nabídnuto členství jednomu náhodnému agentovi --- nečlenovi. To modeluje případ, kdy se poradci snaží o nábor lidí např. u stánků.
@@ -149,11 +149,52 @@ To odpovídá odhadu uváděnému při nabídce členství v síti.
 Ta je dána velmi podobně:
 \[ \texttt{avg-exp-rev} + \texttt{my-rev} \geq \texttt{be-point} + \texttt{monthly-fee} \]
 \texttt{my-rev} v tomto případě již není odhad, ale skutečná hodnota.
-\chapter{Experimenty}
-V této kapitole budeme provádět experimenty na modelu prodejní sítě Oriflame a analyzovat jejich výsledky. Pokud nebude uvedeno jinak pracujeme s výchozím modelem a základními parametry:\\\texttt{number-of-persons}=\texttt{number-of-friendships}=300, \\\texttt{margin}=0.3,\\\texttt{monthly-fee}=100 a\\vlastnosti agenta \texttt{person} uvedené v sekci \ref{sec:vl_agenta}.
+%
+\chapter{Analýza a experimenty}
+V této kapitole budeme provádět experimenty na modelu prodejní sítě Oriflame a analyzovat jejich výsledky. Pokud nebude uvedeno jinak pracujeme s výchozím modelem a základními parametry:\\
+$\texttt{number-of-persons}=\texttt{number-of-friendships}=300$, \\
+$\texttt{margin}=0.3,\\\texttt{monthly-fee}=100$ a\\
+vlastnosti agenta \texttt{person} uvedené v sekci \ref{sec:vl_agenta}.
 
 Data budou získána pomocí nástroje BehaviorSpace obsaženého v programu NetLogo. Ten umožňuje opakovaný běh modelu se stejnými náhodnými složkami, ale při různých parametrech, čímž lze získat velké a robustní datové soubory.
+
+K měření budou sloužit mimo jiné tyto veličiny:
+\begin{description}
+\item[\texttt{network-fee-revenue}] Příjem firmy z poplatků.
+\item[\texttt{network-sale-revenue}] Příjem firmy z prodeje výrobků (za nákupní ceny).
+\item[\texttt{revenue}] Součet předchozích dvou.
+\item[\texttt{scost}] Náklady na výplatu sponzoringu a skupin.
+\end{description}
 \section{Šíření sítě}
+Bylo provedeno 100 nezavislých náhodných běhů. Podmínkou ukončení je stabilizace sítě, tj. rovnost dvou po sobě následujících \texttt{revenue}. Získaná data jsou v přiloženém souboru \texttt{spread1.csv}. Z nich odvozené popisné statistiky:
+\begin{center}
+\begin{tabular}{|r|r|r|r|}
+\hline
+Statistika&Počet členů na konci	&Maximum členů	&Počet kol do stabilizace\\\hline
+Průměr	&81.47	&217.2	&24.17\\\hline
+Medián	&82	&218	&24\\\hline
+Std. odchylka	&3.83	&6.67	&2.09\\\hline
+Minimum	&72	&202	&20\\\hline
+Maximum	&92	&234	&29\\\hline
+\end{tabular}
+\end{center}
+Vidíme, že průměrný běh trval 24 kol. Členy sítě se maximálně stalo 217 osob z 300 a nakonec zůstalo 81, tedy přibližne čtvrtina. Časová řada počtu členů jednoho vybraného běhu je na následujícím grafu: 
+\begin{center}\includegraphics{member_count.eps}\end{center}
+Je patrné, že síť se z počátku rychle rozrůstá díky velkým očekáváním. Ta ale nejsou většinou naplňena a dochází k postupnému úbytku.
+
+Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Prvním důvodem může být malý \texttt{be-point}, což způsobí výhodnost členství prakticky za jakýchkoliv okolností. Druhým může být nadprůměrný počet přátel. Za stejných podmínek jako v předchozím případě sestavíme experiment. Výsledkem běhu je průměrný počet přátel pro člena sítě a pro všechny osoby. Data jsou k dispozici v souboru \texttt{spread2.csv}. Popisné statistiky:
+\begin{center}
+\begin{tabular}{|r|r|r|r|}
+\hline
+Statistika&Průměrný počet přátel pro člena	&Průměrný počet přátel pro všechny\\\hline
+Průměr	&5.44	&3.98\\\hline
+
+Variance	&0.03	&0.00\\\hline
+\end{tabular}
+\end{center}
+Hypotéza: $M_1=M_2 ~ \bot ~ M_1>M_2$\\
+P-hodnota testové statistiky $T = 9.51\cdot 10^{-97}$\\
+Jednoznačně tedy zamítáme nulovou hypotézu a je zřejmé, že stálí členové sítě mají nadprůměrný počet přátel.
 \section{Závislost na zdroji}
 \section{Reakce na šoky}
 \section{Optimální \texttt{margin} a \texttt{monthly-fee}}

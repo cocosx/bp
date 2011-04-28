@@ -107,6 +107,22 @@ to-report net-stable?
   report (round last-revenue = round current-revenue) and (current-revenue > 0)
 end
 
+to-report netmember-avg-friend-count
+  let s 0
+  ask persons with [netmember?] [
+    set s s + count friend-neighbors
+  ]
+  report s / count persons with [netmember?]
+end
+
+to-report all-persons-avg-friend-count
+  let s 0
+  ask persons [
+    set s s + count friend-neighbors
+  ]
+  report s / count persons
+end
+
 to-report rev-to-srev [rev]
   report rev * 0.09  
 end
@@ -835,7 +851,28 @@ NetLogo 4.1
     <go>go</go>
     <exitCondition>net-stable?</exitCondition>
     <metric>count persons with [netmember?]</metric>
-    <metric>current-revenue</metric>
+    <enumeratedValueSet variable="random-join?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-friendships">
+      <value value="300"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-persons">
+      <value value="300"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="margin">
+      <value value="0.3"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="monthly-fee">
+      <value value="100"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="spread2" repetitions="100" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <exitCondition>net-stable?</exitCondition>
+    <metric>netmember-avg-friend-count</metric>
+    <metric>all-persons-avg-friend-count</metric>
     <enumeratedValueSet variable="random-join?">
       <value value="false"/>
     </enumeratedValueSet>
