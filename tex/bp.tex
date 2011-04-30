@@ -108,7 +108,7 @@ child { node {Approximation} }
 \chapter{Popis modelu}
 V této kapitole se budeme věnovat popisu modelu sítě Oriflame z technického a ekonomického pohledu. Dojde i k částečnému prolnutí se implementací modelu na počítači, což je nutné, aby si jej čtenář mohl v případě potřeby snáze upravit.
 \section{Technický popis}
-Pro vytvoření experimentálního modelu bylo zvoleno prostředí NetLogo ve verzi 4.1.3. Je to oteřený a volně šiřitelný software umožňující snadnou tvorbu agentových a systémově-dynamických modelů. Běh modelu zahrnuje zpravidla dvě části:
+Pro vytvoření experimentálního modelu bylo zvoleno prostředí NetLogo\footnote{NetLogo, \url{http://ccl.northwestern.edu/netlogo/}} ve verzi 4.1.3. Je to oteřený a volně šiřitelný software umožňující snadnou tvorbu agentových a systémově-dynamických modelů. Běh modelu zahrnuje zpravidla dvě části:
 \begin{enumerate}
 \item Inicializace (setup). Zde se nastaví všechny proměnné na výchozí hodnoty, většinou také dojde k vygenerování náhodných parametrů a vztahů pro jednotlivé agenty.
 \item Vlastní běh. Ten probíhá v opakovaných oddělených krocích. V každém z nich dojde k projevu chování agentů a tím změně promenných, vztahů mezi agenty atd.
@@ -162,6 +162,8 @@ Ta je dána velmi podobně:
 \[ \texttt{avg-exp-rev} + \texttt{my-rev} \geq \texttt{be-point} + \texttt{monthly-fee} \]
 \texttt{my-rev} v tomto případě již není odhad, ale skutečná hodnota.
 %
+%
+%
 \chapter{Analýza a experimenty}
 V této kapitole budeme provádět experimenty na modelu prodejní sítě Oriflame a analyzovat jejich výsledky. Pokud nebude uvedeno jinak pracujeme s výchozím modelem a základními parametry:\\
 $\texttt{number-of-persons}=\texttt{number-of-friendships}=300$, \\
@@ -177,6 +179,7 @@ K měření budou sloužit mimo jiné tyto veličiny:
 \item[\texttt{revenue}] Součet předchozích dvou.
 \item[\texttt{scost}] Náklady na výplatu sponzoringu a skupin.
 \end{description}
+Ke statistické analýze bude využit ekonometrický software GRETL\footnote{Gnu Regression, Econometrics and Time-series Library, \url{http://gretl.sourceforge.net/}} verze 1.9.1 a tabulkový procesor Gnumeric\footnote{Gnumeric --- The Gnome Office Spreadsheet, \url{http://projects.gnome.org/gnumeric/}} 1.10.14.
 \section{Šíření sítě}
 Zde se budeme zkoumat šíření sítě a její výsledné vlastnosti. 
 \subsection{Průběh šíření}
