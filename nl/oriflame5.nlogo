@@ -123,6 +123,22 @@ to-report all-persons-avg-friend-count
   report s / count persons
 end
 
+to-report netmember-be-point
+  let s 0
+  ask persons with [netmember?] [
+    set s s + count friend-neighbors
+  ]
+  report s / count persons with [netmember?]
+end
+
+to-report all-persons-avg-be-point
+  let s 0
+  ask persons [
+    set s s + count friend-neighbors
+  ]
+  report s / count persons
+end
+
 to-report rev-to-srev [rev]
   report rev * 0.09  
 end

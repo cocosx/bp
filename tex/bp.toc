@@ -15,6 +15,8 @@
 \contentsline {subsubsection}{Podm\IeC {\'\i }nka setrv\IeC {\'a}n\IeC {\'\i }}{8}
 \contentsline {chapter}{\numberline {3}Anal\IeC {\'y}za a experimenty}{9}
 \contentsline {section}{\numberline {3.1}\IeC {\v S}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } s\IeC {\'\i }t\IeC {\v e}}{9}
+\contentsline {subsection}{\numberline {3.1.1}Pr\IeC {\r u}b\IeC {\v e}h \IeC {\v s}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i }}{9}
+\contentsline {subsection}{\numberline {3.1.2}Vlastnosti agent\IeC {\r u}}{10}
 \contentsline {section}{\numberline {3.2}Z\IeC {\'a}vislost na zdroji}{11}
 \contentsline {section}{\numberline {3.3}Reakce na \IeC {\v s}oky}{11}
 \contentsline {section}{\numberline {3.4}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{11}

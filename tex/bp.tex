@@ -10,6 +10,8 @@
 %\usepackage{fullpage}
 \usepackage[top=22mm, bottom=30mm, left=35mm, right=25mm]{geometry}
 \usepackage{tikz}
+\usepackage{subfig}
+\usepackage{float}
 \hyphenation{NetLogo}
 \title{sds}
 \author{Marek Bryša}
@@ -54,7 +56,8 @@ Každému výrobku jsou v ceníku přiděleny čtyři hodnoty:
 \end{description}
 Výjimku tvoří např. tiskoviny, vzorky a oblečení s logem Oriflame, které mají pouze nákupní cenu,  nejsou určeny k dalšímu prodeji a slouží jen jako pomůcka pro poradce.
 
-Poradce dále získá body všech lidí které přivedl a těch pod nimi. Na konci každého katalogového období dochází k vyhodnocení. Sečtou se všechny body a podle následujícího klíče se určí procentní úroveň:
+Poradce dále získá body všech lidí které přivedl a těch pod nimi. Na konci každého katalogového období dochází k vyhodnocení. Sečtou se všechny body a podle tabulky \ref{tab:perc_level} se určí procentní úroveň.
+\begin{table}[h]
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|c|c|c|}
 \hline
@@ -62,6 +65,9 @@ body & $\geq$200 & $\geq$600 & $\geq$1200 & $\geq$2400 & $\geq$4000 & $\geq$6600
 úroveň & 3\% & 6\% & 9\% & 12\% & 15\% & 18\% & 21\%\\\hline
 \end{tabular}
 \end{center}
+\caption{Určení procentní úrovně}
+\label{tab:perc_level}
+\end{table}
 Toto se provede i pro všechny podskupiny. Poradce pak získá za každou podskupinu: obchodní obrat skupiny $\cdot$ (procentní úroveň poradce $-$ procentní úroveň skupiny). Tím je zajištěno, že člověk, který se stal poradcem Oriflame později, ale je schopnější, může dosáhnout vyššího výdělku než ten, kdo jej přivedl. Poradce také obdrží přímo podle své procetní úrovně slevu ze svého vlastního prodeje.
 
 Všechny tyto peníze poradce dostane na účet. Podmínkou je, že jeho vlastní prodej musí dosáhnout 100 bodů. To firma zdůvodňuje tím, že poradce musí být sám schopným prodejcem, aby mohl učit ostatní.
@@ -110,8 +116,15 @@ Pro vytvoření experimentálního modelu bylo zvoleno prostředí NetLogo ve ve
 V tomto modelu se pracuje zejména s agenty \texttt{person}, obousměrným vztahem \texttt{friend} a jednosměrným \texttt{sponsor}.
 \section{Ekonomický popis}
 \subsection{Generování sociálních vazeb}
-Je nutné, aby model věrně zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet náhodných přátelství mezi nimi. Je nutné aby graf tovřil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. To je zajištěno tak, že ihned po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má. Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na následujících dvou grafech jsou histogramy jednoho běhu generování přátelství pro $\texttt{number-of-persons}=\texttt{number-of-friendships}=300$ před a po přidání náhodných přátelství:\\
-\begin{center}\includegraphics{hist_fr_v1.eps}\includegraphics{hist_fr_v2.eps}\end{center}
+Je nutné, aby model věrně zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet náhodných přátelství mezi nimi. Je nutné aby graf tovřil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. To je zajištěno tak, že ihned po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má. Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na obrázku \ref{fig:hist_fr} jsou histogramy jednoho běhu generování přátelství pro $\texttt{number-of-persons}=\texttt{number-of-friendships}=300$ před a po přidání náhodných přátelství.\\
+\begin{figure}[h]
+  \centering
+  \subfloat[Před přidáním náhodných]{\label{fig:hist_fr_v1}\includegraphics[width=0.5\textwidth]{hist_fr_v1.eps}}                
+  \subfloat[Po přidání náhodných]{\label{fig:hist_fr_v2}\includegraphics[width=0.5\textwidth]{hist_fr_v2.eps}}
+  \caption{Histogram počtu přátelství}
+  \label{fig:hist_fr}
+\end{figure}
+%\begin{center}\includegraphics{hist_fr_v1.eps}\includegraphics{hist_fr_v2.eps}\end{center}
 \subsection{Prostředí}
 Agenti jsou generování v izolovaném prostředí. Na začátku je jeden z nich určen jako zdrojový a od něj se pak síť může postupně po jednotlivých kolech šířit. Je možne také zapnout volbu \texttt{random-join?}, která znamená, že v každém kole je nabídnuto členství jednomu náhodnému agentovi --- nečlenovi. To modeluje případ, kdy se poradci snaží o nábor lidí např. u stánků.
 
@@ -166,35 +179,53 @@ K měření budou sloužit mimo jiné tyto veličiny:
 \item[\texttt{scost}] Náklady na výplatu sponzoringu a skupin.
 \end{description}
 \section{Šíření sítě}
-Bylo provedeno 100 nezavislých náhodných běhů. Podmínkou ukončení je stabilizace sítě, tj. rovnost dvou po sobě následujících \texttt{revenue}. Získaná data jsou v přiloženém souboru \texttt{spread1.csv}. Z nich odvozené popisné statistiky:
-\begin{center}
-\begin{tabular}{|r|r|r|r|}
-\hline
-Statistika&Počet členů na konci	&Maximum členů	&Počet kol do stabilizace\\\hline
-Průměr	&81.47	&217.2	&24.17\\\hline
-Medián	&82	&218	&24\\\hline
-Std. odchylka	&3.83	&6.67	&2.09\\\hline
-Minimum	&72	&202	&20\\\hline
-Maximum	&92	&234	&29\\\hline
-\end{tabular}
-\end{center}
-Vidíme, že průměrný běh trval 24 kol. Členy sítě se maximálně stalo 217 osob z 300 a nakonec zůstalo 81, tedy přibližne čtvrtina. Časová řada počtu členů jednoho vybraného běhu je na následujícím grafu: 
-\begin{center}\includegraphics{member_count.eps}\end{center}
+Zde se budeme zkoumat šíření sítě a její výsledné vlastnosti. 
+\subsection{Průběh šíření}
+Bylo provedeno 100 nezavislých náhodných běhů. Podmínkou ukončení je stabilizace sítě, tj. rovnost dvou po sobě následujících \texttt{revenue}. Získaná data jsou v přiloženém souboru \texttt{spread1.csv}. Z nich odvozené popisné statistiky jsou v tabulce \ref{tab:spread1_desc}.
+\begin{table}[h]
+  \begin{center}
+  \begin{tabular}{|r|r|r|r|}
+  \hline
+  Statistika&Počet členů na konci	&Maximum členů	&Počet kol do stabilizace\\\hline
+  Průměr	&81.47	&217.2	&24.17\\\hline
+  Medián	&82	&218	&24\\\hline
+  Std. odchylka	&3.83	&6.67	&2.09\\\hline
+  Minimum	&72	&202	&20\\\hline
+  Maximum	&92	&234	&29\\\hline
+  \end{tabular}
+  \end{center}
+  \caption{Popisné statistiky pro \texttt{spread1}}
+  \label{tab:spread1_desc}
+\end{table}
+Vidíme, že průměrný běh trval 24 kol. Členy sítě se maximálně stalo 217 osob z 300 a nakonec zůstalo 81, tedy přibližne čtvrtina. Časová řada počtu členů jednoho vybraného běhu je vidět na grafu \ref{fig:spread1_run}.
+\begin{figure}[h]
+  \centering
+  \includegraphics{member_count.eps}
+  \caption{Vybraný běh experimentu \texttt{spread1}}
+  \label{fig:spread1_run}
+\end{figure}
+%\begin{center}\includegraphics{member_count.eps}\end{center}
 Je patrné, že síť se z počátku rychle rozrůstá díky velkým očekáváním. Ta ale nejsou většinou naplňena a dochází k postupnému úbytku.
+\subsection{Vlastnosti agentů}
+Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Jedním důvodem může být nadprůměrný počet přátel. Za stejných podmínek jako v předchozím případě sestavíme experiment. Výsledkem běhu je průměrný počet přátel pro člena sítě a pro všechny osoby. Data jsou k dispozici v souboru \texttt{spread2.csv}. Popisné statistiky jsou v tabulce \ref{fig:spread2_desc}.
+\begin{table}[h]
+  \begin{center}
+  \begin{tabular}{|r|r|r|r|}
+  \hline
+  Statistika&Průměrný počet přátel pro člena	&Průměrný počet přátel pro všechny\\\hline
+  Průměr	&5.44	&3.98\\\hline
 
-Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Prvním důvodem může být malý \texttt{be-point}, což způsobí výhodnost členství prakticky za jakýchkoliv okolností. Druhým může být nadprůměrný počet přátel. Za stejných podmínek jako v předchozím případě sestavíme experiment. Výsledkem běhu je průměrný počet přátel pro člena sítě a pro všechny osoby. Data jsou k dispozici v souboru \texttt{spread2.csv}. Popisné statistiky:
-\begin{center}
-\begin{tabular}{|r|r|r|r|}
-\hline
-Statistika&Průměrný počet přátel pro člena	&Průměrný počet přátel pro všechny\\\hline
-Průměr	&5.44	&3.98\\\hline
-
-Variance	&0.03	&0.00\\\hline
-\end{tabular}
-\end{center}
-Hypotéza: $M_1=M_2 ~ \bot ~ M_1>M_2$\\
+  Variance	&0.03	&0.00\\\hline
+  \end{tabular}
+  \end{center}
+  \caption{Popisné statistiky \texttt{spread2}}
+  \label{fig:spread2_desc}
+\end{table}
+\\Hypotéza: $M_1=M_2 ~ \bot ~ M_1>M_2$\\
 P-hodnota testové statistiky $T = 9.51\cdot 10^{-97}$\\
 Jednoznačně tedy zamítáme nulovou hypotézu a je zřejmé, že stálí členové sítě mají nadprůměrný počet přátel.
+
+Druhým důvodem může být malý \texttt{be-point}, což způsobí výhodnost členství. Experiment provedeme stejným způsobem jako u počtu přátel. Výsledky lze nalézt v souboru \texttt{spread3.csv}.
 \section{Závislost na zdroji}
 \section{Reakce na šoky}
 \section{Optimální \texttt{margin} a \texttt{monthly-fee}}
