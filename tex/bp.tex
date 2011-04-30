@@ -147,14 +147,13 @@ $$\max\{\texttt{consumption}\cdot 0.5,\texttt{consumption}\cdot\texttt{random-no
 \subsection{Chování agenta \texttt{person}}
 Chování vychází z jednoduché racionálni úvahy --- vyplatí se do sítě vstoupit a zůstat v ní? Lze jej tedy rozdělit na dvě části: podmínku vstupní a podmínku setrvání.
 \subsubsection{Vstupní podmínka}
-Pokud je agentovi nabídnuto členství, přijme ho jestliže:
-$$(\texttt{myrev} + \texttt{avg-exp-rev}) \cdot (1+\texttt{d-margin}) \geq \texttt{be-point} + \texttt{monthly-fee}$$
-kde:
+Pokud je agentovi nabídnuto členství, přijme ho jestliže
+\[(\texttt{myrev} + \texttt{avg-exp-rev}) \cdot (1+\texttt{d-margin}) \geq \texttt{be-point} + \texttt{monthly-fee}.\]
 \begin{description}
-\item[\texttt{myrev}] je očekávaný příjem z přímeho prodeje přátelům agenta. Vypočítá se jako: $$\sum_{p\in F}(\texttt{consumption}_p\cdot\texttt{margin})$$
+\item[\texttt{myrev}] je očekávaný příjem z přímeho prodeje přátelům agenta. Vypočítá se jako \[\sum_{p\in F}(\texttt{consumption}_p\cdot\texttt{margin}),\]
 kde $F$ je množina přátel. Pokud některému z nich může zboží dodávat více poradců, je spotřeba rozdělena rovnoměrně mezi ně.
-\item[\texttt{avg-exp-rev}] je očekávaný příjem ze sponzoringu a skupin. Protože v rozhodování člověka je jistá setrvačnost, je dán jako průměr posledních deseti skutečných příjmů z této činnosti. Při inicializaci je naplněn těmito hodnotami:
-\[ 0.09\cdot (\sum_{p\in F}\texttt{consumption}_p)\cdot |F|^{1.3} \]
+\item[\texttt{avg-exp-rev}] je očekávaný příjem ze sponzoringu a skupin. Protože v rozhodování člověka je jistá setrvačnost, je dán jako průměr posledních deseti skutečných příjmů z této činnosti. Při inicializaci je naplněn hodnotami
+\[ 0.09\cdot (\sum_{p\in F}\texttt{consumption}_p)\cdot |F|^{1.3}.\]
 To odpovídá odhadu uváděnému při nabídce členství v síti.
 \item[\texttt{d-margin}] je rozdíl mezi současnou \texttt{margin} a tou při posledním odchodu agenta ze sítě, nejméně 0. To proto, že pokud se marže od posledního pokusu o nábor člena zvýšila, bude to použito jako argument, v opačném případě spíše zamlčeno.
 \end{description}
@@ -207,8 +206,8 @@ Vidíme, že průměrný běh trval 24 kol. Členy sítě se maximálně stalo 2
 %\begin{center}\includegraphics{member_count.eps}\end{center}
 Je patrné, že síť se z počátku rychle rozrůstá díky velkým očekáváním. Ta ale nejsou většinou naplňena a dochází k postupnému úbytku.
 \subsection{Vlastnosti agentů}
-Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Jedním důvodem může být nadprůměrný počet přátel. Za stejných podmínek jako v předchozím případě sestavíme experiment. Výsledkem běhu je průměrný počet přátel pro člena sítě a pro všechny osoby. Data jsou k dispozici v souboru \texttt{spread2.csv}. Popisné statistiky jsou v tabulce \ref{fig:spread2_desc}.
-\begin{table}[h]
+Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Jedním důvodem může být nadprůměrný počet přátel. Za stejných podmínek jako v předchozím případě sestavíme experiment. Výsledkem běhu je průměrný počet přátel pro člena sítě a pro všechny osoby. Data jsou k dispozici v souboru \texttt{spread2.csv}. Popisné statistiky jsou v tabulce \ref{tab:spread2_desc}.
+\begin{table}[H]
   \begin{center}
   \begin{tabular}{|r|r|r|r|}
   \hline
@@ -219,13 +218,31 @@ Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Jed
   \end{tabular}
   \end{center}
   \caption{Popisné statistiky \texttt{spread2}}
-  \label{fig:spread2_desc}
+  \label{tab:spread2_desc}
 \end{table}
-\\Hypotéza: $M_1=M_2 ~ \bot ~ M_1>M_2$\\
+Hypotéza: $M_1=M_2 ~ \bot ~ M_1>M_2$\\
 P-hodnota testové statistiky $T = 9.51\cdot 10^{-97}$\\
 Jednoznačně tedy zamítáme nulovou hypotézu a je zřejmé, že stálí členové sítě mají nadprůměrný počet přátel.
 
-Druhým důvodem může být malý \texttt{be-point}, což způsobí výhodnost členství. Experiment provedeme stejným způsobem jako u počtu přátel. Výsledky lze nalézt v souboru \texttt{spread3.csv}.
+Druhým důvodem může být malý \texttt{be-point}, což způsobí výhodnost členství. Experiment provedeme stejným způsobem jako u počtu přátel. Statistiky vidíme v tabulce \ref{tab:spread3_desc}. Výsledky lze nalézt v souboru \texttt{spread3.csv}.
+\begin{table}[H]
+  \begin{center}
+  \begin{tabular}{|r|r|r|r|}
+  \hline
+  Statistika&Průměrný \texttt{be-point} pro člena	&Průměrný \texttt{be-point} pro všechny\\\hline
+  Průměr	&533.45	&1051.82\\\hline
+
+  Variance	&1279.18	&1896.18\\\hline
+  \end{tabular}
+  \end{center}
+  \caption{Popisné statistiky \texttt{spread3}}
+  \label{tab:spread3_desc}
+\end{table}
+Hypotéza: $M_1=M_2 ~ \bot ~ M_1>M_2$\\
+P-hodnota testové statistiky $T = 3.06\cdot 10^{-109}$\\
+Nade vší pochybnost opět zamítáme možnost rovnosti průměrů. Členové tedy maji obecně podprůměrný \texttt{be-point}.
+
+Z těchto dvou experimentů je patrné, že poradci se rekrutují z řad lidí s nižším příjmem a velkým počtem přátel. Model z tohoto pohledu věrně vystihuje realitu, neboť ve společnosti tuto skupinu tvoří převážně studenti a např. rodiče na mateřské dovolené --- největší část poradců Oriflame.
 \section{Závislost na zdroji}
 \section{Reakce na šoky}
 \section{Optimální \texttt{margin} a \texttt{monthly-fee}}
