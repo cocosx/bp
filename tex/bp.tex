@@ -243,6 +243,35 @@ P-hodnota testové statistiky $T = 3.06\cdot 10^{-109}$\\
 Nade vší pochybnost opět zamítáme možnost rovnosti průměrů. Členové tedy maji obecně podprůměrný \texttt{be-point}.
 
 Z těchto dvou experimentů je patrné, že poradci se rekrutují z řad lidí s nižším příjmem a velkým počtem přátel. Model z tohoto pohledu věrně vystihuje realitu, neboť ve společnosti tuto skupinu tvoří převážně studenti a např. rodiče na mateřské dovolené --- největší část poradců Oriflame.
+\section{Vliv náborových akcí}
+Jak již bylo uvedeno, někteří poradci z vlastní iniciativy pořádají náborové akce, kde se snaží přivést k Oriflame i lidi mimo své přátele. Model to simuluje tak, že se v každém kole nabídne členství jednomu náhodnému nečlenovi. Budeme zjišťovat, zda-li to má význam pro počet členů po stabilizaci. Provedeme dva experimenty, první s \texttt{random-join?} vypnutým a druhý se zapnutým. V obou bude celkem 226 běhů modelu s \texttt{number-of-friendships} zvyšujícím se od 50 do 500 po krocích velikosti 2. Data jsou uložena v souborech \texttt{random-join1.csv} a \texttt{random-join2.csv}. Výsledné bodové grafy jsou na obrázku \ref{fig:random-join}. Metodou nejmenších čtverců byly nalezeny tyto regresní přímky:
+\begin{figure}[h]
+  \centering
+  \subfloat[\texttt{random-join?} vypnuto]{\label{fig:random_join1}\includegraphics[width=0.5\textwidth]{random-join1-1.eps}}                
+  \subfloat[\texttt{random-join?} zapnuto]{\label{fig:random_join2}\includegraphics[width=0.5\textwidth]{random-join2-1.eps}}
+  \caption{Bodový graf experimentů \texttt{random-join} s OLS přímkou}
+  \label{fig:random-join}
+\end{figure}
+\begin{itemize}
+\item \texttt{random-join?} vypnuto\\
+\begin{gather}
+\widehat{\rm netmembers} = 
+\underset{(0.61341)}{60.0865}
++\underset{(0.0020152)}{0.0644801}\,\mbox{friendships}
+ \notag \\
+T = 226 \quad \bar{R}^2 = 0.8197 \quad F(1,224) = 1023.8 \quad \hat{\sigma} = 3.9530 \notag
+\end{gather}
+
+\item \texttt{random-join?} zapnuto\\
+\begin{gather}
+\widehat{\rm netmembers} = 
+\underset{(0.62107)}{72.8508}
++\underset{(0.0020404)}{0.0426021}\,\mbox{friendships}
+ \notag \\
+T = 226 \quad \bar{R}^2 = 0.6591 \quad F(1,224) = 435.94 \quad \hat{\sigma} = 4.0024 \notag
+\end{gather}
+\end{itemize}
+Z rovnic vidíme, že náborové akce jsou zvlášť výhodné pro skupiny lidí s nižšími počty přátel. Existuje tam možnost vzniku blokace, která zabrání dalšímu šíření sítě. Bez zajímavostí není, že dojde k průniku přímek při $\texttt{number-of-friendships}=584$, což přibližne odpovídá průměrnému počtu přátel $5,84$. Pro poradce z toho plyne doporučení, že pokud je počet přátelství v jejich okolí (za předpokladu jisté homogenity) vyšší než tato hodnota, není pro ně výhodné pořádat nábory, protože síť si ke všem najde cestu sama.
 \section{Závislost na zdroji}
 \section{Reakce na šoky}
 \section{Optimální \texttt{margin} a \texttt{monthly-fee}}

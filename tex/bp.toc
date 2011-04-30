@@ -17,10 +17,11 @@
 \contentsline {section}{\numberline {3.1}\IeC {\v S}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } s\IeC {\'\i }t\IeC {\v e}}{9}
 \contentsline {subsection}{\numberline {3.1.1}Pr\IeC {\r u}b\IeC {\v e}h \IeC {\v s}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i }}{9}
 \contentsline {subsection}{\numberline {3.1.2}Vlastnosti agent\IeC {\r u}}{10}
-\contentsline {section}{\numberline {3.2}Z\IeC {\'a}vislost na zdroji}{11}
-\contentsline {section}{\numberline {3.3}Reakce na \IeC {\v s}oky}{11}
-\contentsline {section}{\numberline {3.4}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{11}
-\contentsline {section}{\numberline {3.5}Pob\IeC {\'\i }dky}{11}
-\contentsline {chapter}{P\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka pro studenty}{12}
-\contentsline {section}{\numberline {3.6}velky model}{12}
-\contentsline {section}{\numberline {3.7}zjednoduseny model?}{12}
+\contentsline {section}{\numberline {3.2}Vliv n\IeC {\'a}borov\IeC {\'y}ch akc\IeC {\'\i }}{11}
+\contentsline {section}{\numberline {3.3}Z\IeC {\'a}vislost na zdroji}{12}
+\contentsline {section}{\numberline {3.4}Reakce na \IeC {\v s}oky}{12}
+\contentsline {section}{\numberline {3.5}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{12}
+\contentsline {section}{\numberline {3.6}Pob\IeC {\'\i }dky}{12}
+\contentsline {chapter}{P\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka pro studenty}{13}
+\contentsline {section}{\numberline {3.7}velky model}{13}
+\contentsline {section}{\numberline {3.8}zjednoduseny model?}{13}
