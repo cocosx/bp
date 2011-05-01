@@ -1,0 +1,16 @@
+"BehaviorSpace results (NetLogo 4.1)"
+"oriflame6.nlogo"
+"bottleneck"
+"05/01/2011 13:20:53:326 +0200"
+"min-pxcor","max-pxcor","min-pycor","max-pycor"
+"-37","37","-37","37"
+"[run number]","1","1","1","1","2","2","2","2","3","3","3","3","4","4","4","4","5","5","5","5","6","6","6","6","7","7","7","7","8","8","8","8","9","9","9","9","10","10","10","10"
+"number-of-friendships","100",,,,"100",,,,"100",,,,"100",,,,"100",,,,"100",,,,"100",,,,"100",,,,"100",,,,"100",,,
+"number-of-persons","300",,,,"300",,,,"300",,,,"300",,,,"300",,,,"300",,,,"300",,,,"300",,,,"300",,,,"300",,,
+"random-join?","false",,,,"false",,,,"false",,,,"false",,,,"false",,,,"false",,,,"false",,,,"false",,,,"false",,,,"false",,,
+"monthly-fee","100",,,,"100",,,,"100",,,,"100",,,,"100",,,,"100",,,,"100",,,,"100",,,,"100",,,,"100",,,
+"margin","0.3",,,,"0.3",,,,"0.3",,,,"0.3",,,,"0.3",,,,"0.3",,,,"0.3",,,,"0.3",,,,"0.3",,,,"0.3",,,
+"[steps]","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"
+
+"[initial & final values]","all-persons-avg-friend-count","bottleneck-avg-friend-count","all-persons-avg-be-point","bottleneck-avg-be-point","all-persons-avg-friend-count","bottleneck-avg-friend-count","all-persons-avg-be-point","bottleneck-avg-be-point","all-persons-avg-friend-count","bottleneck-avg-friend-count","all-persons-avg-be-point","bottleneck-avg-be-point","all-persons-avg-friend-count","bottleneck-avg-friend-count","all-persons-avg-be-point","bottleneck-avg-be-point","all-persons-avg-friend-count","bottleneck-avg-friend-count","all-persons-avg-be-point","bottleneck-avg-be-point","all-persons-avg-friend-count","bottleneck-avg-friend-count","all-persons-avg-be-point","bottleneck-avg-be-point","all-persons-avg-friend-count","bottleneck-avg-friend-count","all-persons-avg-be-point","bottleneck-avg-be-point","all-persons-avg-friend-count","bottleneck-avg-friend-count","all-persons-avg-be-point","bottleneck-avg-be-point","all-persons-avg-friend-count","bottleneck-avg-friend-count","all-persons-avg-be-point","bottleneck-avg-be-point","all-persons-avg-friend-count","bottleneck-avg-friend-count","all-persons-avg-be-point","bottleneck-avg-be-point"
+,"2.664451827242525","2.0833333333333335","1052.890365448505","1472.3958333333333","2.6578073089700998","2.1176470588235294","1010.3720930232558","1185.0294117647059","2.664451827242525","2.2","1177.2259136212624","1691.6","2.664451827242525","2","1057.109634551495","2658","2.6710963455149503","2.272727272727273","1081.2790697674418","1729.8636363636363","2.6578073089700998","2.142857142857143","1008.5033222591362","1349.392857142857","2.6710963455149503","2.4444444444444446","1059.3305647840532","1743.111111111111","2.6578073089700998","2.7","1093.079734219269","2101.5","2.6710963455149503","2.3846153846153846","1091.5730897009967","2117.230769230769","2.6578073089700998","2.1333333333333333","1082.2574750830565","1772.9333333333334"

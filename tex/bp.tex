@@ -189,10 +189,10 @@ Bylo provedeno 100 nezavislých náhodných běhů. Podmínkou ukončení je sta
   \begin{tabular}{|r|r|r|r|}
   \hline
   Statistika&Počet členů na konci	&Maximum členů	&Počet kol do stabilizace\\\hline
-  Průměr	&81.47	&217.2	&24.17\\\hline
-  Medián	&82	&218	&24\\\hline
-  Std. odchylka	&3.83	&6.67	&2.09\\\hline
-  Minimum	&72	&202	&20\\\hline
+  Průměr	&81.47	&217.2	&24.17\\
+  Medián	&82	&218	&24\\
+  Std. odchylka	&3.83	&6.67	&2.09\\
+  Minimum	&72	&202	&20\\
   Maximum	&92	&234	&29\\\hline
   \end{tabular}
   \end{center}
@@ -215,7 +215,7 @@ Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Jed
   \begin{tabular}{|r|r|r|r|}
   \hline
   Statistika&Průměrný počet přátel pro člena	&Průměrný počet přátel pro všechny\\\hline
-  Průměr	&5.44	&3.98\\\hline
+  Průměr	&5.44	&3.98\\
 
   Variance	&0.03	&0.00\\\hline
   \end{tabular}
@@ -233,7 +233,7 @@ Druhým důvodem může být malý \texttt{be-point}, což způsobí výhodnost 
   \begin{tabular}{|r|r|r|r|}
   \hline
   Statistika&Průměrný \texttt{be-point} pro člena	&Průměrný \texttt{be-point} pro všechny\\\hline
-  Průměr	&533.45	&1051.82\\\hline
+  Průměr	&533.45	&1051.82\\
 
   Variance	&1279.18	&1896.18\\\hline
   \end{tabular}
@@ -274,8 +274,47 @@ T = 226 \quad \bar{R}^2 = 0.8197 \quad F(1,224) = 1023.8 \quad \hat{\sigma} = 3.
 T = 226 \quad \bar{R}^2 = 0.6591 \quad F(1,224) = 435.94 \quad \hat{\sigma} = 4.0024 \notag
 \end{gather}
 \end{itemize}
-Z rovnic vidíme, že náborové akce jsou zvlášť výhodné pro skupiny lidí s nižšími počty přátel. Existuje tam možnost vzniku blokace, která zabrání dalšímu šíření sítě. Bez zajímavostí není, že dojde k průniku přímek při $\texttt{number-of-friendships}=584$, což přibližne odpovídá průměrnému počtu přátel $5,84$. Pro poradce z toho plyne doporučení, že pokud je počet přátelství v jejich okolí (za předpokladu jisté homogenity) vyšší než tato hodnota, není pro ně výhodné pořádat nábory, protože síť si ke všem najde cestu sama.
-\section{Závislost na zdroji}
+Z rovnic vidíme, že náborové akce jsou zvlášť výhodné pro skupiny lidí s nižšími počty přátel. Existuje tam možnost vzniku slabých článků, které zabrání dalšímu šíření sítě. Bez zajímavostí není, že dojde k průniku přímek při $\texttt{number-of-friendships}=584$, což přibližne odpovídá průměrnému počtu přátel $5,84$. Pro poradce z toho plyne doporučení, že pokud je počet přátelství v jejich okolí (za předpokladu jisté homogenity) vyšší než tato hodnota, není pro ně výhodné pořádat nábory, protože síť si ke všem najde cestu sama.
+\section{Slabé články}
+V předchozí části jsme zjistili existenci slabých článků, tj. agetů, přes které síť neprojde a její šíření se zastaví. Zde se je pokusíme identifikovat a objevit jejich společné vlastnosti. Slabý článek (bottleneck) bude určen tímto postupem:
+\begin{enumerate}
+\item Všem agentům se inicializujeme vlastnost \texttt{invited?} na nepravdu.
+\item Necháme síť šířit standardním způsobem bez náhodných náborových akcí do stabilizace, příčemž všem agentům, kterým bylo nabídnuto členství nastavíme \texttt{invited?} na pravdu.
+\item Projdeme všechny přátele všech agentů, kterým nebylo nabídnuto členství, a za slabý článek jsou označeni ti, kterým bylo nabídnuto členství.
+\end{enumerate}
+Zkoumejme nejprve, zda-li existuje závislost mezi \texttt{number-of-friendships} a počtem slabých článků. Sestavíme experiment, který bude \texttt{number-of-friendships} v každém běhu v rozmezí 50 až 500 zvyšovat o 1. Data jsou uložena v souboru \texttt{bottleneck-count.csv}.
+\begin{figure}[h]
+  \centering
+  \includegraphics{bottleneck-count.eps}
+  \caption{Běh experimentu \texttt{bottleneck-count} s regresní křivkou}
+  \label{fig:bottleneck-count}
+\end{figure}
+\begin{gather}
+\widehat{\rm bottlenecks} = 
+\underset{(4.2151)}{111.272}
+-\underset{(0.98347)}{21.4307}\,\mbox{l\_friendships}
++\underset{(0.0044562)}{0.0440456}\,\mbox{friendships}
+ \notag \\
+T = 451 \quad \bar{R}^2 = 0.8278 \quad F(2,448) = 1082.9 \quad \hat{\sigma} = 3.3252 \notag
+\end{gather}
+Vidíme, že s houstnocí sítí vcelku logicky dochází k rychlému poklesu počtu slabých čláků. Ideální hodnotou \texttt{number-of-friendships} pro další zkoumání se jeví 150, kdy již není počet slabých článků tak rozptýlen, ale stále je dost vysoký.
+
+Provedeme experiment se 100 běhy při $\texttt{number-of-friendships}=150$. Zkoumáme průměrný počet přátel a \texttt{be-point} pro všechny a pro slabé články. Výsledné hodnoty jsou v souboru \texttt{bottleneck1.csv}. Popisné statistiky obsahuje tabulka \ref{tab:bottleneck1_desc}. Z ní je patrné, že slabé články mají podprůměrný počet přátel a velmi nadprůměrný \texttt{be-point}. Doporučením pro poradce v případě, že se s nekým takovým setkají, je pokusit se od něj získat alespoň kontakt na jeho známé a tím jej v síti přeskočit.
+\begin{table}[h]
+  \begin{center}
+  \begin{tabular}{|r|r|r|r|r|}
+  \hline
+   & \multicolumn{2}{|c|}{Prům. počet přátel} & \multicolumn{2}{|c|}{Prům. \texttt{be-point}} \\\hline
+	  &všichni	&slabé články	&všichni	&slabé články\\\hline
+  Průměr	&3.00	&2.50	&1051.30	&1778.86\\
+  Std. odchylka	&0.01	&0.23	&35.17	&260.47\\
+  Minimum	&2.98	&2.00	&979.53	&867.00\\
+  Maximum	&3.00	&4.00	&1142.78	&2440.33\\\hline
+  \end{tabular}
+  \end{center}
+  \caption{Popisné statistiky \texttt{bottleneck1}}
+  \label{tab:bottleneck1_desc}
+\end{table}
 \section{Reakce na šoky}
 \section{Optimální \texttt{margin} a \texttt{monthly-fee}}
 \section{Pobídky}

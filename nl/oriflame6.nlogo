@@ -1,5 +1,5 @@
 breed [persons person]
-persons-own [consumption netmember? membership-length be-point exp-srev-init sum-exp-rev exp-srev-list srev-level my-subnetrev my-rev my-srev explored? last-margin]
+persons-own [consumption netmember? membership-length be-point exp-srev-init sum-exp-rev exp-srev-list srev-level my-subnetrev my-rev my-srev explored? last-margin invited? bottleneck?]
 undirected-link-breed [friends friend]
 directed-link-breed [sponsors sponsor]
 
@@ -50,6 +50,8 @@ to setup
   ask persons [
     set srev-level 0
     set exp-srev-init 0
+    set invited? false
+    set bottleneck? false
     let sum-friend-rev 0
     ask friend-neighbors [
        set sum-friend-rev (sum-friend-rev + consumption)
@@ -62,6 +64,7 @@ to setup
   ]
   ask net-seed [
     set sum-exp-rev (exp-srev-init * 6)
+    set invited? true
   ]
   layout-radial persons links (turtle 0)
   ;repeat 20 [
@@ -137,6 +140,24 @@ to-report all-persons-avg-be-point
     set s s + be-point
   ]
   report s / count persons
+end
+
+to-report bottleneck-avg-friend-count
+  if count persons with [bottleneck?] = 0 [report -1]
+  let s 0
+  ask persons with [bottleneck?] [
+    set s s + count friend-neighbors
+  ]
+  report s / count persons with [bottleneck?]
+end
+
+to-report bottleneck-avg-be-point
+  if count persons with [bottleneck?] = 0 [report -1]
+  let s 0
+  ask persons with [bottleneck?] [
+    set s s + be-point
+  ]
+  report s / count persons with [bottleneck?]
 end
 
 to-report rev-to-srev [rev]
@@ -261,7 +282,8 @@ to spread-network
            set membership-length 0
            set sum-exp-rev (exp-srev-init * 6)
            ;;set exp-rev-list 
-         ]         
+         ]
+         set invited? true         
       ]
       ;;copy ^
       if random-join? [
@@ -281,7 +303,8 @@ to spread-network
             set membership-length 0
             set sum-exp-rev (exp-srev-init * 6)
             ;;set exp-rev-list 
-          ]         
+          ]
+          set invited? true         
         ]
       ]
   ]
@@ -299,6 +322,28 @@ to spread-network
   ask persons [
     ;set label my-srev
   ]
+end
+
+to bottleneck
+  while [not net-stable?] [
+    spread-network
+    update-revenue
+    tick
+  ]
+  ask persons [
+    set size 0.1
+  ]
+  ask persons with [not invited?] [
+    set color yellow
+    set size 2
+    ask friend-neighbors with [invited?] [
+      set color red
+      set size 2
+      set bottleneck? true
+    ]
+  ]
+  output-print count persons with [not invited?]
+  output-print count persons with [color = red]
 end
 
 to go
@@ -393,8 +438,8 @@ SLIDER
 number-of-friendships
 number-of-friendships
 0
-300
-584
+500
+100
 1
 1
 NIL
@@ -553,6 +598,22 @@ OUTPUT
 1234
 335
 12
+
+BUTTON
+1011
+210
+1112
+243
+NIL
+bottleneck
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
 
 @#$#@#$#@
 WHAT IS IT?
@@ -984,6 +1045,30 @@ NetLogo 4.1
     </enumeratedValueSet>
     <enumeratedValueSet variable="monthly-fee">
       <value value="100"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="bottleneck" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>bottleneck</go>
+    <exitCondition>net-stable?</exitCondition>
+    <metric>all-persons-avg-friend-count</metric>
+    <metric>bottleneck-avg-friend-count</metric>
+    <metric>all-persons-avg-be-point</metric>
+    <metric>bottleneck-avg-be-point</metric>
+    <metric>count persons with [bottleneck?]</metric>
+    <metric>count persons with [not invited?]</metric>
+    <steppedValueSet variable="number-of-friendships" first="50" step="10" last="500"/>
+    <enumeratedValueSet variable="number-of-persons">
+      <value value="300"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="random-join?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="monthly-fee">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="margin">
+      <value value="0.3"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

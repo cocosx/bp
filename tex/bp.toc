@@ -18,10 +18,10 @@
 \contentsline {subsection}{\numberline {3.1.1}Pr\IeC {\r u}b\IeC {\v e}h \IeC {\v s}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i }}{10}
 \contentsline {subsection}{\numberline {3.1.2}Vlastnosti agent\IeC {\r u}}{11}
 \contentsline {section}{\numberline {3.2}Vliv n\IeC {\'a}borov\IeC {\'y}ch akc\IeC {\'\i }}{12}
-\contentsline {section}{\numberline {3.3}Z\IeC {\'a}vislost na zdroji}{14}
-\contentsline {section}{\numberline {3.4}Reakce na \IeC {\v s}oky}{14}
-\contentsline {section}{\numberline {3.5}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{14}
-\contentsline {section}{\numberline {3.6}Pob\IeC {\'\i }dky}{14}
-\contentsline {chapter}{P\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka pro studenty}{15}
-\contentsline {section}{\numberline {3.7}velky model}{15}
-\contentsline {section}{\numberline {3.8}zjednoduseny model?}{15}
+\contentsline {section}{\numberline {3.3}Slab\IeC {\'e} \IeC {\v c}l\IeC {\'a}nky}{13}
+\contentsline {section}{\numberline {3.4}Reakce na \IeC {\v s}oky}{15}
+\contentsline {section}{\numberline {3.5}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{15}
+\contentsline {section}{\numberline {3.6}Pob\IeC {\'\i }dky}{15}
+\contentsline {chapter}{P\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka pro studenty}{16}
+\contentsline {section}{\numberline {3.7}velky model}{16}
+\contentsline {section}{\numberline {3.8}zjednoduseny model?}{16}
