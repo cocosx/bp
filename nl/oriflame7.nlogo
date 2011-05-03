@@ -491,7 +491,7 @@ monthly-fee
 monthly-fee
 0
 1000
-100
+150
 1
 1
 NIL
@@ -506,7 +506,7 @@ margin
 margin
 0.07
 1
-0.5
+0.02
 0.01
 1
 NIL
@@ -673,7 +673,7 @@ manufacturing-cost
 manufacturing-cost
 0
 1
-0.8
+0.5
 0.01
 1
 NIL
@@ -998,7 +998,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 4.1.2
+NetLogo 4.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -1151,24 +1151,61 @@ NetLogo 4.1.2
       <value value="0.3"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="max-profit1" repetitions="10" runMetricsEveryStep="false">
+  <experiment name="max-profit1" repetitions="50" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
+    <timeLimit steps="50"/>
     <exitCondition>net-stable?</exitCondition>
     <metric>network-profit</metric>
     <metric>network-sale-revenue</metric>
     <metric>network-fee-revenue</metric>
     <metric>network-sponsor-cost</metric>
     <metric>network-manufacturing-cost</metric>
-    <steppedValueSet variable="margin" first="0.01" step="0.01" last="0.5"/>
+    <steppedValueSet variable="margin" first="0.01" step="0.01" last="0.6"/>
     <enumeratedValueSet variable="manufacturing-cost">
-      <value value="0.8"/>
+      <value value="0.4"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-friendships">
       <value value="300"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="monthly-fee">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="random-join?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-persons">
+      <value value="300"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="max-profit2" repetitions="100" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="50"/>
+    <exitCondition>net-stable?</exitCondition>
+    <metric>network-profit</metric>
+    <metric>network-sale-revenue</metric>
+    <metric>network-fee-revenue</metric>
+    <metric>network-sponsor-cost</metric>
+    <metric>network-manufacturing-cost</metric>
+    <metric>count persons with [netmember?]</metric>
+    <steppedValueSet variable="margin" first="0.05" step="0.01" last="0.9"/>
+    <enumeratedValueSet variable="manufacturing-cost">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="number-of-friendships">
+      <value value="300"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="monthly-fee">
+      <value value="0"/>
+      <value value="50"/>
       <value value="100"/>
+      <value value="150"/>
+      <value value="200"/>
+      <value value="250"/>
+      <value value="300"/>
+      <value value="350"/>
+      <value value="400"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="random-join?">
       <value value="true"/>

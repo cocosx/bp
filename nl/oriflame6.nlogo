@@ -439,7 +439,7 @@ number-of-friendships
 number-of-friendships
 0
 500
-100
+150
 1
 1
 NIL
@@ -1047,7 +1047,26 @@ NetLogo 4.1
       <value value="100"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="bottleneck" repetitions="10" runMetricsEveryStep="false">
+  <experiment name="bottleneck-count" repetitions="1" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>bottleneck</go>
+    <exitCondition>net-stable?</exitCondition>
+    <metric>count persons with [bottleneck?]</metric>
+    <steppedValueSet variable="number-of-friendships" first="50" step="1" last="500"/>
+    <enumeratedValueSet variable="number-of-persons">
+      <value value="300"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="random-join?">
+      <value value="false"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="monthly-fee">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="margin">
+      <value value="0.3"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="bottleneck1" repetitions="100" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>bottleneck</go>
     <exitCondition>net-stable?</exitCondition>
@@ -1057,7 +1076,9 @@ NetLogo 4.1
     <metric>bottleneck-avg-be-point</metric>
     <metric>count persons with [bottleneck?]</metric>
     <metric>count persons with [not invited?]</metric>
-    <steppedValueSet variable="number-of-friendships" first="50" step="10" last="500"/>
+    <enumeratedValueSet variable="number-of-friendships">
+      <value value="150"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-persons">
       <value value="300"/>
     </enumeratedValueSet>
