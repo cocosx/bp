@@ -33,7 +33,7 @@ Sortiment je opravdu široký, katalog obsahuje přes 1500 výrobků v cenách p
 \section{Podmínky síťového prodeje}
 V této části popíšeme fungování sítě Oriflame na českém trhu. V jiných zemích se mohou zejména parametry mírně lišit. Prodejcem (v terminologii Oriflame \emph{poradcem}) se zájemce stane vyplněním jednoduchého formuláře a zaplacením poplatku 99 Kč. Tím získá možnost výdělku následujícími způsoby:
 \begin{enumerate}
-\item Nákupem kosmetických výrobků v centrech Oriflame nebo na objednávkou přes internet za tzv. nákupní ceny, které jsou o 30\% nižší než prodejní (katalogové) ceny. Prodejce tak realizuje 30\% marži z prodeje sobě a svým zákazníkům (typicky rodině a známým).
+\item Nákupem kosmetických výrobků v centrech Oriflame nebo na objednávkou přes internet za tzv. nákupní ceny, které jsou nižší než prodejní (katalogové) ceny, příčemž platí, že $PC=NC \cdot 1.3$ nebo-li $NC = PC \cdot 0.769$. Prodejce tak realizuje 30\% marži z nákupních cen při prodeji sobě a svým zákazníkům (typicky rodině a známým).
 \item Plnou hodnotu tzv. \emph{slevy z obratu} svého vlastního prodeje.
 \item Budováním skupiny poradců, které k Oriflame přivedl, tzv. \emph{sponzoroval}. Pak mu náleží rozdíl mezi svou slevou z obratu a slevou z obratu lidí, které k Oriflame přivedl a jejich skupin.
 \end{enumerate}
@@ -130,7 +130,7 @@ Agenti jsou generování v izolovaném prostředí. Na začátku je jeden z nich
 
 Dále jsou přítomny tyto za běhu měnitelné konstanty:
 \begin{description}
-\item[\texttt{margin}] Marže pro prodejce.
+\item[\texttt{margin}] Marže pro prodejce z prodejní ceny.
 \item[\texttt{monthly-fee}] Poplatek za členství placený v každém kole. Firma Oriflame jej nevybírá, je tedy určen spíše pro experimenty.
 \item[\texttt{manufacturing-cost}] Podíl výrobních nákladů na prodejní ceně produktů.
 \end{description}
@@ -168,7 +168,7 @@ Ta je dána velmi podobně:
 \chapter{Analýza a experimenty}
 V této kapitole budeme provádět experimenty na modelu prodejní sítě Oriflame a analyzovat jejich výsledky. Pokud nebude uvedeno jinak pracujeme s výchozím modelem a základními parametry:\\
 $\texttt{number-of-persons}=\texttt{number-of-friendships}=300$, \\
-$\texttt{margin}=0.3,\\\texttt{monthly-fee}=100$ a\\
+$\texttt{margin}=0.23,\\\texttt{monthly-fee}=100$ a\\
 vlastnosti agenta \texttt{person} uvedené v sekci \ref{sec:vl_agenta}.
 
 Data budou získána pomocí nástroje BehaviorSpace obsaženého v programu NetLogo. Ten umožňuje opakovaný běh modelu se stejnými náhodnými složkami, ale při různých parametrech, čímž lze získat velké a robustní datové soubory.
@@ -180,7 +180,7 @@ K měření budou sloužit mimo jiné tyto veličiny:
 \item[\texttt{revenue}] Součet předchozích dvou.
 \item[\texttt{scost}] Náklady na výplatu sponzoringu a skupin.
 \item[\texttt{mcost}] Výrobní náklady.
-\item[\texttt{network-profit}] Celkový účetní zisk provozovatele sítě. 
+\item[\texttt{network-profit}] Celkový účetní zisk provozovatele sítě bez fixních nákadů. 
 \end{description}
 Ke statistické analýze bude využit ekonometrický software GRETL\footnote{Gnu Regression, Econometrics and Time-series Library, \url{http://gretl.sourceforge.net/}} verze 1.9.1 a tabulkový procesor Gnumeric\footnote{Gnumeric --- The Gnome Office Spreadsheet, \url{http://projects.gnome.org/gnumeric/}} 1.10.14.
 \section{Šíření sítě}

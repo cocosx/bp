@@ -17,7 +17,7 @@ to setup
     set consumption 10000
   ]
   set net-seed person 0
-  repeat number-of-persons [ ;;prvni ma velkou sanci mit hodne kamosu - opravit?
+  repeat number-of-persons [
     create-persons 1 [
       ;;set size 1
       set color blue
@@ -74,7 +74,7 @@ to setup
   ask persons [
     set label exp-srev-init
   ]
-  set last-profit -1
+  set last-profit -213218390218390
   set current-profit -1
 end
 
@@ -95,6 +95,11 @@ to update-revenue
     set mcost mcost + consumption
     set scost scost + my-srev
   ]
+  ask net-seed [
+    set mcost mcost - consumption
+    set scost scost - my-srev
+  ]
+  
   ask persons with [(not netmember?) and (count friend-neighbors with [netmember?] > 0)] [
     ;set rev (rev + (consumption * (1 - margin)))
     set mcost mcost + consumption
@@ -501,7 +506,7 @@ margin
 margin
 0.07
 1
-0.3
+0.5
 0.01
 1
 NIL
@@ -604,7 +609,7 @@ SWITCH
 455
 random-join?
 random-join?
-1
+0
 1
 -1000
 
@@ -668,7 +673,7 @@ manufacturing-cost
 manufacturing-cost
 0
 1
-0.4
+0.8
 0.01
 1
 NIL
@@ -1155,9 +1160,9 @@ NetLogo 4.1.2
     <metric>network-fee-revenue</metric>
     <metric>network-sponsor-cost</metric>
     <metric>network-manufacturing-cost</metric>
-    <steppedValueSet variable="margin" first="0.01" step="0.01" last="0.99"/>
+    <steppedValueSet variable="margin" first="0.01" step="0.01" last="0.5"/>
     <enumeratedValueSet variable="manufacturing-cost">
-      <value value="0.4"/>
+      <value value="0.8"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-friendships">
       <value value="300"/>
@@ -1166,7 +1171,7 @@ NetLogo 4.1.2
       <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="random-join?">
-      <value value="false"/>
+      <value value="true"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="number-of-persons">
       <value value="300"/>
