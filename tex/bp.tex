@@ -132,6 +132,7 @@ Dále jsou přítomny tyto za běhu měnitelné konstanty:
 \begin{description}
 \item[\texttt{margin}] Marže pro prodejce.
 \item[\texttt{monthly-fee}] Poplatek za členství placený v každém kole. Firma Oriflame jej nevybírá, je tedy určen spíše pro experimenty.
+\item[\texttt{manufacturing-cost}] Podíl výrobních nákladů na prodejní ceně produktů.
 \end{description}
 \subsection{Vlastnosti agenta \texttt{person}}
 \label{sec:vl_agenta}
@@ -178,12 +179,14 @@ K měření budou sloužit mimo jiné tyto veličiny:
 \item[\texttt{network-sale-revenue}] Příjem firmy z prodeje výrobků (za nákupní ceny).
 \item[\texttt{revenue}] Součet předchozích dvou.
 \item[\texttt{scost}] Náklady na výplatu sponzoringu a skupin.
+\item[\texttt{mcost}] Výrobní náklady.
+\item[\texttt{network-profit}] Celkový účetní zisk provozovatele sítě. 
 \end{description}
 Ke statistické analýze bude využit ekonometrický software GRETL\footnote{Gnu Regression, Econometrics and Time-series Library, \url{http://gretl.sourceforge.net/}} verze 1.9.1 a tabulkový procesor Gnumeric\footnote{Gnumeric --- The Gnome Office Spreadsheet, \url{http://projects.gnome.org/gnumeric/}} 1.10.14.
 \section{Šíření sítě}
 Zde se budeme zkoumat šíření sítě a její výsledné vlastnosti. 
 \subsection{Průběh šíření}
-Bylo provedeno 100 nezavislých náhodných běhů. Podmínkou ukončení je stabilizace sítě, tj. rovnost dvou po sobě následujících \texttt{revenue}. Získaná data jsou v přiloženém souboru \texttt{spread1.csv}. Z nich odvozené popisné statistiky jsou v tabulce \ref{tab:spread1_desc}.
+Bylo provedeno 100 nezavislých náhodných běhů. Podmínkou ukončení je stabilizace sítě, tj. rovnost dvou po sobě následujících \texttt{network-profit}. Získaná data jsou v přiloženém souboru \texttt{spread1.csv}. Z nich odvozené popisné statistiky jsou v tabulce \ref{tab:spread1_desc}.
 \begin{table}[h]
   \begin{center}
   \begin{tabular}{|r|r|r|r|}
@@ -315,8 +318,9 @@ Provedeme experiment se 100 běhy při $\texttt{number-of-friendships}=150$. Zko
   \caption{Popisné statistiky \texttt{bottleneck1}}
   \label{tab:bottleneck1_desc}
 \end{table}
-\section{Reakce na šoky}
 \section{Optimální \texttt{margin} a \texttt{monthly-fee}}
+
+\section{Reakce na šoky}
 \section{Pobídky}
 \chapter*{Příručka pro studenty}
 \addcontentsline{toc}{chapter}{Příručka pro studenty}
