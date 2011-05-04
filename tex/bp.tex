@@ -73,37 +73,10 @@ Toto se provede i pro všechny podskupiny. Poradce pak získá za každou podsku
 Všechny tyto peníze poradce dostane na účet. Podmínkou je, že jeho vlastní prodej musí dosáhnout 100 bodů. To firma zdůvodňuje tím, že poradce musí být sám schopným prodejcem, aby mohl učit ostatní.
 
 Při dosažení 12\% úrovně se poradce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
-\\TODO: priklad grafu skupiny?
-\\\tikz
-\node {Computational Complexity\\dsa} % root
-child { node {Computational Problems}
-child { node {Problem Measures} }
-child { node {Problem Aspects} }
-child { node {Problem Domains} }
-child { node {Key Problems} }
-}
-child { node {Computational Models}
-child { node {Turing Machines} }
-child { node {Random-Access Machines} }
-child { node {Circuits} }
-child { node {Binary Decision Diagrams} }
-child { node {Oracle Machines} }
-child { node {Programming in Logic} }
-}
-child { node {Measuring Complexity}
-child { node {Complexity Measures} }
-child { node {Classifying Complexity} }
-child { node {Comparing Complexity} }
-child { node {Describing Complexity} }
-}
-child { node {Solving Problems}
-child { node {Exact Algorithms} }
-child { node {Randomization} }
-child { node {Fixed-Parameter Algorithms} }
-child { node {Parallel Computation} }
-child { node {Partial Solutions} }
-child { node {Approximation} }
-};
+
+\bigskip ???TODO: priklad grafu skupiny
+%\\\tikz
+
 
 \chapter{Popis modelu}
 V této kapitole se budeme věnovat popisu modelu sítě Oriflame z technického a ekonomického pohledu. Dojde i k částečnému prolnutí se implementací modelu na počítači, což je nutné, aby si jej čtenář mohl v případě potřeby snáze upravit.
@@ -319,13 +292,31 @@ Provedeme experiment se 100 běhy při $\texttt{number-of-friendships}=150$. Zko
   \label{tab:bottleneck1_desc}
 \end{table}
 \section{Optimální \texttt{margin} a \texttt{monthly-fee}}
-
+Zde se budeme věnovat optimálnímu chování provozovatele prodejní sítě vzhledem k maximalizaci jeho zisku. Budeme předpokládat, že může stanovovat \texttt{margin} a \texttt{monthly-fee}, naopak podíl výrobních nákladů na prodejní ceně je v krátkém odbodí daný. Cílem bude nalézt funkci, která firmě v závislosti na jejích výrobních nákladech \texttt{manufacturing-cost} pomůže stanovit \texttt{margin} a \texttt{monthly-fee}. Zisk je stanoven jako rozdíl příjmových na nákladových veličin takto:
+\[ \text{zisk}=\texttt{network-fee-revenue}+\texttt{network-sale-revenue}-\texttt{scost}-\texttt{mcost} \]
+Přičemž platí funkční závislosti:
+\begin{align}
+\texttt{network-fee-revenue}=f_1(\texttt{fee},\texttt{margin})\notag\\
+\texttt{network-sale-revenue}=f_2(\texttt{fee},\texttt{margin})\notag\\
+\texttt{scost}=f_3(\texttt{fee},\texttt{margin})\notag\\
+\texttt{mcost}=\frac{\texttt{network-sale-revenue}}{1-\texttt{margin}}\cdot\texttt{manufacturing-cost}\notag
+\end{align}
+Funkce $f$ zjistíme experimentálně. Budeme měnit \texttt{margin} v rozsahu $0.05$ až $0.9$ po kroku velikosti $0.01$ a \texttt{monthly-fee} na množině $\{0,50,100,150,200,250,300,350,400\}$. Pro každou iteraci provedeme 100 běhů modelu, celkem 77100 běhů. Pak z nich vypočítáme průměry jednotlivých veličin. Získaná data jsou přiloženém souboru \texttt{max-profit.csv}\footnote{Pozor, soubor má velikost 5.5MB, jeho otevření v tabulkovém procesoru je poměrně náročná operace.}. Ke zpracování průměrů byl vytvořen skript \texttt{max-profit.py} v jazyce Python\footnote{Python, \url{http://www.python.org/download/releases/3.2/}} a výsledek je uložen v souboru \texttt{max-profit-avg.tsv}. Na obrázku \ref{fig:max-profit-avg} vidíme bodové grafy funkcí $f$ pro $\texttt{monthly-fee}=100$ a zisku pro $\texttt{manufacturing-cost}=0.5$.
+\begin{figure}[h]
+  \centering
+  \subfloat[\texttt{network-fee-revenue}]{\label{fig:max-profit-avg-fr}\includegraphics[width=0.5\textwidth]{max-profit-avg-fr.eps}}                
+  \subfloat[\texttt{network-sale-revenue}]{\label{fig:max-profit-avg-sr}\includegraphics[width=0.5\textwidth]{max-profit-avg-sr.eps}}\\
+  \subfloat[\texttt{scost}]{\label{fig:max-profit-avg-sc}\includegraphics[width=0.5\textwidth]{max-profit-avg-sc.eps}}                
+  \subfloat[zisk pro $\texttt{manufacturing-cost}=0.5$]{\label{fig:max-profit-avg-profit05}\includegraphics[width=0.5\textwidth]{max-profit-avg-profit05.eps}}\\
+  \caption{Bodové grafy \texttt{max-profit-avg} pro $\texttt{monthly-fee}=100$}
+  \label{fig:max-profit-avg}
+\end{figure}
 \section{Reakce na šoky}
 \section{Pobídky}
 \chapter*{Příručka pro studenty}
 \addcontentsline{toc}{chapter}{Příručka pro studenty}
 \section{velky model}
-\section{zjednoduseny model?}
+\section{???zjednoduseny model}
 bez sponzorovani - je tam lepe videt neprima umera mezi ziskem firmy a vysi margin+fee
 \begin{thebibliography}{9}
 
