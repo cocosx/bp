@@ -301,7 +301,7 @@ Přičemž platí funkční závislosti:
 \texttt{scost}=f_3(\texttt{fee},\texttt{margin})\notag\\
 \texttt{mcost}=\frac{\texttt{network-sale-revenue}}{1-\texttt{margin}}\cdot\texttt{manufacturing-cost}\notag
 \end{align}
-Funkce $f$ zjistíme experimentálně. Budeme měnit \texttt{margin} v rozsahu $0.05$ až $0.9$ po kroku velikosti $0.01$ a \texttt{monthly-fee} na množině $\{0,50,100,150,200,250,300,350,400\}$. Pro každou iteraci provedeme 100 běhů modelu, celkem 77100 běhů. Pak z nich vypočítáme průměry jednotlivých veličin. Získaná data jsou přiloženém souboru \texttt{max-profit.csv}\footnote{Pozor, soubor má velikost 5.5MB, jeho otevření v tabulkovém procesoru je poměrně náročná operace.}. Ke zpracování průměrů byl vytvořen skript \texttt{max-profit.py} v jazyce Python\footnote{Python, \url{http://www.python.org/download/releases/3.2/}} a výsledek je uložen v souboru \texttt{max-profit-avg.tsv}. Na obrázku \ref{fig:max-profit-avg} vidíme bodové grafy funkcí $f$ pro $\texttt{monthly-fee}=100$ a zisku pro $\texttt{manufacturing-cost}=0.5$.
+Funkce $f$ zjistíme experimentálně. Budeme měnit \texttt{margin} v rozsahu $0.05$ až $0.9$ po kroku velikosti $0.01$ a \texttt{monthly-fee} na množině $\{0,50,100,150,200,250,300,350,400\}$. Pro každou iteraci provedeme 100 běhů modelu, celkem 77100 běhů. Pak z nich vypočítáme průměry jednotlivých veličin. Získaná data jsou přiloženém souboru \texttt{max-profit.csv}\footnote{Pozor, soubor má velikost 5.5MB, jeho otevření v tabulkovém procesoru je poměrně náročná operace.}. Ke zpracování průměrů byl vytvořen skript \texttt{max-profit.py} v jazyce Python\footnote{Python, \url{http://www.python.org/download/releases/3.2/}} a výsledek je uložen v souboru \texttt{max-profit-avg.tsv}. Na obrázku \ref{fig:max-profit-avg} vidíme bodové grafy funkcí $f$ pro $\texttt{monthly-fee}=100$ a zisku pro $\texttt{manufacturing-cost}=0.5$. 
 \begin{figure}[h]
   \centering
   \subfloat[\texttt{network-fee-revenue}]{\label{fig:max-profit-avg-fr}\includegraphics[width=0.5\textwidth]{max-profit-avg-fr.eps}}                
@@ -311,12 +311,52 @@ Funkce $f$ zjistíme experimentálně. Budeme měnit \texttt{margin} v rozsahu $
   \caption{Bodové grafy \texttt{max-profit-avg} pro $\texttt{monthly-fee}=100$}
   \label{fig:max-profit-avg}
 \end{figure}
+Tabulka \ref{tab:max-profit2} je hledanou pomůckou pro stanovení optimálních \texttt{margin} a \texttt{monthly-fee} podle \texttt{manufacturing-cost}. Např. pro $\texttt{manufacturing-cost}=0.4$ je predikován maximální zisk při $\texttt{margin}=0.18$ a $\texttt{monthly-fee}=50$. Nicméně zisk pro $\texttt{monthly-fee}=0$ je pouze o 92 nižší, což by firmě jistě nepokrylo administrativní náklady spojené s jeho výběrem, a je tak lepší jej zrušit a stanovit $\texttt{margin}=0.16$.
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|r|r|r|}
+\hline
+fee & \multicolumn{1}{l|}{mc 0.1} & \multicolumn{1}{l|}{mc 0.2} & \multicolumn{1}{l|}{mc 0.3} & \multicolumn{1}{l|}{mc 0.4} & \multicolumn{1}{l|}{mc 0.5} & \multicolumn{1}{l|}{mc 0.6} & \multicolumn{1}{l|}{mc 0.7} \\ \hline
+0 & 0.19 & 0.19 & 0.16 & 0.16 & 0.14 & 0.12 & 0.11 \\ 
+ & 169666 & 144109 & 118721 & 94848 & 71341 & 49294 & 29318 \\ \hline
+50 & 0.22 & 0.19 & 0.18 & 0.18 & 0.15 & 0.14 & 0.11 \\ 
+ & 170435 & 144191 & 119404 & 94950 & 71435 & 49328 & 29609 \\ \hline
+100 & 0.23 & 0.2 & 0.19 & 0.19 & 0.17 & 0.14 & 0.13 \\ 
+ & 169886 & 143896 & 119212 & 94845 & 71374 & 49700 & 29440 \\ \hline
+150 & 0.22 & 0.22 & 0.22 & 0.2 & 0.17 & 0.17 & 0.13 \\ 
+ & 168971 & 143790 & 118608 & 94225 & 71077 & 48896 & 29131 \\ \hline
+200 & 0.26 & 0.23 & 0.23 & 0.19 & 0.19 & 0.17 & 0.14 \\ 
+ & 168857 & 142715 & 117718 & 93675 & 70882 & 48485 & 28298 \\ \hline
+250 & 0.25 & 0.25 & 0.22 & 0.22 & 0.19 & 0.18 & 0.14 \\ 
+ & 167459 & 142190 & 117126 & 93269 & 69527 & 48065 & 27933 \\ \hline
+300 & 0.29 & 0.27 & 0.24 & 0.22 & 0.22 & 0.19 & 0.16 \\ 
+ & 166961 & 141178 & 115795 & 91791 & 68810 & 47289 & 27183 \\ \hline
+350 & 0.29 & 0.29 & 0.29 & 0.23 & 0.23 & 0.19 & 0.18 \\ 
+ & 166893 & 140992 & 115092 & 91208 & 68273 & 46403 & 27071 \\ \hline
+400 & 0.3 & 0.28 & 0.28 & 0.24 & 0.24 & 0.21 & 0.18 \\ 
+ & 165112 & 139664 & 114750 & 90501 & 67643 & 46177 & 27058 \\ \hline
+\end{tabular}
+\end{center}
+\caption{Optimální \texttt{margin} a z nich vypočítaný zisk pro dané \texttt{manufacturing-cost} a různé \texttt{monthly-fee}}
+\label{tab:max-profit2}
+\end{table}
+Na obrázku \ref{fig:max-profit-04-f0} vidíme bodový graf zisku v závisloti na \texttt{margin} pro $\texttt{monthly-fee}=0$ a $\texttt{manufacturing-cost}=0.4$. Firmou Oriflame stanovený $\texttt{margin}=0.23$ je těsně na hranici, kde už začíná zisk rychle klesat. Predikovaný zisk je přibližne o 10\% nižší než maximum. Firma však takto může tvrdit, že poradce bude mít výdělek 30\% (byť z nákupních cen). To je zřejmě pro mnohé pychologická hranice, což tento model do vstupní podmínky nezahrnuje.
+\begin{figure}[h]
+  \centering
+  \includegraphics{max-profit-04-f0.eps}
+  \caption{Zisk pro $\texttt{monthly-fee}=0$ a $\texttt{manufacturing-cost}=0.4$}
+  \label{fig:max-profit-04-f0}
+\end{figure}
+
+Nyní se na tabulku \ref{tab:max-profit2} podívejme z toho pohledu, že firma z psychologických a marketingových důvodů chce stanovit $\texttt{margin}=0.23$. Pak odvodíme, že pro $\texttt{manufacturing-cost}=0.4$ je nejziskovější vybírat $\texttt{monthly-fee}=350$. Jak bylo uvedeno v kapitole 1, existuje hranice 100 BO (což odpovídá přibližne 1380 Kč obchodního obratu) pro výplatu výdělku ze sponzorování. Toto a další faktory jako rozsáhlost katalogu, snadnost nákupu atd. vedou poradce ke zkušeností dokázanému zvýšení spotřeby kosmetických výrobku, což model nezahrnuje z důvodu složité kvantifikovatelnosti. Tento jev lze však vnímat jako jistý skrytý poplatek. Zda dodatečný zisk ze zvýšené spotřeby dosahuje měsíční výše 350 zde není možné určit. Tato otázka může být předmětem dalšího zkoumání.
+
 \section{Reakce na šoky}
 \section{Pobídky}
-\chapter*{Příručka pro studenty}
-\addcontentsline{toc}{chapter}{Příručka pro studenty}
-\section{velky model}
-\section{???zjednoduseny model}
+\chapter*{Uživatelská příručka}
+\addcontentsline{toc}{chapter}{Uživatelská příručka}
+\addtocounter{chapter}{1}
+\subsubsection{velky model}
+\subsubsection{???zjednoduseny model}
 bez sponzorovani - je tam lepe videt neprima umera mezi ziskem firmy a vysi margin+fee
 \begin{thebibliography}{9}
 
