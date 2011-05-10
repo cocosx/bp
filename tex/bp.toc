@@ -22,6 +22,7 @@
 \contentsline {section}{\numberline {3.4}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{14}
 \contentsline {section}{\numberline {3.5}Reakce na \IeC {\v s}oky}{17}
 \contentsline {section}{\numberline {3.6}Pob\IeC {\'\i }dky}{17}
-\contentsline {chapter}{U\IeC {\v z}ivatelsk\IeC {\'a} p\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka}{19}
-\contentsline {subsubsection}{velky model}{19}
-\contentsline {subsubsection}{???zjednoduseny model}{19}
+\contentsline {chapter}{Z\IeC {\'a}v\IeC {\v e}r}{19}
+\contentsline {chapter}{U\IeC {\v z}ivatelsk\IeC {\'a} p\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka}{20}
+\contentsline {subsubsection}{velky model}{20}
+\contentsline {subsubsection}{???zjednoduseny model}{20}
