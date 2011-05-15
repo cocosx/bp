@@ -27,7 +27,7 @@ Tato bakalářská práce se bude zajímat o studium síťového marketingu z ek
 
 Metodou zvolenou k dosažení těchto cílů je vytvoření počítačového modelu se snahou o co nejvěrnější napodobení skutečnosti. Na něm pak budeme provádět simulace a experimenty a jejich výsledky interpretujeme pomocí statistických a ekonometrických nástrojů. Z důvodu reálné využitelnosti získaných závěrů bude tato práce konkrétně modelovat systémem síťového marketingu, který používá firma Oriflame\footnote{Oriflame --- Přírodní švédská kosmetika, \url{http://cz.oriflame.com/index.jhtml}}. Ten byl zvolen pro svou relativní jednoduchost, úzké zaměření na kosmetické výrobky, což usnadní ekonomické úvahy, a autorovu blízkost k současným členům sítě. Informace přensném fungování systému byly získány z interních materiálů firmy a osobních rozhovorů se zaměstnanci a členy prodejní sítě.
 
-První kapitola poskytne úvod do fungování sítě firmy Oriflame. Seznámíme se s konkrétními parametry, na kterých je postavena, a s motivací, kterou firma svým prodejcům poskytuje. Ve druhé kapitole se budeme zabývat tvorbou sociálních vazeb, ekonomickými úvahami o síti a implementací obojího do počítačového modelu. Třetí kapitova bude věnována samotné analýze chování sítě a jejích členů, provádění experimentů a interpretaci získaných dat.
+První kapitola poskytne úvod do fungování sítě firmy Oriflame. Seznámíme se s konkrétními parametry, na kterých je postavena, a s motivací, kterou firma svým prodejcům poskytuje. Ve druhé kapitole se budeme zabývat tvorbou sociálních vazeb, ekonomickými úvahami o síti a implementací obojího do počítačového modelu. Třetí kapitova bude věnována samotné analýze chování sítě a jejích členů, provádění multiagentových simulací a interpretaci získaných dat.
 \chapter{Prodejní síť Oriflame}
 \section{Historie firmy Oriflame}
 Firma Oriflame byla založena v roce 1967 ve Švédsku bratry Jonasem a Robertem Jochnick. Cílem bylo nabídnout lidem přirozenou a přírodní péči o svou pleť. Místo aby nákladně budovali kamenné obchody, rozhodli se dostat prodej přímo do domovů a využít tak vrozenou podnikavost lidí. Tento základní koncept zůstáva po více než čtyřicet let nezměněn. V roce 1990, po po pádu železné opony, firma expandovala po střední a východní Evropě a založila pobočku i v České republice. V roce 2001 dosasáhl počet prodejců zapojených v síti Oriflame na celém světě jednoho miliónu a obrat téměř 450 miliónů EUR.
@@ -80,21 +80,12 @@ Prodejce tak realizuje 30\% marži z nákupních cen při prodeji sobě a svým 
 \end{enumerate}
 Peníze z bodů 2. a 3. prodejce dostane bezhotovostně na začátku následujícího katalogového období. Podmínkou je, že jeho vlastní prodej musí dosáhnout 100 bodů. To firma zdůvodňuje tím, že poradce musí být sám schopným prodejcem, aby mohl učit ostatní.
 
-Při dosažení 12\% úrovně se poradce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních zdarma aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
+Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným parametrem pro každého prodejce je osobní OO, zbytek je dopočítán. Postupujme zezdola. Eva nedosahuje hranice 100 BO, takže její výdělek tvoří pouze okamžitý zisk z prodeje. Daniela má vysoký osobní OO, čímž se sama dostává na 6\% úroveň. Kromě okamžitého zisku tak dostane i 6\% z osobního OO. Podobná situace je u Boba, který má ovšem nižší osobní OO a dosahuje jen 3\% úrovně. Cyril přivedl k Oriflame Danielu a Evu. K jeho osobnímu OO a BO se tak přičtou OO a BO těchto dvou. Díky tomu Cyril povýšil na 6\% úroveň a tím dostane 6\% z osobního OO a 6\% z Evina OO. Daniela má ale vyšší OO než Cyril a rozdíl procentních úrovní mezi nimi je 0. Z Danielina OO tedy Cyril neobdrží nic. Alice dosáhla 9\% úrovně, ziská 9\% ze svého OO, 3\% z Cyrilova skupinového OO a 6\% z Bobova skupinového OO.
 
-V případě, že je prodejce 12 měsíců neaktivní, tj. nepodal žádnou objednávku, je mu členství zrušeno a přichází o svou podsíť. Ta je napojena na prodejce nad ním. Pokud se rozhodne opět k Oriflame přidat, začíná zcela od začátku.
-
-Tento systém slouží jako motivace lidí pro rozšíření prodejní sítě. Je založen na očekávaní vysokého výdělku v budoucnosti. Firma ve svých materiálech jako příklad uvádí lineární růst výdělku pro poradce z prodeje a exponenciální ze sponzorování -- přivádění dalších lidí.
-
-Firma dále nabízí pro začínající poradce ve čtyřech krocích motivaci ve formě věcných darů za splnění určitých objemů obratu, např. v prvním kroku za obrat 1 250 Kč tašku, průvodce péčí o pleť a krém v celkové hodnotě 510 Kč.
-
-Také jsou k dispozici úvěry do výše 7 000 Kč na zaplacení za zobží, které hodlá poradce dodat zákazníkum a nemusí tak od nich vybírat peníze předem.
-
-Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez udání důvodu a to i v případě, že výrobek obsahuje aspoň 80\% původního objemu.
 \begin{figure}[h]
 \begin{center}
 \begin{tikzpicture} [
-  level distance=55mm,
+  level distance=50mm,
   sibling distance=60mm,
   person/.style={rectangle,draw}]
 
@@ -169,9 +160,22 @@ Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez u
 };
 \end{tikzpicture}
 \end{center}
-\caption{Příklad grafu skupiny}
-\label{fig:ggarph}
+\caption{Příklad grafu skupiny. Na spojnicích jsou uvedeny rozdíly procentních úrovní.}
+\label{fig:ggraph}
 \end{figure}
+
+Při dosažení 12\% úrovně se poradce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních zdarma aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
+
+V případě, že je prodejce 12 měsíců neaktivní, tj. nepodal žádnou objednávku, je mu členství zrušeno a přichází o svou podsíť. Ta je napojena na prodejce nad ním. Pokud se rozhodne opět k Oriflame přidat, začíná zcela od začátku.
+
+Tento systém slouží jako motivace lidí pro rozšíření prodejní sítě. Je založen na očekávaní vysokého výdělku v budoucnosti. Firma ve svých materiálech jako příklad uvádí lineární růst výdělku pro poradce z prodeje a exponenciální ze sponzorování -- přivádění dalších lidí.
+
+Firma dále nabízí pro začínající poradce ve čtyřech krocích motivaci ve formě věcných darů za splnění určitých objemů obratu, např. v prvním kroku za obrat 1 250 Kč tašku, průvodce péčí o pleť a krém v celkové hodnotě 510 Kč.
+
+Také jsou k dispozici úvěry do výše 7 000 Kč na zaplacení za zobží, které hodlá poradce dodat zákazníkum a nemusí tak od nich vybírat peníze předem.
+
+Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez udání důvodu a to i v případě, že výrobek obsahuje aspoň 80\% původního objemu.
+
 %\\\tikz
 
 
@@ -235,8 +239,8 @@ Ta je dána velmi podobně:
 %
 %
 %
-\chapter{Analýza a experimenty}
-V této kapitole budeme provádět experimenty na modelu prodejní sítě Oriflame a analyzovat jejich výsledky. Pokud nebude uvedeno jinak pracujeme s výchozím modelem a základními parametry:\\
+\chapter{Analýza a výsledků simulací}
+V této kapitole budeme provádět multiagentové simulace na modelu prodejní sítě Oriflame a analyzovat jejich výsledky. Pokud nebude uvedeno jinak pracujeme s výchozím modelem a základními parametry:\\
 $\texttt{number-of-persons}=\texttt{number-of-friendships}=300$, \\
 $\texttt{margin}=0.23,\\\texttt{monthly-fee}=100$ a\\
 vlastnosti agenta \texttt{person} uvedené v sekci \ref{sec:vl_agenta}.

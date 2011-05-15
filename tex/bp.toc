@@ -12,7 +12,7 @@
 \contentsline {subsection}{\numberline {2.2.4}Chov\IeC {\'a}n\IeC {\'\i } agenta \texttt {person}}{9}
 \contentsline {subsubsection}{Vstupn\IeC {\'\i } podm\IeC {\'\i }nka}{9}
 \contentsline {subsubsection}{Podm\IeC {\'\i }nka setrv\IeC {\'a}n\IeC {\'\i }}{10}
-\contentsline {chapter}{\numberline {3}Anal\IeC {\'y}za a experimenty}{11}
+\contentsline {chapter}{\numberline {3}Anal\IeC {\'y}za a v\IeC {\'y}sledk\IeC {\r u} simulac\IeC {\'\i }}{11}
 \contentsline {section}{\numberline {3.1}\IeC {\v S}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } s\IeC {\'\i }t\IeC {\v e}}{11}
 \contentsline {subsection}{\numberline {3.1.1}Pr\IeC {\r u}b\IeC {\v e}h \IeC {\v s}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i }}{12}
 \contentsline {subsection}{\numberline {3.1.2}Vlastnosti agent\IeC {\r u}}{12}
