@@ -26,3 +26,5 @@ analyza,experimenty
 zadani naskenovat??
 citace "prirucka kos. poradce"
 histogram->subfloat
+
+

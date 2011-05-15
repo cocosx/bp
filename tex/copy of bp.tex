@@ -12,8 +12,6 @@
 \usepackage{tikz}
 \usepackage{subfig}
 \usepackage{float}
-\usetikzlibrary{shapes.misc}
-
 \hyphenation{NetLogo}
 \title{sds}
 \author{Marek Bryša}
@@ -30,25 +28,37 @@ Metodou zvolenou k dosažení těchto cílů je vytvoření počítačového mod
 První kapitola poskytne úvod do fungování sítě firmy Oriflame. Seznámíme se s konkrétními parametry, na kterých je postavena, a s motivací, kterou firma svým prodejcům poskytuje. Ve druhé kapitole se budeme zabývat tvorbou sociálních vazeb, ekonomickými úvahami o síti a implementací obojího do počítačového modelu. Třetí kapitova bude věnována samotné analýze chování sítě a jejích členů, provádění experimentů a interpretaci získaných dat.
 \chapter{Prodejní síť Oriflame}
 \section{Historie firmy Oriflame}
-Firma Oriflame byla založena v roce 1967 ve Švédsku bratry Jonasem a Robertem Jochnick. Cílem bylo nabídnout lidem přirozenou a přírodní péči o svou pleť. Místo aby nákladně budovali kamenné obchody, rozhodli se dostat prodej přímo do domovů a využít tak vrozenou podnikavost lidí. Tento základní koncept zůstáva po více než čtyřicet let nezměněn. V roce 1990, po po pádu železné opony, firma expandovala po střední a východní Evropě a založila pobočku i v České republice. V roce 2001 dosasáhl počet prodejců zapojených v síti Oriflame na celém světě jednoho miliónu a obrat téměř 450 miliónů EUR.
+Firma Oriflame byla založena v roce 1967 ve Švédsku bratry Jonasem a Robertem Jochnick. Cílem bylo nabídnout lidem přirozenou a přírodní péči o svou pleť. Místo aby nákladně budovali kamenné obchody, rozhodli se dostat prodej přímo do domovů a využít tak vrozenou podnikavost lidí. Tento základní koncept zůstáva po více než 40 let nezměněn. V roce 1990, po po pádu železné opony, firma expanduje po střední a východní Evropě a zakládá pobočku i v České republice. V roce 2001 dosahuje počet kosmetických poradců jednoho miliónu a obrat téměř 450 miliónů EUR.
 
-Sortiment je opravdu široký, katalog obsahuje přes 1 500 výrobků v cenách přibližně od 50 do 1 000 Kč. Většina typů produktů obsahuje několik cenou a kvalitou odlišených řad. Celkově lze říci, že zákazník má možnost nákupu komplexní péče s téměř libovolným rozpočtovým omezením.
+Sortiment je opravdu široký, katalog obsahuje přes 1500 výrobků v cenách přibližně od 50 do 1000 Kč. Většina typů produktů obsahuje několik cenou a kvalitou odlišených řad. Celkově lze říci, že zákazník má možnost nákupu komplexní péče s téměř libovolným rozpočtovým omezením.
 \section{Podmínky síťového prodeje}
-V této části popíšeme fungování sítě Oriflame na českém trhu. V jiných zemích se mohou zejména parametry mírně lišit.
+V této části popíšeme fungování sítě Oriflame na českém trhu. V jiných zemích se mohou zejména parametry mírně lišit. Prodejcem (v terminologii Oriflame \emph{poradcem}) se zájemce stane vyplněním jednoduchého formuláře a zaplacením poplatku 99 Kč. Tím získá možnost výdělku následujícími způsoby:
+\begin{enumerate}
+\item Nákupem kosmetických výrobků v centrech Oriflame nebo na objednávkou přes internet za tzv. nákupní ceny, které jsou nižší než prodejní (katalogové) ceny, příčemž platí, že $PC=NC \cdot 1.3$ nebo-li $NC = PC \cdot 0.769$. Prodejce tak realizuje 30\% marži z nákupních cen při prodeji sobě a svým zákazníkům (typicky rodině a známým).
+\item Plnou hodnotu tzv. \emph{slevy z obratu} svého vlastního prodeje.
+\item Budováním skupiny poradců, které k Oriflame přivedl, tzv. \emph{sponzoroval}. Pak mu náleží rozdíl mezi svou slevou z obratu a slevou z obratu lidí, které k Oriflame přivedl a jejich skupin.
+\end{enumerate}
+Tento systém slouží jako motivace lidí pro rozšíření prodejní sítě. Je založen na očekávaní vysokého výdělku v budoucnosti. Firma ve svých materiálech jako příklad uvádí lineární růst výdělku pro poradce z prodeje a exponenciální ze sponzorování.
 
+Rok je rovnoměrně rozdělen na 17 období, které odpovídají vydáním katalogů výrobků. Poradce, který podal v předchozích třech obdobích alespoň jednu objednávku, obdrží sadu tiskovin zdarma, jinak je pro něj téměř nutnost si tištěný katalog zakoupit za TODO:cena katalogu.
+
+Firma dále nabízí pro začínající poradce ve čtyřech krocích motivaci ve formě věcných darů za splnění určitých objemů obratu, např. v prvním kroku za obrat 1250 Kč tašku, průvodce péčí o pleť a krém v celkové hodnotě 510 Kč.
+
+Také jsou k dispozici úvěry do výše 7000 Kč na zaplacení za zobží, které hodlá poradce dodat zákazníkum a nemusí tak od nich vybírat peníze předem.
+
+Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez udání důvodu a to i v případě, že výrobek obsahuje minimálně 80\% původního objemu.
+\subsection{Skupiny a slevy z obratu}
 Každému výrobku jsou v ceníku přiděleny čtyři hodnoty:
 \begin{description}
-\item[PC] Doporučená prodejní cena spotřebitelům, která je uvedena v katalogu.
-\item[NC] Nákupní cena včetně DPH. Za tu prodejci mohou zboží zakoupit v centrech Oriflame a na internetu. V České republice se nyní nachází tři hlavní centra (Praha, Brno, Ostrava) a tři centra (České Budějovice, Olomouc, Plzeň).
-\item[OO] Obchodní obrat. Typicky je roven nákupní ceně bez DPH. V případě produktů, které nemají daný objem (např. kartáč na vlasy, houba na mytí), je ještě přibližně poloviční.
-\item[BO] Bodové ohodnocení. Na inflaci nezávislý počet bodů, které prodejce nákupem zboží získá. Jestliže cena výrobku důsledkem inflace stoupne, bodové ohodnocení zůstává, a tím se poměr mezi nimi v čase mění. V současnoti jeden bod obdrží za přibližně 13,80 Kč obchodního obratu.
+\item[PC] Doporučená prodejní cena spotřebitelům.
+\item[NC] Nákupní cena včetně DPH. Za tu poradci mohou zobží zakoupit v centrech Oriflame.
+\item[OO] Obchodní obrat. Typicky je roven nákupní ceně bez DPH. V případě nespotřebních produktů (např. kartáč na vlasy, houba na mytí) je ještě přibližně poloviční.
+\item[BO] Bodové ohodnocení. Na inflaci nezávislý počet bodů, které poradce nákupem zboží získá. V současnoti odpovídá přibližně 13,80 Kč obchodního obratu.
 \end{description}
-Výjimku tvoří např. tiskoviny, vzorky a oblečení s logem Oriflame, které mají pouze nákupní cenu,  nejsou určeny k dalšímu prodeji a slouží jen jako pomůcka pro prodejce.
+Výjimku tvoří např. tiskoviny, vzorky a oblečení s logem Oriflame, které mají pouze nákupní cenu,  nejsou určeny k dalšímu prodeji a slouží jen jako pomůcka pro poradce.
 
-Rok firma rovnoměrně rozdělila na 17 období, které odpovídají vydáním katalogů výrobků. Prodejce, který podal v předchozích třech obdobích alespoň jednu objednávku, obdrží sadu tiskovin zdarma, jinak je pro něj téměř nutnost si tištěný katalog zakoupit za TODO:cena katalogu.
-
-Prodejce dále získá body všech lidí které přivedl, těch pod nimi atd. Na konci každého katalogového období dochází k vyhodnocení. Sečtou se všechny body a podle tabulky \ref{tab:perc_level} se určí procentní úroveň.
-\begin{table}[htb]
+Poradce dále získá body všech lidí které přivedl a těch pod nimi. Na konci každého katalogového období dochází k vyhodnocení. Sečtou se všechny body a podle tabulky \ref{tab:perc_level} se určí procentní úroveň.
+\begin{table}[h]
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|c|c|c|}
 \hline
@@ -59,119 +69,13 @@ body & $\geq$200 & $\geq$600 & $\geq$1200 & $\geq$2400 & $\geq$4000 & $\geq$6600
 \caption{Určení procentní úrovně}
 \label{tab:perc_level}
 \end{table}
-Toto se provede i pro všechny podskupiny. Prodejce pak získá za každou podskupinu:
-\begin{equation} \label{eq:spons}
-\text{obchodní obrat skupiny} \cdot (\text{procentní úroveň poradce} - \text{procentní úroveň skupiny}).
-\end{equation}
-Tím je zajištěno, že člověk, který se stal poradcem Oriflame později, ale je schopnější, může dosáhnout vyššího výdělku než ten, kdo jej přivedl.
+Toto se provede i pro všechny podskupiny. Poradce pak získá za každou podskupinu: obchodní obrat skupiny $\cdot$ (procentní úroveň poradce $-$ procentní úroveň skupiny). Tím je zajištěno, že člověk, který se stal poradcem Oriflame později, ale je schopnější, může dosáhnout vyššího výdělku než ten, kdo jej přivedl. Poradce také obdrží přímo podle své procetní úrovně slevu ze svého vlastního prodeje.
 
-Prodejcem (v terminologii Oriflame \emph{poradcem}) se zájemce stane vyplněním jednoduchého formuláře a zaplacením poplatku 99 Kč. Tím získá možnost výdělku následujícími způsoby:
-\begin{enumerate}
-\item Nákupem kosmetických výrobků v centrech Oriflame nebo na objednávkou přes internet za nákupní ceny, které jsou nižší než prodejní ceny, příčemž platí, že
-\begin{equation} \label{eq:pcnc}
-PC=1.3 \cdot NC \Leftrightarrow NC = 0.769 \cdot PC.
-\end{equation}
-Prodejce tak realizuje 30\% marži z nákupních cen při prodeji sobě a svým zákazníkům (typicky rodině a známým).
-\item Ziskem plné hodnoty tzv. \emph{slevy z obratu} svého vlastního prodeje, tj.
-\begin{equation} \label{eq:so}
-\text{procentní úroveň poradce} \cdot \text{obchodní obrat poradce}.
-\end{equation}
-\item Budováním skupiny poradců, které k Oriflame přivedl, tzv. \emph{sponzoroval}. Pak mu náleží obnos vypočtený podle rovnice \ref{eq:spons}.
-\end{enumerate}
-Peníze z bodů 2. a 3. prodejce dostane bezhotovostně na začátku následujícího katalogového období. Podmínkou je, že jeho vlastní prodej musí dosáhnout 100 bodů. To firma zdůvodňuje tím, že poradce musí být sám schopným prodejcem, aby mohl učit ostatní.
+Všechny tyto peníze poradce dostane na účet. Podmínkou je, že jeho vlastní prodej musí dosáhnout 100 bodů. To firma zdůvodňuje tím, že poradce musí být sám schopným prodejcem, aby mohl učit ostatní.
 
-Při dosažení 12\% úrovně se poradce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních zdarma aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
+Při dosažení 12\% úrovně se poradce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
 
-V případě, že je prodejce 12 měsíců neaktivní, tj. nepodal žádnou objednávku, je mu členství zrušeno a přichází o svou podsíť. Ta je napojena na prodejce nad ním. Pokud se rozhodne opět k Oriflame přidat, začíná zcela od začátku.
-
-Tento systém slouží jako motivace lidí pro rozšíření prodejní sítě. Je založen na očekávaní vysokého výdělku v budoucnosti. Firma ve svých materiálech jako příklad uvádí lineární růst výdělku pro poradce z prodeje a exponenciální ze sponzorování -- přivádění dalších lidí.
-
-Firma dále nabízí pro začínající poradce ve čtyřech krocích motivaci ve formě věcných darů za splnění určitých objemů obratu, např. v prvním kroku za obrat 1 250 Kč tašku, průvodce péčí o pleť a krém v celkové hodnotě 510 Kč.
-
-Také jsou k dispozici úvěry do výše 7 000 Kč na zaplacení za zobží, které hodlá poradce dodat zákazníkum a nemusí tak od nich vybírat peníze předem.
-
-Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez udání důvodu a to i v případě, že výrobek obsahuje aspoň 80\% původního objemu.
-\begin{figure}[h]
-\begin{center}
-\begin{tikzpicture} [
-  level distance=55mm,
-  sibling distance=60mm,
-  person/.style={rectangle,draw}]
-
-\node[person]{
-    \begin{tabular}{l l}
-      \textbf{Alice}&\\
-      Osoboní OO & 7000\\
-      Osoboní BO & 507\\
-      Skupin. OO & 26000\\
-      Skupin. BO & 1884\\
-      Proc. úroveň & 9\%\\
-      Zisk z prodeje & 2562\\
-      Zisk ze skup. & 1290\\
-    \end{tabular}
-    }
-    child {
-      node[person] {
-      \begin{tabular}{l l}
-        \textbf{Bob}&\\
-        Osoboní OO & 3000\\
-        Osoboní BO & 217\\
-        Skupin. OO & 3000\\
-        Skupin. BO & 217\\
-        Proc. úroveň & 3\%\\
-        Zisk z prodeje & 1098\\
-        Zisk ze skup. & 90\\
-      \end{tabular}
-      }
-      edge from parent node[left]{6\%}
-    }
-    child {node[person] {
-      \begin{tabular}{l l}
-        \textbf{Cyril}&\\
-        Osoboní OO & 5000\\
-        Osoboní BO & 362\\
-        Skupin. OO & 16000\\
-        Skupin. BO & 1159\\
-        Proc. úroveň & 6\%\\
-        Zisk z prodeje & 1830\\
-        Zisk ze skup. & 360\\
-      \end{tabular}
-    }
-      child {node[person] {
-        \begin{tabular}{l l}
-          \textbf{Daniela}&\\
-          Osoboní OO & 10000\\
-          Osoboní BO & 724\\
-          Skupin. OO & 10000\\
-          Skupin. BO & 724\\
-          Proc. úroveň & 6\%\\
-          Zisk z prodeje & 3660\\
-          Zisk ze skup. & 600\\
-        \end{tabular}
-      }
-       edge from parent node[left]{0\%}
-      }
-      child {node[person] {
-        \begin{tabular}{l l}
-          \textbf{Eva}&\\
-          Osoboní OO & 1000\\
-          Osoboní BO & 72\\
-          Skupin. OO & 1000\\
-          Skupin. BO & 72\\
-          Proc. úroveň & 0\%\\
-          Zisk z prodeje & 366\\
-          Zisk ze skup. & 0\\
-        \end{tabular}
-      }
-       edge from parent node[left]{6\%}
-      }
-       edge from parent node[left]{3\%}
-};
-\end{tikzpicture}
-\end{center}
-\caption{Příklad grafu skupiny}
-\label{fig:ggarph}
-\end{figure}
+\bigskip ???TODO: priklad grafu skupiny
 %\\\tikz
 
 
