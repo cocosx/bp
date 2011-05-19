@@ -4,6 +4,7 @@
 \usepackage{listings}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage[czech]{babel}
@@ -12,6 +13,8 @@
 \usepackage{tikz}
 \usepackage{subfig}
 \usepackage{float}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usetikzlibrary{shapes.misc}
 
 \hyphenation{NetLogo}
@@ -176,21 +179,40 @@ Také jsou k dispozici úvěry do výše 7 000 Kč na zaplacení za zobží, kte
 
 Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez udání důvodu a to i v případě, že výrobek obsahuje aspoň 80\% původního objemu.
 
-%\\\tikz
 
 
 \chapter{Popis modelu}
-V této kapitole se budeme věnovat popisu modelu sítě Oriflame z technického a ekonomického pohledu. Dojde i k částečnému prolnutí se implementací modelu na počítači, což je nutné, aby si jej čtenář mohl v případě potřeby snáze upravit.
-\section{Technický popis}
-Pro vytvoření experimentálního modelu bylo zvoleno prostředí NetLogo\footnote{NetLogo, \url{http://ccl.northwestern.edu/netlogo/}} ve verzi 4.1.3. Je to oteřený a volně šiřitelný software umožňující snadnou tvorbu agentových a systémově-dynamických modelů. Běh modelu zahrnuje zpravidla dvě části:
+V této kapitole se budeme věnovat popisu modelu sítě Oriflame z technického a ekonomického pohledu. Pro jeho vytvoření bylo zvoleno prostředí NetLogo\footnote{NetLogo, \url{http://ccl.northwestern.edu/netlogo/}} ve verzi 4.1.3. Je to oteřený a volně šiřitelný software umožňující snadnou tvorbu multiagnetových a systémově-dynamických modelů. Pod pojmem agent si můžeme představit jednu osobu s naprogramovaným chováním.
+
+Tento model pracuje s jediným agentem -- \texttt{person}. Mezi nimi mohou vznikat vztahy, v našem případě obousměrný \texttt{friend} značící přátelství mezi dvěma osobami a jednosměrný \texttt{sponsor} udávající kdo koho do sítě přivedl. Platí, že
+\[ A \text{ je přítel } B \iff A \xleftrightarrow{\texttt{friend}} B,\]
+\[ A \text{ přivedl } B \iff A \xleftarrow{\texttt{sponsor}} B.\]
+
+Běh modelu zahrnuje zpravidla dvě části:
 \begin{enumerate}
 \item Inicializace (setup). Zde se nastaví všechny proměnné na výchozí hodnoty, většinou také dojde k vygenerování náhodných parametrů a vztahů pro jednotlivé agenty.
 \item Vlastní běh. Ten probíhá v opakovaných oddělených krocích. V každém z nich dojde k projevu chování agentů a tím změně promenných, vztahů mezi agenty atd.
 \end{enumerate}
-V tomto modelu se pracuje zejména s agenty \texttt{person}, obousměrným vztahem \texttt{friend} a jednosměrným \texttt{sponsor}.
-\section{Ekonomický popis}
-\subsection{Generování sociálních vazeb}
-Je nutné, aby model věrně zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet náhodných přátelství mezi nimi. Je nutné aby graf tovřil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. To je zajištěno tak, že ihned po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má. Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na obrázku \ref{fig:hist_fr} jsou histogramy jednoho běhu generování přátelství pro $\texttt{number-of-persons}=\texttt{number-of-friendships}=300$ před a po přidání náhodných přátelství.\\
+\section{Generování sociálních vazeb}
+Je nutné, aby model zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Dále je nutné aby graf tvořil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet přidaných náhodných přátelství mezi nimi. Lze jimi tedy určovat velikost sítě a hustotu přátelství. Po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má, následně se vytvoří dodatečná přátelství. Celkem v algoritmu \ref{alg:friend}.
+\begin{algorithm}
+\caption{Generování přátelství}
+\label{alg:friend}
+\begin{algorithmic}
+\STATE vygeneruj \texttt{number-of-persons} agentů \texttt{person}
+\STATE vytvoř jedno přátelství mezi dvěma náhodnými osobami
+\FORALL{\texttt{persons}}
+  \STATE vytvoř jedno přátelství s obosou, která již nějaké má
+\ENDFOR
+\FOR{$i=0$ to \texttt{number-of-friendships}}
+  \STATE vytvoř jedno přátelství mezi dvěma náhodnými osobami
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+
+
+Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na obrázku \ref{fig:hist_fr} jsou histogramy jednoho běhu generování přátelství pro $\texttt{number-of-persons}=\texttt{number-of-friendships}=300$ před a po přidání náhodných přátelství.\\
 \begin{figure}[h]
   \centering
   \subfloat[Před přidáním náhodných]{\label{fig:hist_fr_v1}\includegraphics[width=0.5\textwidth]{hist_fr_v1.eps}}                
@@ -239,7 +261,7 @@ Ta je dána velmi podobně:
 %
 %
 %
-\chapter{Analýza a výsledků simulací}
+\chapter{Analýza výsledků simulací}
 V této kapitole budeme provádět multiagentové simulace na modelu prodejní sítě Oriflame a analyzovat jejich výsledky. Pokud nebude uvedeno jinak pracujeme s výchozím modelem a základními parametry:\\
 $\texttt{number-of-persons}=\texttt{number-of-friendships}=300$, \\
 $\texttt{margin}=0.23,\\\texttt{monthly-fee}=100$ a\\
