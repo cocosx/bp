@@ -186,15 +186,16 @@ V této kapitole se budeme věnovat popisu modelu sítě Oriflame z technického
 
 Tento model pracuje s jediným agentem -- \texttt{person}. Mezi nimi mohou vznikat vztahy, v našem případě obousměrný \texttt{friend} značící přátelství mezi dvěma osobami a jednosměrný \texttt{sponsor} udávající kdo koho do sítě přivedl. Platí, že
 \[ A \text{ je přítel } B \iff A \xleftrightarrow{\texttt{friend}} B,\]
-\[ A \text{ přivedl } B \iff A \xleftarrow{\texttt{sponsor}} B.\]
+\[ A \text{ přivedl } B \iff A \xleftarrow{\texttt{sponsor}} B,\]
+přičemž vztahy \texttt{sponsor} tvoří hrany stromu, vztahy \texttt{friend} obecný graf.
 
-Běh modelu zahrnuje zpravidla dvě části:
+Běh modelu zahrnuje dvě části:
 \begin{enumerate}
 \item Inicializace (setup). Zde se nastaví všechny proměnné na výchozí hodnoty, většinou také dojde k vygenerování náhodných parametrů a vztahů pro jednotlivé agenty.
 \item Vlastní běh. Ten probíhá v opakovaných oddělených krocích. V každém z nich dojde k projevu chování agentů a tím změně promenných, vztahů mezi agenty atd.
 \end{enumerate}
 \section{Generování sociálních vazeb}
-Je nutné, aby model zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Dále je nutné aby graf tvořil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet přidaných náhodných přátelství mezi nimi. Lze jimi tedy určovat velikost sítě a hustotu přátelství. Po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má, následně se vytvoří dodatečná přátelství. Celkem v algoritmu \ref{alg:friend}.
+Je nutné, aby model zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Dále je třeba, aby graf tvořil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet přidaných náhodných přátelství mezi nimi. Lze jimi tedy určovat velikost sítě a hustotu přátelství. Po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má, následně se vytvoří dodatečná přátelství. Tento postup je uveden v algoritmu \ref{alg:friend}.
 \begin{algorithm}
 \caption{Generování přátelství}
 \label{alg:friend}
@@ -212,7 +213,7 @@ Je nutné, aby model zachytil sociální vztahy ve společnosti. Každý agent m
 
 
 
-Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na obrázku \ref{fig:hist_fr} jsou histogramy jednoho běhu generování přátelství pro $\texttt{number-of-persons}=\texttt{number-of-friendships}=300$ před a po přidání náhodných přátelství.\\
+Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na obrázku \ref{fig:hist_fr} jsou histogramy jednoho běhu generování přátelství pro \[\texttt{number-of-persons}=\texttt{number-of-friendships}=300\] před a po přidání náhodných přátelství.\\
 \begin{figure}[h]
   \centering
   \subfloat[Před přidáním náhodných]{\label{fig:hist_fr_v1}\includegraphics[width=0.5\textwidth]{hist_fr_v1.eps}}                
@@ -221,43 +222,57 @@ Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu p�
   \label{fig:hist_fr}
 \end{figure}
 %\begin{center}\includegraphics{hist_fr_v1.eps}\includegraphics{hist_fr_v2.eps}\end{center}
-\subsection{Prostředí}
-Agenti jsou generování v izolovaném prostředí. Na začátku je jeden z nich určen jako zdrojový a od něj se pak síť může postupně po jednotlivých kolech šířit. Je možne také zapnout volbu \texttt{random-join?}, která znamená, že v každém kole je nabídnuto členství jednomu náhodnému agentovi --- nečlenovi. To modeluje případ, kdy se poradci snaží o nábor lidí např. u stánků.
-
-Dále jsou přítomny tyto za běhu měnitelné konstanty:
+\section{Prostředí}
+Agenti jsou generování v izolovaném prostředí. Jsou přítomny tyto za běhu měnitelné konstanty:
 \begin{description}
-\item[\texttt{margin}] Marže pro prodejce z prodejní ceny.
+\item[\texttt{margin}] Marže pro prodejce z prodejní ceny. Nabývá reálných hodnot $(0,1)$.
 \item[\texttt{monthly-fee}] Poplatek za členství placený v každém kole. Firma Oriflame jej nevybírá, je tedy určen spíše pro experimenty.
-\item[\texttt{manufacturing-cost}] Podíl výrobních nákladů na prodejní ceně produktů.
+\item[\texttt{manufacturing-cost}] Podíl výrobních nákladů na prodejní ceně produktů. Nabývá reálných hodnot $(0,1)$.
 \end{description}
-\subsection{Vlastnosti agenta \texttt{person}}
+\section{Vlastnosti agenta \texttt{person}}
 \label{sec:vl_agenta}
 Agent \texttt{person} představuje v modelu jednoho člověka. Má tyto důležité vlastnosti:
 \begin{description}
-\item[\texttt{consupmtion}] Množství peněz, které daná osoba během jednom období může utratit za kosmetické výrobky, které je možno koupit v síti Oriflame. Je to ekvivalent rozpočtového omezení a považuje se za konstantní. Ve výchozím nastavení je generováno jako:
-$$\max\{100,\texttt{random-normal(1000,500)}\}$$
-Tj. náhodná hodnota z normálního rozdělení se střední hodnotou 1000, rozptylem 500, zdola omezená 100 (spořeba nižší než 100 by byla nevýznamná).
-\item[\texttt{netmember?}] Značí, zda je agent členem sítě --- poradcem.
-\item[\texttt{be-point}] Bod ukončení činnosti. Členstvím v síti vznikají každému náklady. Tvoří je explicitní např. výdaje za cestu k zakazníkům a implicitní za čas obětovaný této práci. Obecně lze říci, že implicitní složka bude tím vyšší, čím lépe na daný člověk placené hlavní zaměstnání. A tím se také zvyšuje jeho rozpočtové omezení. Proto existuje závislost mezi consumption a be-point vyjádřená:
-$$\max\{\texttt{consumption}\cdot 0.5,\texttt{consumption}\cdot\texttt{random-normal(1,0.5)}\}$$
+\item[\texttt{consupmtion}] Celé číslo udávající množství peněz, které daná osoba během jednom období může utratit za kosmetické výrobky, které je možno koupit v síti Oriflame. Je to část osobního rozpočtového omezení a považuje se za konstantní. Ve výchozím nastavení je generováno jako
+$$\max\{100,\texttt{random-normal(1000,500)}\},$$
+tj. náhodná hodnota z normálního rozdělení se střední hodnotou 1000, rozptylem 500, zdola omezená 100. Lidé s nižší spotřebou kosmetických výrobků ve skutečnosti samozřejmě existují, ale z pohledu této práce nejsou významní.
+\item[\texttt{be-point}] Celé čislo znamenající bod ukončení činnosti. Za běhu se nemění. Členstvím v síti vznikají každému náklady. Tvoří je explicitní např. výdaje za cestu k zakazníkům a implicitní za čas obětovaný této práci. Obecně lze říci, že implicitní složka bude tím vyš\-ší, čím lépe na daný člověk placené hlavní zaměstnání. A tím se také zvyšuje jeho rozpočtové omezení. Proto existuje závislost mezi \texttt{consumption} a \texttt{be-point} vyjádřená
+$$\max\{0.5\cdot\texttt{consumption},\texttt{consumption}\cdot\texttt{random-normal(1,0.5)}\},$$
+což znamená minimálně polovina měsíční spotřeby, jinak násobek spotřeby se střední hodnotou 1 a rozptylem 0.5.
+\item[\texttt{netmember?}] Příznak učující, zda je agent členem sítě -- prodejcem. Při inicializaci je nastaven na nepravdu a za běhu dojde k jeho změně, pokud se agent rozhodne vstoupit do prodejní sítě nebo z ní naopak vystoupit.
 \end{description}
-\subsection{Chování agenta \texttt{person}}
-Chování vychází z jednoduché racionálni úvahy --- vyplatí se do sítě vstoupit a zůstat v ní? Lze jej tedy rozdělit na dvě části: podmínku vstupní a podmínku setrvání.
+\section{Chování agenta \texttt{person}}
+Chování vychází z jednoduché úvahy -- vyplatí se do sítě vstoupit a zůstat v ní? Lze jej tedy rozdělit na dvě části: podmínku vstupní a podmínku setrvání. Předpokládá se, že pokud se agent stane prodejcem, bude on a jeho přátelé svou potřebu kosmetických výrobků uspokojovat přednostně nákupem u něj. Ostatním agentům zboží neprodává.
 \subsubsection{Vstupní podmínka}
-Pokud je agentovi nabídnuto členství, přijme ho jestliže
-\[(\texttt{myrev} + \texttt{avg-exp-rev}) \cdot (1+\texttt{d-margin}) \geq \texttt{be-point} + \texttt{monthly-fee}.\]
+Pokud je agentovi nabídnuto členství, přijme ho jestliže jeho očekávaný příjem převýší celkové ekonomické náklady. První část příjmů tvoří očekávaný výdělek z přímého prodeje, který lze přesně vypočítat, neboť agent zná spotřebu svou a svého bezprostředního okolí a tuto sumu pak jen vynásobí prodejní marží. Druhou částí je očekávaný příjem z budování skupiny prodejců, tj. přívádění dalších lidí k Oriflame. Jeho velikost může agent zpočátku pouze odhadnout, protože nevidí hloubějí do struktury sítě přátelství. Zde je určen podle vzorce, který přibližně odpovída výpočtu uváděnému skutečnými prodejci Oriflame. Příjmová strana je ještě vynásobena diferencí mezi současnou prodejní marží a tou, která byla platná při posledním odchodu agenta ze sítě. Pokud se v běhu simulace zvýší parametr \texttt{margin}, budou agenti reagovat zvýšením příjmových očekávání a naopak. Celkem je podmínka daná takto:
+\[(\texttt{my-rev-exp} + \texttt{avg-srev-exp}) \cdot (1+\texttt{d-margin}) \geq \texttt{be-point} + \texttt{monthly-fee}\]
 \begin{description}
-\item[\texttt{myrev}] je očekávaný příjem z přímeho prodeje přátelům agenta. Vypočítá se jako \[\sum_{p\in F}(\texttt{consumption}_p\cdot\texttt{margin}),\]
-kde $F$ je množina přátel. Pokud některému z nich může zboží dodávat více poradců, je spotřeba rozdělena rovnoměrně mezi ně.
-\item[\texttt{avg-exp-rev}] je očekávaný příjem ze sponzoringu a skupin. Protože v rozhodování člověka je jistá setrvačnost, je dán jako průměr posledních deseti skutečných příjmů z této činnosti. Při inicializaci je naplněn hodnotami
-\[ 0.09\cdot (\sum_{p\in F}\texttt{consumption}_p)\cdot |F|^{1.3}.\]
-To odpovídá odhadu uváděnému při nabídce členství v síti.
-\item[\texttt{d-margin}] je rozdíl mezi současnou \texttt{margin} a tou při posledním odchodu agenta ze sítě, nejméně 0. To proto, že pokud se marže od posledního pokusu o nábor člena zvýšila, bude to použito jako argument, v opačném případě spíše zamlčeno.
+\item[\texttt{my-rev-exp}] je očekávaný příjem z přímeho prodeje přátelům agenta. Pokud některému z nich může zboží dodávat více poradců, je spotřeba rozdělena rovnoměrně mezi ně. Přesný postup je uveden v algortimu \ref{alg:myrev}.
+\begin{algorithm}
+\caption{Výpočet \texttt{my-rev-exp}}
+\label{alg:myrev}
+\begin{algorithmic}[]
+\STATE \texttt{my-rev-exp} $\gets$ moje spotřeba $\cdot$ \texttt{margin}
+\FORALL{$p\in$ moji přátelé}
+  \STATE $n\gets 1 + $ počet přátel osoby $p$, kteří jsou prodejci
+  \STATE $\texttt{my-rev-exp}\gets\texttt{my-rev-exp}+(\text{spořeba osoby }p \cdot \texttt{margin}) / n$
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+\item[\texttt{avg-srev-exp}] je očekávaný příjem ze sponzoringu a skupin. Protože v rozhodování člověka je jistá setrvačnost, je dán jako průměr posledních deseti skutečných příjmů z této činnosti. Agent \texttt{person} má tedy 10 prvkovou frontu \texttt{exp-srev-list}, na jejíž konec se v každém kole přidá skutečný příjem ze skupin a vypadne poslední prvek. \texttt{avg-srev-exp} je pak roven průměru hodnot v této frontě. Při inicializaci je fronta naplněna hodnotami
+\[ 0.09\cdot \text{suma spotřeby mých přátel}\cdot \text{počet mých přátel}^{1.3}.\]
+To odpovídá odhadu uváděnému při nabídce členství v síti, tedy přítomnosti na 9\% úrovni a mocnině počtu přátel z důvodu větvění stromu.
+\item[\texttt{d-margin}] je rozdíl mezi současnou \texttt{margin} a tou při posledním odchodu agenta ze sítě.
 \end{description}
 \subsubsection{Podmínka setrvání}
-Ta je dána velmi podobně:
-\[ \texttt{avg-exp-rev} + \texttt{my-rev} \geq \texttt{be-point} + \texttt{monthly-fee} \]
-\texttt{my-rev} v tomto případě již není odhad, ale skutečná hodnota.
+Vychází ze stejných úvah a je dána velmi podobně:
+\[ \texttt{my-rev} + \texttt{avg-srev-exp} \geq \texttt{be-point} + \texttt{monthly-fee} \]
+\texttt{my-rev} v tomto případě již není odhad, ale skutečná hodnota příjmu z přímeho prodeje. Tím jak se fronta \texttt{exp-srev-list} naplňuje skutečnými velikostmi výdělku ze skupin může dojít ke snížení jejího průměru a agentovi se pak vyplatí nebýt nadále prodejcem.
+\section{Šíření sítě}
+Na začátku je jeden agnet \texttt{person} určen jako zakladatel, je mu nastaveno \texttt{netmember?} na pravdu a \texttt{be-point} na 0, čímž je zajištěno, že nikdy nepřestane být prodejcem a prodejní síť se bude mít vždy odkud šířit. V každém kole je všem přátelům prodejců nabídnuto členství a dojde k vyhodnocení vstupní podmínky. Toto se děje nikoliv paralelně, ale postupně v náhodném pořadí, tj. pokud některé osobě mohou členství nabídnout dva nebo více prodejců, je zvolen jeden náhodný a ten si jej v případě splnění vstupní podmínky zařadí do svého podstromu grafu vztahů \texttt{sponsor}.
+
+Je možne také zapnout volbu \texttt{random-join?}, která znamená, že v každém kole jeden náhodný agent nabídne členství jednomu náhodnému nečlenovi i mimo okruh svých přátel. To modeluje případ, kdy se prodejci snaží o nábor lidí např. na náměstích a u stánků v nákupních centrech.
+\section{Výpočty a průběh kola}
 %
 %
 %

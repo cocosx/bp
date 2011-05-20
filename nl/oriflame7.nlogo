@@ -248,19 +248,19 @@ end
 to spread-network
   update-points
   ask persons with [netmember?] [
-    ;;let myrev consumption * margin
-    ;;let myrev 0
+    ;;let my-rev-exp consumption * margin
+    ;;let my-rev-exp 0
     ;;ask friend-neighbors with [not netmember?] [
-    ;;  set myrev myrev + ((consumption * margin) / count friend-neighbors with [netmember?])
+    ;;  set my-rev-exp my-rev-exp + ((consumption * margin) / count friend-neighbors with [netmember?])
     ;;]
     set exp-srev-list lput my-srev exp-srev-list
     set exp-srev-list remove-item 0 exp-srev-list
-    let avg-exp-rev (sum exp-srev-list) / (length exp-srev-list)
+    let avg-srev-exp (sum exp-srev-list) / (length exp-srev-list)
     ;;set sum-exp-rev (sum-exp-rev + my-srev)
     ;;let exp-rev sum-exp-rev / (6 + membership-length)
     ;;let exp-rev ((exp-srev-init * 6) + my-subnetrev * membership-length) / (6 + membership-length)
-    set label round (avg-exp-rev + my-rev) - (be-point + monthly-fee)
-    ifelse avg-exp-rev + my-rev < (be-point + monthly-fee)  ;;leave condition
+    set label round (avg-srev-exp + my-rev) - (be-point + monthly-fee)
+    ifelse avg-srev-exp + my-rev < (be-point + monthly-fee)  ;;leave condition
     [ 
       set netmember? false
       set membership-length 0
@@ -277,21 +277,21 @@ to spread-network
       set last-margin margin
     ]
     [ set membership-length membership-length + 1 ]
-    ;;set label round (myrev - consumption * margin)
-    ;;set label round myrev
+    ;;set label round (my-rev-exp - consumption * margin)
+    ;;set label round my-rev-exp
   ]
   ask persons with [netmember?] [
       let p self
       ask friend-neighbors with [not netmember?] [
-         let myrev consumption * margin
+         let my-rev-exp consumption * margin
          ask friend-neighbors with [not netmember?] [
-           set myrev myrev + ((consumption * margin) / (count friend-neighbors with [netmember?] + 1 ))
+           set my-rev-exp my-rev-exp + ((consumption * margin) / (count friend-neighbors with [netmember?] + 1 ))
          ]
-         let avg-exp-rev (sum exp-srev-list) / (length exp-srev-list)
-         ;;if (myrev + (avg-exp-rev * 1.2)) >= (be-point + monthly-fee) ;;join condition
+         let avg-srev-exp (sum exp-srev-list) / (length exp-srev-list)
+         ;;if (my-rev-exp + (avg-srev-exp * 1.2)) >= (be-point + monthly-fee) ;;join condition
          let d-margin 1 + (margin - last-margin)
-         if d-margin > 0 [set d-margin 0]
-         if ((myrev + avg-exp-rev) * (1 + d-margin)) >= (be-point + monthly-fee) ;;join condition
+         ;if d-margin > 0 [set d-margin 0]
+         if ((my-rev-exp + avg-srev-exp) * (1 + d-margin)) >= (be-point + monthly-fee) ;;join condition
          [
            set netmember? true
            create-sponsor-to p
@@ -305,14 +305,14 @@ to spread-network
       ;;copy ^
       if random-join? [
         ask one-of persons with [not netmember?] [
-          let myrev consumption * margin
+          let my-rev-exp consumption * margin
           ask friend-neighbors with [not netmember?] [
-            set myrev myrev + ((consumption * margin) / (count friend-neighbors with [netmember?] + 1 ))
+            set my-rev-exp my-rev-exp + ((consumption * margin) / (count friend-neighbors with [netmember?] + 1 ))
           ]
-          let avg-exp-rev (sum exp-srev-list) / (length exp-srev-list)
+          let avg-srev-exp (sum exp-srev-list) / (length exp-srev-list)
           let d-margin (margin - last-margin)
-          if d-margin > 0 [set d-margin 0]
-          if ((myrev + avg-exp-rev) * (1 + d-margin)) >= (be-point + monthly-fee) ;;join condition
+          ;if d-margin > 0 [set d-margin 0]
+          if ((my-rev-exp + avg-srev-exp) * (1 + d-margin)) >= (be-point + monthly-fee) ;;join condition
           [
             create-sponsor-to one-of persons with [netmember?]
             set netmember? true

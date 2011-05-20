@@ -5,21 +5,23 @@
 \contentsline {section}{\numberline {1.2}Podm\IeC {\'\i }nky s\IeC {\'\i }\IeC {\v t}ov\IeC {\'e}ho prodeje}{3}
 \contentsline {chapter}{\numberline {2}Popis modelu}{7}
 \contentsline {section}{\numberline {2.1}Generov\IeC {\'a}n\IeC {\'\i } soci\IeC {\'a}ln\IeC {\'\i }ch vazeb}{7}
-\contentsline {subsection}{\numberline {2.1.1}Prost\IeC {\v r}ed\IeC {\'\i }}{8}
-\contentsline {subsection}{\numberline {2.1.2}Vlastnosti agenta \texttt {person}}{9}
-\contentsline {subsection}{\numberline {2.1.3}Chov\IeC {\'a}n\IeC {\'\i } agenta \texttt {person}}{9}
-\contentsline {subsubsection}{Vstupn\IeC {\'\i } podm\IeC {\'\i }nka}{9}
+\contentsline {section}{\numberline {2.2}Prost\IeC {\v r}ed\IeC {\'\i }}{8}
+\contentsline {section}{\numberline {2.3}Vlastnosti agenta \texttt {person}}{9}
+\contentsline {section}{\numberline {2.4}Chov\IeC {\'a}n\IeC {\'\i } agenta \texttt {person}}{9}
+\contentsline {subsubsection}{Vstupn\IeC {\'\i } podm\IeC {\'\i }nka}{10}
 \contentsline {subsubsection}{Podm\IeC {\'\i }nka setrv\IeC {\'a}n\IeC {\'\i }}{10}
-\contentsline {chapter}{\numberline {3}Anal\IeC {\'y}za v\IeC {\'y}sledk\IeC {\r u} simulac\IeC {\'\i }}{11}
-\contentsline {section}{\numberline {3.1}\IeC {\v S}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } s\IeC {\'\i }t\IeC {\v e}}{11}
-\contentsline {subsection}{\numberline {3.1.1}Pr\IeC {\r u}b\IeC {\v e}h \IeC {\v s}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i }}{12}
-\contentsline {subsection}{\numberline {3.1.2}Vlastnosti agent\IeC {\r u}}{12}
-\contentsline {section}{\numberline {3.2}Vliv n\IeC {\'a}borov\IeC {\'y}ch akc\IeC {\'\i }}{13}
-\contentsline {section}{\numberline {3.3}Slab\IeC {\'e} \IeC {\v c}l\IeC {\'a}nky}{14}
-\contentsline {section}{\numberline {3.4}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{15}
-\contentsline {section}{\numberline {3.5}Reakce na \IeC {\v s}oky}{18}
-\contentsline {section}{\numberline {3.6}Pob\IeC {\'\i }dky}{18}
-\contentsline {chapter}{Z\IeC {\'a}v\IeC {\v e}r}{20}
-\contentsline {chapter}{U\IeC {\v z}ivatelsk\IeC {\'a} p\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka}{21}
-\contentsline {subsubsection}{velky model}{21}
-\contentsline {subsubsection}{???zjednoduseny model}{21}
+\contentsline {section}{\numberline {2.5}\IeC {\v S}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } s\IeC {\'\i }t\IeC {\v e}}{11}
+\contentsline {section}{\numberline {2.6}V\IeC {\'y}po\IeC {\v c}ty a pr\IeC {\r u}b\IeC {\v e}h kola}{11}
+\contentsline {chapter}{\numberline {3}Anal\IeC {\'y}za v\IeC {\'y}sledk\IeC {\r u} simulac\IeC {\'\i }}{12}
+\contentsline {section}{\numberline {3.1}\IeC {\v S}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } s\IeC {\'\i }t\IeC {\v e}}{12}
+\contentsline {subsection}{\numberline {3.1.1}Pr\IeC {\r u}b\IeC {\v e}h \IeC {\v s}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i }}{13}
+\contentsline {subsection}{\numberline {3.1.2}Vlastnosti agent\IeC {\r u}}{13}
+\contentsline {section}{\numberline {3.2}Vliv n\IeC {\'a}borov\IeC {\'y}ch akc\IeC {\'\i }}{14}
+\contentsline {section}{\numberline {3.3}Slab\IeC {\'e} \IeC {\v c}l\IeC {\'a}nky}{15}
+\contentsline {section}{\numberline {3.4}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{16}
+\contentsline {section}{\numberline {3.5}Reakce na \IeC {\v s}oky}{19}
+\contentsline {section}{\numberline {3.6}Pob\IeC {\'\i }dky}{19}
+\contentsline {chapter}{Z\IeC {\'a}v\IeC {\v e}r}{21}
+\contentsline {chapter}{U\IeC {\v z}ivatelsk\IeC {\'a} p\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka}{22}
+\contentsline {subsubsection}{velky model}{22}
+\contentsline {subsubsection}{???zjednoduseny model}{22}

@@ -27,4 +27,15 @@ zadani naskenovat??
 citace "prirucka kos. poradce"
 histogram->subfloat
 
+model:
+  -agentovy model
+  -netlogo
+  -setup,run
+  -soc vazby
+  -prostredi,global
+  -vstupni/setrvaci podminka
+  -sireni
+  -vypocty
+  -rozdily oproti realite
+
 
