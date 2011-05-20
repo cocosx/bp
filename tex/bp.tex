@@ -16,12 +16,59 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usetikzlibrary{shapes.misc}
-
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \hyphenation{NetLogo}
 \title{sds}
 \author{Marek Bryša}
 \date{Brno 2011}
 \begin{document}
+\thispagestyle{empty}
+\pagebreak
+\mbox{}% to get into horizontal mode
+\vfill
+
+\begin{center}
+% Upper part of the page
+\includegraphics[width=0.2\textwidth]{./znak_MU_cerny.eps}\hspace{2cm}
+\includegraphics[width=0.2\textwidth]{./znak_PrF_cerny.eps}\\[1cm]    
+
+{\LARGE Masarykova univerzita}\\[0.5cm]
+{\LARGE Přírodovědecká fakulta}\\[0.5cm]
+{\LARGE BAKALÁŘSKÁ PRÁCE}\\[0.5cm]
+{\LARGE Marek Bryša}\\[0.5cm]
+
+{ \huge \bfseries Lager brewing techniques}\\[0.4cm]
+{\large Vedoucí práce: Ing. Michal Kvasnička, Ph.D.}\\[0.5cm]
+{\large Studijní program: Aplikovaná matematika}\\
+{\large Studijní obor: Matematika-Ekonomie}\\[0.5cm]
+{\large 2011}\\
+\vspace{5cm}
+
+\vfill
+\pagebreak
+% end of page 
+
+\end{center}
+
+\newpage
+\thispagestyle{empty}
+pisemne zadani
+\newpage
+\thispagestyle{empty}
+\vspace{2cm}
+\noindent
+Děkuji panu Ing. Michalu Kvasničkovi, Ph.D. za rady a připomínky cenné nejen při tvorbě této práce.\\
+Děkuji paní Kateřině Kšicové za poskytnutí informací o fungování prodejní sítě Oriflame.
+\vfill
+\noindent
+Prohlašuji, že jsem svou bakalářskou práci napsal samostatně a výhradně s použitím citovaných pramenů.\\[3cm]
+V Brně, dne \today \hfill Marek Bryša\hspace{3cm}
+\vspace{1.5cm}
+\newpage
+\newpage
+\thispagestyle{empty}
+abstrakt
+\newpage
 \tableofcontents
 
 \chapter*{Úvod}
@@ -272,7 +319,11 @@ Vychází ze stejných úvah a je dána velmi podobně:
 Na začátku je jeden agnet \texttt{person} určen jako zakladatel, je mu nastaveno \texttt{netmember?} na pravdu a \texttt{be-point} na 0, čímž je zajištěno, že nikdy nepřestane být prodejcem a prodejní síť se bude mít vždy odkud šířit. V každém kole je všem přátelům prodejců nabídnuto členství a dojde k vyhodnocení vstupní podmínky. Toto se děje nikoliv paralelně, ale postupně v náhodném pořadí, tj. pokud některé osobě mohou členství nabídnout dva nebo více prodejců, je zvolen jeden náhodný a ten si jej v případě splnění vstupní podmínky zařadí do svého podstromu grafu vztahů \texttt{sponsor}.
 
 Je možne také zapnout volbu \texttt{random-join?}, která znamená, že v každém kole jeden náhodný agent nabídne členství jednomu náhodnému nečlenovi i mimo okruh svých přátel. To modeluje případ, kdy se prodejci snaží o nábor lidí např. na náměstích a u stánků v nákupních centrech.
-\section{Výpočty a průběh kola}
+\section{Výpočet zisku ze skupiny}
+Výpočet probíhá pomocí prohledávání grafu vztahů \texttt{sponsor} do hloubky s využitím rekurzivního volání funkce.
+{\bf procedure} $SlowSort(A,i,j)$
+\section{Průběh kola}
+\section{Rozdíly modelu a skutečnosti}
 %
 %
 %
@@ -493,21 +544,28 @@ Nyní se na tabulku \ref{tab:max-profit2} podívejme z toho pohledu, že firma z
 \chapter*{Závěr}
 \addcontentsline{toc}{chapter}{Závěr}
 \addtocounter{chapter}{1}
+\begin{thebibliography}{9}
 
+\bibitem{gretl}
+COTTRELL, Allin; LUCCHETTI, Riccardo. Gnu Regression, Econometrics and Time-series Library [online]. Květen 2011 [cit. 2011-05-20].  Gretl User’s Guide. Dostupné z WWW: \url{http://sourceforge.net/projects/gretl/files/manual/}
+\bibitem{epstein}
+EPSTEIN, Joshua M.; AXTELL, Robert. Growing artificial societies : social science from the bottom up. Cambridge, Mass. : MIT Press,  1996. 208 s. ISBN 0262550253.
+\bibitem{gilbert}
+GILBERT, G. Nigel. Agent-based models. Los Angeles : Sage Publications,  c2008. xiii, 98 s. ISBN 9781412949644.
+\bibitem{koop}
+KOOP, Gary. Introduction to econometrics. Chichester : John Wiley \& Sons,  2008. 371 s. ISBN 9780470032701.
+\bibitem{mankiw}
+MANKIW, N. Gregory; SOJKA, Milan. Zásady ekonomie. 1. vyd. Praha : Grada,  1999. 763 s. ISBN 8071698911.
+\bibitem{oriflame}
+ Manuál kosmetického poradce Oriflame. Interní dokument. Aktualizace prosinec 2009. [s.l.] : [s.n.],  [2009]. 31 s. Katalogové číslo Oriflame 91571.
+\bibitem{netlogo}
+ NetLogo Home Page [online]. 2011-04-03 [cit. 2011-05-20].  NetLogo User Manual. Dostupné z WWW: \url{http://ccl.northwestern.edu/netlogo/docs/}
+\end{thebibliography}
 \chapter*{Uživatelská příručka}
 \addcontentsline{toc}{chapter}{Uživatelská příručka}
 \addtocounter{chapter}{1}
 \subsubsection{velky model}
 \subsubsection{???zjednoduseny model}
 bez sponzorovani - je tam lepe videt neprima umera mezi ziskem firmy a vysi margin+fee
-\begin{thebibliography}{9}
-
-\bibitem{fd}
-
-\end{thebibliography}
-\url{http://www.oriflame.com/About_Oriflame/History/}
-cenik 4/2011
-manual kosmetickeho poradce
-http://ccl.northwestern.edu/netlogo/download.shtml
 \end{document}
 
