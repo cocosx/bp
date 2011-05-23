@@ -4,22 +4,23 @@
 \contentsline {section}{\numberline {1.1}Historie firmy Oriflame}{7}
 \contentsline {section}{\numberline {1.2}Podm\IeC {\'\i }nky s\IeC {\'\i }\IeC {\v t}ov\IeC {\'e}ho prodeje}{7}
 \contentsline {chapter}{\numberline {2}Popis modelu}{11}
-\contentsline {section}{\numberline {2.1}Generov\IeC {\'a}n\IeC {\'\i } soci\IeC {\'a}ln\IeC {\'\i }ch vazeb}{11}
-\contentsline {section}{\numberline {2.2}Prost\IeC {\v r}ed\IeC {\'\i }}{12}
-\contentsline {section}{\numberline {2.3}Vlastnosti agenta \texttt {person}}{13}
-\contentsline {section}{\numberline {2.4}Chov\IeC {\'a}n\IeC {\'\i } agenta \texttt {person}}{13}
+\contentsline {section}{\numberline {2.1}Z\IeC {\'a}kladn\IeC {\'\i } prvky}{11}
+\contentsline {section}{\numberline {2.2}Generov\IeC {\'a}n\IeC {\'\i } soci\IeC {\'a}ln\IeC {\'\i }ch vazeb}{12}
+\contentsline {section}{\numberline {2.3}Prost\IeC {\v r}ed\IeC {\'\i }}{12}
+\contentsline {section}{\numberline {2.4}Vlastnosti agenta \texttt {person}}{13}
+\contentsline {section}{\numberline {2.5}Chov\IeC {\'a}n\IeC {\'\i } agenta \texttt {person}}{14}
 \contentsline {subsubsection}{Vstupn\IeC {\'\i } podm\IeC {\'\i }nka}{14}
-\contentsline {subsubsection}{Podm\IeC {\'\i }nka setrv\IeC {\'a}n\IeC {\'\i }}{14}
-\contentsline {section}{\numberline {2.5}\IeC {\v S}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } prodejn\IeC {\'\i } s\IeC {\'\i }t\IeC {\v e}}{15}
-\contentsline {section}{\numberline {2.6}Pr\IeC {\r u}b\IeC {\v e}h kola a v\IeC {\'y}po\IeC {\v c}ty}{15}
-\contentsline {section}{\numberline {2.7}Rozd\IeC {\'\i }ly modelu a skute\IeC {\v c}nosti}{17}
+\contentsline {subsubsection}{Podm\IeC {\'\i }nka setrv\IeC {\'a}n\IeC {\'\i }}{15}
+\contentsline {section}{\numberline {2.6}\IeC {\v S}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } prodejn\IeC {\'\i } s\IeC {\'\i }t\IeC {\v e}}{15}
+\contentsline {section}{\numberline {2.7}Pr\IeC {\r u}b\IeC {\v e}h kola a v\IeC {\'y}po\IeC {\v c}ty}{15}
+\contentsline {section}{\numberline {2.8}Rozd\IeC {\'\i }ly modelu a skute\IeC {\v c}nosti}{17}
 \contentsline {chapter}{\numberline {3}Anal\IeC {\'y}za v\IeC {\'y}sledk\IeC {\r u} simulac\IeC {\'\i }}{18}
 \contentsline {section}{\numberline {3.1}\IeC {\v S}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } s\IeC {\'\i }t\IeC {\v e}}{18}
 \contentsline {subsection}{\numberline {3.1.1}Pr\IeC {\r u}b\IeC {\v e}h \IeC {\v s}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i }}{19}
-\contentsline {subsection}{\numberline {3.1.2}Vlastnosti agent\IeC {\r u}}{19}
+\contentsline {subsection}{\numberline {3.1.2}Vlastnosti agent\IeC {\r u}}{20}
 \contentsline {section}{\numberline {3.2}Vliv n\IeC {\'a}borov\IeC {\'y}ch akc\IeC {\'\i }}{20}
-\contentsline {section}{\numberline {3.3}Slab\IeC {\'e} \IeC {\v c}l\IeC {\'a}nky}{21}
-\contentsline {section}{\numberline {3.4}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{22}
+\contentsline {section}{\numberline {3.3}Slab\IeC {\'e} \IeC {\v c}l\IeC {\'a}nky}{22}
+\contentsline {section}{\numberline {3.4}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{23}
 \contentsline {section}{\numberline {3.5}Reakce na \IeC {\v s}oky}{25}
 \contentsline {section}{\numberline {3.6}Pob\IeC {\'\i }dky}{25}
 \contentsline {chapter}{Z\IeC {\'a}v\IeC {\v e}r}{27}

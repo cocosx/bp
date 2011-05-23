@@ -79,6 +79,7 @@ Metodou zvolenou k dosažení těchto cílů je vytvoření počítačového mod
 
 První kapitola poskytne úvod do fungování sítě firmy Oriflame. Seznámíme se s konkrétními parametry, na kterých je postavena, a s motivací, kterou firma svým prodejcům poskytuje. Ve druhé kapitole se budeme zabývat tvorbou sociálních vazeb, ekonomickými úvahami o síti a implementací obojího do počítačového modelu. Třetí kapitova bude věnována samotné analýze chování sítě a jejích členů, provádění multiagentových simulací a interpretaci získaných dat.
 \chapter{Prodejní síť Oriflame}
+Tato kapitola nabízí úvod do fungování prodejní sítě Oriflame a jejích parametrů. Poslouží jako základ k vybudování počítačového modelu v příští kapitole. Zde se ze začátku seznámíme s historií Oriflame a sortimentem produktů. Dále se budeme věnovat struktuře katalogu, tvorbě cen a podrobně podmínkám, na základě kterých mohou si lidé s Oriflame přivydělat. Závěrem je uveden obrázek s příkladem, jehož účelem je objasnění na první pohled komplikovaného systému.
 \section{Historie firmy Oriflame}
 Firma Oriflame byla založena v roce 1967 ve Švédsku bratry Jonasem a Robertem Jochnick. Cílem bylo nabídnout lidem přirozenou a přírodní péči o svou pleť. Místo aby nákladně budovali kamenné obchody, rozhodli se dostat prodej přímo do domovů a využít tak vrozenou podnikavost lidí. Tento základní koncept zůstáva po více než čtyřicet let nezměněn. V roce 1990, po po pádu železné opony, firma expandovala po střední a východní Evropě a založila pobočku i v České republice. V roce 2001 dosasáhl počet prodejců zapojených v síti Oriflame na celém světě jednoho miliónu a obrat téměř 450 miliónů EUR.
 
@@ -229,7 +230,9 @@ Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez u
 
 
 \chapter{Popis modelu}
-V této kapitole se budeme věnovat popisu modelu sítě Oriflame z technického a ekonomického pohledu. Pro jeho vytvoření bylo zvoleno prostředí NetLogo\footnote{NetLogo, \url{http://ccl.northwestern.edu/netlogo/}} ve verzi 4.1.3. Je to oteřený a volně šiřitelný software umožňující snadnou tvorbu multiagnetových a systémově-dynamických modelů. Pod pojmem agent si můžeme představit jednu osobu s naprogramovaným chováním.
+V této kapitole se budeme věnovat popisu modelu sítě Oriflame. Nejdříve se seznámíme jeho s technickým zázemím a základními prvky. Dále se budeme věnovat generování sociálních vztahů a vlastnostem zvoleného postupu. Pak podrobně rozebereme jednotlivé prvky a objasníme jejich chování. Závěrem se budeme zabývat výpočetními algoritmy a rozdílům mezi modelem a skutečností.
+\section{Základní prvky}
+Pro vytvoření modelu bylo zvoleno prostředí NetLogo\cite{netlogo} ve verzi 4.1.3. Je to oteřený a volně šiřitelný software umožňující snadnou tvorbu multiagnetových a systémově-dynamických modelů. Pod pojmem agent si můžeme představit jednu osobu s naprogramovaným chováním. Na jeho základě mezi sebou agenti provádí interakce. Tím se jejich chování promítá do celého modelu, na němž pak můžeme měřit různé parametry. Tato měření budou předmětem příští kapitoly.
 
 Tento model pracuje s jediným agentem -- \texttt{person}. Mezi nimi mohou vznikat vztahy, v našem případě obousměrný \texttt{friend} značící přátelství mezi dvěma osobami a jednosměrný \texttt{sponsor} udávající kdo koho do sítě přivedl. Platí, že
 \[ A \text{ je přítel } B \iff A \xleftrightarrow{\texttt{friend}} B,\]
@@ -388,12 +391,12 @@ Zde shrneme zjednodušení použitá při vytváření modelu:
 %
 %
 \chapter{Analýza výsledků simulací}
-V této kapitole budeme provádět multiagentové simulace na modelu prodejní sítě Oriflame a analyzovat jejich výsledky. Pokud nebude uvedeno jinak pracujeme s výchozím modelem a základními parametry:\\
-$\texttt{number-of-persons}=\texttt{number-of-friendships}=300$, \\
-$\texttt{margin}=0.23,\\\texttt{monthly-fee}=100$ a\\
-vlastnosti agenta \texttt{person} uvedené v sekci \ref{sec:vl_agenta}.
-
-Data budou získána pomocí nástroje BehaviorSpace obsaženého v programu NetLogo. Ten umožňuje opakovaný běh modelu se stejnými náhodnými složkami, ale při různých parametrech, čímž lze získat velké a robustní datové soubory.
+V této kapitole budeme provádět multiagentové simulace na modelu prodejní sítě Oriflame a analyzovat jejich výsledky. Pokud nebude uvedeno jinak pracujeme s výchozím modelem a základními parametry:\\[3mm]
+$\texttt{number-of-persons}=\texttt{number-of-friendships}=300$ -- omezení z důvodu výpočetní kapacity\\
+$\texttt{margin}=0.23$ -- marže vycházející z rovnice \ref{eq:pcnc}\\
+$\texttt{monthly-fee}=100$ -- arbitrárně stanoveno\\
+vlastnosti agenta \texttt{person} uvedené v sekci \ref{sec:vl_agenta}\\[3mm]
+Data budou získána pomocí nástroje BehaviorSpace obsaženého v programu NetLogo. Ten umožňuje opakovaný běh modelu při různých parametrech, čímž lze získat rozsáhle a statisticky významné datové soubory.
 
 K měření budou sloužit mimo jiné tyto veličiny:
 \begin{description}
@@ -402,13 +405,13 @@ K měření budou sloužit mimo jiné tyto veličiny:
 \item[\texttt{revenue}] Součet předchozích dvou.
 \item[\texttt{scost}] Náklady na výplatu sponzoringu a skupin.
 \item[\texttt{mcost}] Výrobní náklady.
-\item[\texttt{network-profit}] Celkový účetní zisk provozovatele sítě bez fixních nákadů. 
+\item[\texttt{network-profit}] Celkový účetní zisk provozovatele sítě Oriflame bez fixních nákadů. 
 \end{description}
-Ke statistické analýze bude využit ekonometrický software GRETL\footnote{Gnu Regression, Econometrics and Time-series Library, \url{http://gretl.sourceforge.net/}} verze 1.9.1 a tabulkový procesor Gnumeric\footnote{Gnumeric --- The Gnome Office Spreadsheet, \url{http://projects.gnome.org/gnumeric/}} 1.10.14.
+Ke statistické analýze bude využit ekonometrický software GRETL\cite{gretl} verze 1.9.1 a tabulkový procesor Gnumeric\footnote{Gnumeric --- The Gnome Office Spreadsheet, \url{http://projects.gnome.org/gnumeric/}} 1.10.14.
 \section{Šíření sítě}
 Zde se budeme zkoumat šíření sítě a její výsledné vlastnosti. 
 \subsection{Průběh šíření}
-Bylo provedeno 100 nezavislých náhodných běhů. Podmínkou ukončení je stabilizace sítě, tj. rovnost dvou po sobě následujících \texttt{network-profit}. Získaná data jsou v přiloženém souboru \texttt{spread1.csv}. Z nich odvozené popisné statistiky jsou v tabulce \ref{tab:spread1_desc}.
+Bylo provedeno 100 nezavislých náhodných běhů pro výchozí parametry z úvodu kapitoly. Podmínkou ukončení je stabilizace sítě, tj. rovnost dvou po sobě následujících \texttt{network-profit}. Získaná data jsou v přiloženém souboru \texttt{spread1.csv}. Z nich odvozené popisné statistiky jsou v tabulce \ref{tab:spread1_desc}.
 \begin{table}[h]
   \begin{center}
   \begin{tabular}{|r|r|r|r|}
@@ -424,7 +427,7 @@ Bylo provedeno 100 nezavislých náhodných běhů. Podmínkou ukončení je sta
   \caption{Popisné statistiky pro \texttt{spread1}}
   \label{tab:spread1_desc}
 \end{table}
-Vidíme, že průměrný běh trval 24 kol. Členy sítě se maximálně stalo 217 osob z 300 a nakonec zůstalo 81, tedy přibližne čtvrtina. Časová řada počtu členů jednoho vybraného běhu je vidět na grafu \ref{fig:spread1_run}.
+Vidíme, že průměrný běh trval 24 kol. Členy sítě se v průběhu stalo maximálně 217 osob z 300 a nakonec zůstalo 81, tedy přibližne čtvrtina. Časová řada počtu členů jednoho vybraného běhu je vidět na grafu \ref{fig:spread1_run}.
 \begin{figure}[h]
   \centering
   \includegraphics{member_count.eps}
@@ -434,7 +437,7 @@ Vidíme, že průměrný běh trval 24 kol. Členy sítě se maximálně stalo 2
 %\begin{center}\includegraphics{member_count.eps}\end{center}
 Je patrné, že síť se z počátku rychle rozrůstá díky velkým očekáváním. Ta ale nejsou většinou naplňena a dochází k postupnému úbytku.
 \subsection{Vlastnosti agentů}
-Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Jedním důvodem může být nadprůměrný počet přátel. Za stejných podmínek jako v předchozím případě sestavíme experiment. Výsledkem běhu je průměrný počet přátel pro člena sítě a pro všechny osoby. Data jsou k dispozici v souboru \texttt{spread2.csv}. Popisné statistiky jsou v tabulce \ref{tab:spread2_desc}.
+Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Jedním důvodem může být nadprůměrný počet přátel. Za stejných podmínek jako v předchozím případě sestavíme simulaci. Výsledkem běhu je průměrný počet přátel pro člena sítě a pro všechny osoby. Data jsou k dispozici v souboru \texttt{spread2.csv}. Popisné statistiky jsou v tabulce \ref{tab:spread2_desc}.
 \begin{table}[H]
   \begin{center}
   \begin{tabular}{|r|r|r|r|}
@@ -448,9 +451,10 @@ Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Jed
   \caption{Popisné statistiky \texttt{spread2}}
   \label{tab:spread2_desc}
 \end{table}
-Hypotéza: $M_1=M_2 ~ \bot ~ M_1>M_2$\\
+\noindent
+Hypotéza: $M_1=M_2$ proti $M_1>M_2$\\
 P-hodnota testové statistiky $T = 9.51\cdot 10^{-97}$\\
-Jednoznačně tedy zamítáme nulovou hypotézu a je zřejmé, že stálí členové sítě mají nadprůměrný počet přátel.
+Jednoznačně tedy zamítáme nulovou hypotézu a je zřejmé, že stálí členové sítě mají nadprůměrný počet přátel.\vspace{3mm}
 
 Druhým důvodem může být malý \texttt{be-point}, což způsobí výhodnost členství. Experiment provedeme stejným způsobem jako u počtu přátel. Statistiky vidíme v tabulce \ref{tab:spread3_desc}. Výsledky lze nalézt v souboru \texttt{spread3.csv}.
 \begin{table}[H]
@@ -466,9 +470,10 @@ Druhým důvodem může být malý \texttt{be-point}, což způsobí výhodnost 
   \caption{Popisné statistiky \texttt{spread3}}
   \label{tab:spread3_desc}
 \end{table}
-Hypotéza: $M_1=M_2 ~ \bot ~ M_1>M_2$\\
+\noindent
+Hypotéza: $M_1=M_2$ proti $M_1>M_2$\\
 P-hodnota testové statistiky $T = 3.06\cdot 10^{-109}$\\
-Nade vší pochybnost opět zamítáme možnost rovnosti průměrů. Členové tedy maji obecně podprůměrný \texttt{be-point}.
+Nade vší pochybnost opět zamítáme možnost rovnosti průměrů. Členové tedy maji obecně podprůměrný \texttt{be-point}.\vspace{3mm}
 
 Z těchto dvou experimentů je patrné, že poradci se rekrutují z řad lidí s nižším příjmem a velkým počtem přátel. Model z tohoto pohledu věrně vystihuje realitu, neboť ve společnosti tuto skupinu tvoří převážně studenti a např. rodiče na mateřské dovolené --- největší část poradců Oriflame.
 \section{Vliv náborových akcí}
