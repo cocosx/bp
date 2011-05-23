@@ -294,15 +294,15 @@ Chování vychází z jednoduché úvahy -- vyplatí se do sítě vstoupit a zů
 Pokud je agentovi nabídnuto členství, přijme ho jestliže jeho očekávaný příjem převýší celkové ekonomické náklady. První část příjmů tvoří očekávaný výdělek z přímého prodeje, který lze přesně vypočítat, neboť agent zná spotřebu svou a svého bezprostředního okolí a tuto sumu pak jen vynásobí prodejní marží. Druhou částí je očekávaný příjem z budování skupiny prodejců, tj. přívádění dalších lidí k Oriflame. Jeho velikost může agent zpočátku pouze odhadnout, protože nevidí hloubějí do struktury sítě přátelství. Zde je určen podle vzorce, který přibližně odpovída výpočtu uváděnému skutečnými prodejci Oriflame. Příjmová strana je ještě vynásobena diferencí mezi současnou prodejní marží a tou, která byla platná při posledním odchodu agenta ze sítě. Pokud se v běhu simulace zvýší parametr \texttt{margin}, budou agenti reagovat zvýšením příjmových očekávání a naopak. Celkem je podmínka daná takto:
 \[(\texttt{my-rev-exp} + \texttt{avg-srev-exp}) \cdot (1+\texttt{d-margin}) \geq \texttt{be-point} + \texttt{monthly-fee}\]
 \begin{description}
-\item[\texttt{my-rev-exp}] je očekávaný příjem z přímeho prodeje přátelům agenta. Pokud některému z nich může zboží dodávat více poradců, je spotřeba rozdělena rovnoměrně mezi ně. Přesný postup je uveden v algortimu \ref{alg:myrev}.
+\item[\texttt{my-rev-exp}] je očekávaný příjem z přímeho prodeje přátelům agenta. Pokud některému z nich může zboží dodávat více poradců, je spotřeba rozdělena rovnoměrně mezi ně. Přesný postup je uveden v algortimu \ref{alg:myrevexp}.
 \begin{algorithm}
 \caption{Výpočet \texttt{my-rev-exp}}
-\label{alg:myrev}
+\label{alg:myrevexp}
 \begin{algorithmic}[]
 \STATE \texttt{my-rev-exp} $\gets$ moje spotřeba $\cdot$ \texttt{margin}
-\FORALL{$p\in$ moji přátelé}
-  \STATE $n\gets 1 + $ počet přátel osoby $p$, kteří jsou prodejci
-  \STATE $\texttt{my-rev-exp}\gets\texttt{my-rev-exp}+(\text{spořeba osoby }p \cdot \texttt{margin}) / n$
+\FORALL{$f\in$ moji přátelé}
+  \STATE $n\gets 1 + $ počet přátel osoby $f$, kteří jsou prodejci
+  \STATE $\texttt{my-rev-exp}\gets\texttt{my-rev-exp}+(\text{spořeba osoby }f \cdot \texttt{margin}) / n$
 \ENDFOR
 \end{algorithmic}
 \end{algorithm}
@@ -315,15 +315,75 @@ To odpovídá odhadu uváděnému při nabídce členství v síti, tedy příto
 Vychází ze stejných úvah a je dána velmi podobně:
 \[ \texttt{my-rev} + \texttt{avg-srev-exp} \geq \texttt{be-point} + \texttt{monthly-fee} \]
 \texttt{my-rev} v tomto případě již není odhad, ale skutečná hodnota příjmu z přímeho prodeje. Tím jak se fronta \texttt{exp-srev-list} naplňuje skutečnými velikostmi výdělku ze skupin může dojít ke snížení jejího průměru a agentovi se pak vyplatí nebýt nadále prodejcem.
-\section{Šíření sítě}
+\section{Šíření prodejní sítě}
+\label{sec:spread}
 Na začátku je jeden agnet \texttt{person} určen jako zakladatel, je mu nastaveno \texttt{netmember?} na pravdu a \texttt{be-point} na 0, čímž je zajištěno, že nikdy nepřestane být prodejcem a prodejní síť se bude mít vždy odkud šířit. V každém kole je všem přátelům prodejců nabídnuto členství a dojde k vyhodnocení vstupní podmínky. Toto se děje nikoliv paralelně, ale postupně v náhodném pořadí, tj. pokud některé osobě mohou členství nabídnout dva nebo více prodejců, je zvolen jeden náhodný a ten si jej v případě splnění vstupní podmínky zařadí do svého podstromu grafu vztahů \texttt{sponsor}.
 
 Je možne také zapnout volbu \texttt{random-join?}, která znamená, že v každém kole jeden náhodný agent nabídne členství jednomu náhodnému nečlenovi i mimo okruh svých přátel. To modeluje případ, kdy se prodejci snaží o nábor lidí např. na náměstích a u stánků v nákupních centrech.
-\section{Výpočet zisku ze skupiny}
-Výpočet probíhá pomocí prohledávání grafu vztahů \texttt{sponsor} do hloubky s využitím rekurzivního volání funkce.
-{\bf procedure} $SlowSort(A,i,j)$
-\section{Průběh kola}
+ 
+Pokud není splněna podmínka setrvání, přestane agent být prodejcem a všechny jeho vztahy \texttt{sponsor} jsou převedeny na agenta ve stromu nad ním.
+\section{Průběh kola a výpočty}
+Nejprve se seznámíme s nejdůležitějšími body, pak se jim budeme věnovat podrobně. V každém kole probíhají tyto kroky:
+\begin{enumerate}
+\item Výpočet skutečného \texttt{my-rev} pro každého prodejce -- algoritmus \ref{alg:myrev}.
+\item Výpočet výdělků ze skupin -- algoritmus \ref{alg:points} a funkce $SubnetRev$.
+\item Vyhodnocení podmínky setrvání pro každého prodejce postupně v náhodném pořadí.
+\item Vyhodnocení vstupní podmínky postupem popsaným v kapitole \ref{sec:spread}.
+\item V případě zapnuté volby \texttt{random-join?} vyhodnocení vstupní podmínky pro náhodnou osobu.
+\end{enumerate}
+\begin{algorithm}
+\caption{Výpočet skutečného \texttt{my-rev} pro každého prodejce}
+\label{alg:myrev}
+\begin{algorithmic}[]
+\FORALL{$s\in$ prodejci}
+  \STATE \texttt{my-rev }$s\gets$ spotřeba $s$ $\cdot$ \texttt{margin}
+  \STATE\COMMENT{velmi podobně jako při výpočtu očekávání}
+  \FORALL{$f\in$ přátelé $s$}
+    \STATE $n\gets $ počet přátel osoby $f$, kteří jsou prodejci
+    \STATE $\texttt{my-rev }s\gets\texttt{my-rev }s+(\text{spořeba osoby }f \cdot \texttt{margin}) / n$
+  \ENDFOR
+\ENDFOR
+
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Výpočet výdělků ze skupin}
+\label{alg:points}
+\begin{algorithmic}[]
+\STATE {\bf function} $SubnetRev( p )$
+\IF{$p$ nikoho nepřivedl}
+  \STATE \texttt{srev-level} $p\gets$ podle \texttt{my-rev} $p$ odečti z tabulky \ref{tab:perc_level} procentní úroveň
+  \STATE\COMMENT{nikoho nepřivedl, základ pro výdělek ze skupin tvoří pouze vlastní prodej}
+  \STATE \texttt{my-srev} $p\gets\texttt{srev-level}\cdot\texttt{my-rev}$
+  \STATE {\bf return} \texttt{my-rev}
+\ELSE
+  \STATE\COMMENT{spočítáme sumu spotřeby osoby $p$ a podstromu}
+  \STATE $sum\gets\texttt{my-rev }p$
+  \FORALL{$s\in$ osoby, které $p$ přivedl}
+    \STATE $sum\gets sum + SubnetRev(s)$ \COMMENT{rekurzivní volání}
+  \ENDFOR
+  \STATE \texttt{srev-level} $p\gets$ podle $sum$ odečti z tabulky \ref{tab:perc_level} procentní úroveň
+  \FORALL{$s\in$ osoby, které $p$ přivedl}
+    \STATE $dperc\gets \texttt{srev-level } p - \texttt{srev-level } s$ \COMMENT{rozdíl procentních úrovní}
+    \STATE \texttt{my-srev} $p\gets$ \texttt{my-srev} $p+dperc\cdot(\texttt{my-rev }s~/~\texttt{margin})$ \COMMENT{spotřeba podstormu vynásobená rozdílem procentních úrovní}
+  \ENDFOR
+  \STATE {\bf return} $sum$
+\ENDIF 
+\STATE {\bf end}
+\\
+\STATE spusť $SubnetRev($zakladatel$)$
+\end{algorithmic}
+\end{algorithm}
+\clearpage
 \section{Rozdíly modelu a skutečnosti}
+Zde shrneme zjednodušení použitá při vytváření modelu:
+\begin{itemize}
+\item Tvorba sítě sociálních vztahů je nepostihuje v celé rozmanitosti, která je v reálné společnosti přítomna. Tato problematika může být předmětem zvláštního zkoumání.
+\item Samotný rozsah sítě je z důvodu výpočetní kapacity omezen.
+\item Chování agenta \texttt{person} je založeno ja jednoduché ekonomické úvaze. Skutečný člověk se rozhoduje mnohem komplexněji.
+\item Model neuvažuje limit 100 bodů pro zisk výdělku ze skupin. To je odůvodněno tím, že člověk, který má možnost vysokého výdělku se tímto nenechá odradit a vždy tuto podmínku nějakým způsobem splní, např. zvýšením své vlastní spotřeby kosmetických výrobků. O tomto hovoří zkušenosti skutečných prodejců Oriflame.
+\end{itemize}
 %
 %
 %
