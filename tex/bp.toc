@@ -1,4 +1,6 @@
 \select@language {czech}
+\contentsline {subsubsection}{\relax \fontsize {14.4}{18}\selectfont Abstrakt}{4}
+\contentsline {subsubsection}{\relax \fontsize {14.4}{18}\selectfont Abstract}{4}
 \contentsline {chapter}{\IeC {\'U}vod}{6}
 \contentsline {chapter}{\numberline {1}Prodejn\IeC {\'\i } s\IeC {\'\i }\IeC {\v t} Oriflame}{7}
 \contentsline {section}{\numberline {1.1}Historie firmy Oriflame}{7}
@@ -22,6 +24,3 @@
 \contentsline {section}{\numberline {3.3}Slab\IeC {\'e} \IeC {\v c}l\IeC {\'a}nky}{22}
 \contentsline {section}{\numberline {3.4}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{23}
 \contentsline {chapter}{Z\IeC {\'a}v\IeC {\v e}r}{27}
-\contentsline {chapter}{U\IeC {\v z}ivatelsk\IeC {\'a} p\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka}{29}
-\contentsline {subsubsection}{velky model}{29}
-\contentsline {subsubsection}{???zjednoduseny model}{29}

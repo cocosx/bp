@@ -69,15 +69,30 @@ V Brně, dne \today \hfill Marek Bryša\hspace{3cm}
 \newpage
 \newpage
 \thispagestyle{empty}
-abstrakt
+\subsubsection{\large Abstrakt}
+\begin{description}
+\item[Název práce:] Název bakalářské práce
+\item[Autor:] Marek Bryša, Ústav matematiky a statistiky Přírodovědecké fakulty, MU
+\item[Vedoucí bakalářské práce:] Ing. Michal Kvasnička, Ph.D., Katedra ekonomie Ekonomicko-správní fakulty, MU
+\item[Abstrakt:] Cílem této práce je analýza síťového marketingu z ekonomického pohledu, zejména šíření prodejní sítě a vlastností prodejců, dále odvození příjmových a nákladových funkcí provozovatele sítě. Byl zvolen konkrétní systém používaný firmou Oriflame. Metodou je vytvoření agentového modelu, běh simulací na něm a interpretace získaných dat pomocí ekonometrických a statistický nástrojů. Ukázalo se, že výdělková očekávání prodejců jsou naplněna jen v přibližne čtvrtině případů. Byly identifikovány společné vlastnosti stabilních prodejců i tzv. slabých článků, které brání šíření prodejní sítě. Byly nalezeny zjednodušené příjmové a nákladové funkce firmy Oriflame a z nich dána doporučení k parametrickým úpravám vedoucím k maximalizaci jejího zisku.
+\item[Klíčová slova:] síťový marketing, agentový model, ekonometrie
+\end{description}
+\subsubsection{\large Abstract}
+\begin{description}
+\item[Title:] Název bakalářské práce
+\item[Author:] Marek Bryša, Department of Mathematics and Statistics, Faculty of Science, MU
+\item[Supervisor:] Ing. Michal Kvasnička, Ph.D., Department of Economics, Faculty of Economics and Administration, MU
+\item[Abstract:] The objective of this thesis is the analysis of the economic aspects of multi-level marketing, namely of the spreading process of the sale network, properties of the sellers and the derivation of revenue and cost functions of the network's operator. A specific system used by Oriflame, Czech Republic has been chosen. The method used is creation of an agent-based model, running of simulations and interpretation of the resulting data using econometric and statistical tools. We have identified common properties of stable sellers as well as so-called bottlenecks which prevent the sale network from spreading. We have found simplified revenue and cost functions of the company Oriflame and given recommendations for parametric changes which could lead to the maximalization of its profit.
+\item[Keywords:] multi-level marketing, agent-based model, econometrics
+\end{description}
 \newpage
 \tableofcontents
 
 \chapter*{Úvod}
 \addcontentsline{toc}{chapter}{Úvod}
-Tato bakalářská práce se zabývá studiem síťového marketingu z ekonomického pohledu. To je systém, kde se samotní spotřebitelé mohou stát za učitých podmínek prodejci a distribuovat výrobky. K tomu a zejména k přivedení dalších lidí se je provozovatel prodejní sítě snaží finančně motivovat. Ušetří naopak drtivou většinu nákladů na vybudování kamenných prvozoven. Cílem práce je analýza vzniku takové sítě, průběhu jejího šíření a její výsledné struktury. Pokusíme se také nalézt příjmové a nákladové funkce provozovatele i jednotlivých členů a z nich pro ně odvodit doporučení vedoucí k optimalizaci jejich chování a maximalizaci zisku.
+Tato bakalářská práce se zabývá studiem síťového marketingu z ekonomického pohledu. To je systém, kde se samotní spotřebitelé mohou stát za učitých podmínek prodejci a distribuovat výrobky. K tomu a zejména k přivedení dalších lidí se je provozovatel prodejní sítě snaží finančně motivovat. Ušetří naopak drtivou většinu nákladů na vybudování kamenných prvozoven. Cílem práce je analýza vzniku takové sítě, průběhu jejího šíření a její výsledné struktury. Pokusíme se také nalézt příjmové a nákladové funkce provozovatele a z nich pro něj odvodit doporučení vedoucí k optimalizaci jeho chování a maximalizaci zisku.
 
-Metodou zvolenou k dosažení těchto cílů je vytvoření počítačového modelu se snahou o co nejvěrnější napodobení skutečnosti. Na něm pak budeme provádět simulace a experimenty, jejichž výsledky interpretujeme pomocí statistických a ekonometrických nástrojů. Z důvodu reálné využitelnosti získaných závěrů bude tato práce konkrétně modelovat systémem síťového marketingu, který používá firma Oriflame\footnote{Oriflame --- Přírodní švédská kosmetika, \url{http://cz.oriflame.com/index.jhtml}}. Ten byl zvolen pro svou relativní jednoduchost, úzké zaměření na kosmetické výrobky, což usnadní ekonomické úvahy, a autorovu blízkost k současným členům sítě. Informace přensném fungování systému byly získány z interních materiálů firmy a osobních rozhovorů se zaměstnanci a členy prodejní sítě.
+Metodou zvolenou k dosažení těchto cílů je vytvoření počítačového multiagentového modelu se snahou o co nejvěrnější napodobení skutečnosti. Na něm pak budeme provádět simulace a experimenty, jejichž výsledky interpretujeme pomocí statistických a ekonometrických nástrojů. Z důvodu reálné využitelnosti získaných závěrů bude tato práce konkrétně modelovat systémem síťového marketingu, který používá firma Oriflame\footnote{Oriflame --- Přírodní švédská kosmetika, \url{http://cz.oriflame.com/index.jhtml}}. Ten byl zvolen pro svou relativní jednoduchost, úzké zaměření na kosmetické výrobky, což usnadní ekonomické úvahy, a autorovu blízkost k současným členům sítě. Informace přensném fungování systému byly získány z interních materiálů firmy a osobních rozhovorů se zaměstnanci a členy prodejní sítě.
 
 První kapitola poskytne úvod do fungování sítě firmy Oriflame. Seznámíme se s konkrétními parametry, na kterých je postavena, a s motivací, kterou firma svým prodejcům poskytuje. Ve druhé kapitole se budeme zabývat tvorbou sociálních vazeb, ekonomickými úvahami prodejní síti a implementací obojího do počítačového modelu. Třetí kapitola bude věnována samotné analýze chování sítě a jejích členů, provádění multiagentových simulací a interpretaci získaných dat.
 \chapter{Prodejní síť Oriflame}
@@ -659,8 +674,9 @@ Nyní se na tabulku \ref{tab:max-profit2} podívejme z toho pohledu, že firma z
 \addtocounter{chapter}{1}
 Primárním cílem práce byla analýza vzniku prodejní sítě, průběhu jejího šíření a její výsledné struktury. Ukázali jsme, že zpočátku dochází k bouřlivému nárustu počtu prodejců. Ten se ale postupně snižuje až dojde k jeho stabilizaci. Důvodem je vysoké očekávání výdělku, které se ovšem naplní jen pro přibližně čtvtinu lidí. Stabilními prodejci zůstávají zejména osoby s relativně nízkými celkovými ekonomickými náklady plynoucími členství v prodejní síti a vysokým počtem sociálních kontaktů, kterým mohou výrobky distribuovat. Identifikovali jsme tzv. slabé články -- osoby, které zabrání šíření prodejní sítě. Těmi jsou naopak lidé s nízkým počtem přátel a vysokými ekonomickými náklady na členství. Analyzovali jsme účinnost náborových akcí, kdy se někteří prodejci snaží rozšířit prodejní síť mimo okruh svých přátel. Mají smysl zejména pro řídké sociální sítě s průměrným počtem přátelství na osobu méně než 5,84.
 
-Dalším cílem bylo odvození 
-Pokusíme se také nalézt příjmové a nákladové funkce provozovatele i jednotlivých členů a z nich pro ně odvodit doporučení vedoucí k optimalizaci jejich chování a maximalizaci zisku.
+Dalším cílem bylo nalezení příjmových a nákladových funkcí provozovatele sítě Oriflame a odvození doporučení vedoucích k optimalizaci jeho chování a maximalizaci zisku. Pro danou sociální síť jsou příjmy funkcí prodejní marže prodejců a pravidelně vybíraného polatku. Tyto parametry totiž mají významný na počet osob, kterým se vyplatí být prodejci. Variabilní náklady jsou funkcí stejných parametrů a navíc výrobních nákladů, které ovšem nejsou pro Oriflame známy a je tak možno je v modelu měnit. Fixní náklady nejsou uvažovány, neboť nemají vliv na polohu maxima zisku. Výsledkem je, že maximálního zisku by bylo za daného 40\% podílu výrobních nákladů na prodejní ceně výrobků dosaženo při prodejní marži 16\% a nevybírání pravidelných poplatků. Firma Oriflame v současnosti pracuje s marží 23\%, což je při pohledu na graf funkce zisku na hranici, po které již začíná rychle klesat.
+
+Další výzkum se může zaměřit zejména na dvě oblasti. První je tvorba rozmanitější sítě sociálních vztahů, což umožní přesnější analýzu šíření prodejní sítě. Druhou je zahrnutí více faktorů do rozhodovacího procesu agentů. Jde např. o variabilitu spotřeby kosmetických výrobků a možnost, že se prodej stane hlavním zaměstnáním, což změní pohled na implicitní náklady.
 \begin{thebibliography}{9}
 
 \bibitem{gretl}
@@ -678,11 +694,11 @@ MANKIW, N. Gregory; SOJKA, Milan. Zásady ekonomie. 1. vyd. Praha : Grada,  1999
 \bibitem{netlogo}
  NetLogo Home Page [online]. 2011-04-03 [cit. 2011-05-20].  NetLogo User Manual. Dostupné z WWW: \url{http://ccl.northwestern.edu/netlogo/docs/}
 \end{thebibliography}
-\chapter*{Uživatelská příručka}
-\addcontentsline{toc}{chapter}{Uživatelská příručka}
-\addtocounter{chapter}{1}
-\subsubsection{velky model}
-\subsubsection{???zjednoduseny model}
-bez sponzorovani - je tam lepe videt neprima umera mezi ziskem firmy a vysi margin+fee
+%\chapter*{Uživatelská příručka}
+%\addcontentsline{toc}{chapter}{Uživatelská příručka}
+%\addtocounter{chapter}{1}
+%\subsubsection{velky model}
+%\subsubsection{???zjednoduseny model}
+%bez sponzorovani - je tam lepe videt neprima umera mezi ziskem firmy a vysi margin+fee
 \end{document}
 
