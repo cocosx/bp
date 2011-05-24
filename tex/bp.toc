@@ -21,8 +21,6 @@
 \contentsline {section}{\numberline {3.2}Vliv n\IeC {\'a}borov\IeC {\'y}ch akc\IeC {\'\i }}{20}
 \contentsline {section}{\numberline {3.3}Slab\IeC {\'e} \IeC {\v c}l\IeC {\'a}nky}{22}
 \contentsline {section}{\numberline {3.4}Optim\IeC {\'a}ln\IeC {\'\i } \texttt {margin} a \texttt {monthly-fee}}{23}
-\contentsline {section}{\numberline {3.5}Reakce na \IeC {\v s}oky}{25}
-\contentsline {section}{\numberline {3.6}Pob\IeC {\'\i }dky}{25}
 \contentsline {chapter}{Z\IeC {\'a}v\IeC {\v e}r}{27}
 \contentsline {chapter}{U\IeC {\v z}ivatelsk\IeC {\'a} p\IeC {\v r}\IeC {\'\i }ru\IeC {\v c}ka}{29}
 \contentsline {subsubsection}{velky model}{29}

@@ -15,6 +15,7 @@
 \usepackage{float}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage[all]{xy}
 \usetikzlibrary{shapes.misc}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \hyphenation{NetLogo}
@@ -112,9 +113,9 @@ body & $\geq$200 & $\geq$600 & $\geq$1200 & $\geq$2400 & $\geq$4000 & $\geq$6600
 \end{table}
 Toto se provede i pro všechny podskupiny. Prodejce pak získá za každou podskupinu:
 \begin{equation} \label{eq:spons}
-\text{obchodní obrat skupiny} \cdot (\text{procentní úroveň poradce} - \text{procentní úroveň skupiny}).
+\text{obchodní obrat skupiny} \cdot (\text{procentní úroveň prodejce} - \text{procentní úroveň skupiny}).
 \end{equation}
-Tím je zajištěno, že člověk, který se stal poradcem Oriflame později, ale je schopnější, může dosáhnout vyššího výdělku než ten, kdo jej přivedl.
+Tím je zajištěno, že člověk, který se stal prodejcem Oriflame později, ale je schopnější, může dosáhnout vyššího výdělku než ten, kdo jej přivedl.
 
 Prodejcem (v terminologii Oriflame \emph{poradcem}) se zájemce stane vyplněním jednoduchého formuláře a zaplacením poplatku 99 Kč. Tím získá možnost výdělku následujícími způsoby:
 \begin{enumerate}
@@ -125,11 +126,11 @@ PC=1.3 \cdot NC \Leftrightarrow NC = 0.769 \cdot PC.
 Prodejce tak realizuje 30\% marži z nákupních cen při prodeji sobě a svým zákazníkům (typicky rodině a známým).
 \item Ziskem plné hodnoty tzv. \emph{slevy z obratu} svého vlastního prodeje, tj.
 \begin{equation} \label{eq:so}
-\text{procentní úroveň poradce} \cdot \text{obchodní obrat poradce}.
+\text{procentní úroveň prodejce} \cdot \text{obchodní obrat prodejce}.
 \end{equation}
-\item Budováním skupiny poradců, které k Oriflame přivedl, tzv. \emph{sponzoroval}. Pak mu náleží obnos vypočtený podle rovnice \ref{eq:spons}.
+\item Budováním skupiny prodejců, které k Oriflame přivedl, tzv. \emph{sponzoroval}. Pak mu náleží obnos vypočtený podle rovnice \ref{eq:spons}.
 \end{enumerate}
-Peníze z bodů 2. a 3. prodejce dostane bezhotovostně na začátku následujícího katalogového období. Podmínkou je, že jeho vlastní prodej musí dosáhnout 100 bodů. To firma zdůvodňuje tím, že poradce musí být sám schopným prodejcem, aby mohl učit ostatní.
+Peníze z bodů 2. a 3. prodejce dostane bezhotovostně na začátku následujícího katalogového období. Podmínkou je, že jeho vlastní prodej musí dosáhnout 100 bodů. To firma zdůvodňuje tím, že prodejce musí být sám schopným prodejcem, aby mohl učit ostatní.
 
 Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným parametrem pro každého prodejce je osobní OO, zbytek je dopočítán. Postupujme zezdola. Eva nedosahuje hranice 100 BO, takže její výdělek tvoří pouze okamžitý zisk z prodeje. Daniela má vysoký osobní OO, čímž se sama dostává na 6\% úroveň. Kromě okamžitého zisku tak dostane i 6\% z osobního OO. Podobná situace je u Boba, který má ovšem nižší osobní OO a dosahuje jen 3\% úrovně. Cyril přivedl k Oriflame Danielu a Evu. K jeho osobnímu OO a BO se tak přičtou OO a BO těchto dvou. Díky tomu Cyril povýšil na 6\% úroveň a tím dostane 6\% z osobního OO a 6\% z Evina OO. Daniela má ale vyšší OO než Cyril a rozdíl procentních úrovní mezi nimi je 0. Z Danielina OO tedy Cyril neobdrží nic. Alice dosáhla 9\% úrovně, ziská 9\% ze svého OO, 3\% z Cyrilova skupinového OO a 6\% z Bobova skupinového OO.
 
@@ -215,15 +216,15 @@ Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným param
 \label{fig:ggraph}
 \end{figure}
 
-Při dosažení 12\% úrovně se poradce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních zdarma aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
+Při dosažení 12\% úrovně se prodejce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních zdarma aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
 
 V případě, že je prodejce 12 měsíců neaktivní, tj. nepodal žádnou objednávku, je mu členství zrušeno a přichází o svou podsíť. Ta je napojena na prodejce nad ním. Pokud se rozhodne opět k Oriflame přidat, začíná zcela od začátku.
 
-Tento systém slouží jako motivace lidí pro rozšíření prodejní sítě. Je založen na očekávaní vysokého výdělku v budoucnosti. Firma ve svých materiálech jako příklad uvádí lineární růst výdělku pro poradce z prodeje a exponenciální ze sponzorování -- přivádění dalších lidí.
+Tento systém slouží jako motivace lidí pro rozšíření prodejní sítě. Je založen na očekávaní vysokého výdělku v budoucnosti. Firma ve svých materiálech jako příklad uvádí lineární růst výdělku pro prodejce z přímého prodeje a exponenciální ze sponzorování -- přivádění dalších lidí.
 
-Firma dále nabízí pro začínající poradce ve čtyřech krocích motivaci ve formě věcných darů za splnění určitých objemů obratu, např. v prvním kroku za obrat 1 250 Kč tašku, průvodce péčí o pleť a krém v celkové hodnotě 510 Kč.
+Firma dále nabízí pro začínající prodejce ve čtyřech krocích motivaci ve formě věcných darů za splnění určitých objemů obratu, např. v prvním kroku za obrat 1 250 Kč tašku, průvodce péčí o pleť a krém v celkové hodnotě 510 Kč.
 
-Také jsou k dispozici úvěry do výše 7 000 Kč na zaplacení za zobží, které hodlá poradce dodat zákazníkum a nemusí tak od nich vybírat peníze předem.
+Také jsou k dispozici úvěry do výše 7 000 Kč na zaplacení za zobží, které hodlá prodejce dodat zákazníkum a nemusí tak od nich vybírat peníze předem.
 
 Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez udání důvodu a to i v případě, že výrobek obsahuje aspoň 80\% původního objemu.
 
@@ -276,7 +277,7 @@ Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu p�
 Agenti jsou generování v izolovaném prostředí. Jsou přítomny tyto za běhu měnitelné konstanty:
 \begin{description}
 \item[\texttt{margin}] Marže pro prodejce z prodejní ceny. Nabývá reálných hodnot $(0,1)$.
-\item[\texttt{monthly-fee}] Poplatek za členství placený v každém kole. Firma Oriflame jej nevybírá, je tedy určen spíše pro experimenty.
+\item[\texttt{monthly-fee}] Poplatek za členství placený v každém kole. Firma Oriflame jej nevybírá, je tedy určen spíše pro účely simulací.
 \item[\texttt{manufacturing-cost}] Podíl výrobních nákladů na prodejní ceně produktů. Nabývá reálných hodnot $(0,1)$.
 \end{description}
 \section{Vlastnosti agenta \texttt{person}}
@@ -297,7 +298,7 @@ Chování vychází z jednoduché úvahy -- vyplatí se do sítě vstoupit a zů
 Pokud je agentovi nabídnuto členství, přijme ho jestliže jeho očekávaný příjem převýší celkové ekonomické náklady. První část příjmů tvoří očekávaný výdělek z přímého prodeje, který lze přesně vypočítat, neboť agent zná spotřebu svou a svého bezprostředního okolí a tuto sumu pak jen vynásobí prodejní marží. Druhou částí je očekávaný příjem z budování skupiny prodejců, tj. přívádění dalších lidí k Oriflame. Jeho velikost může agent zpočátku pouze odhadnout, protože nevidí hloubějí do struktury sítě přátelství. Zde je určen podle vzorce, který přibližně odpovída výpočtu uváděnému skutečnými prodejci Oriflame. Příjmová strana je ještě vynásobena diferencí mezi současnou prodejní marží a tou, která byla platná při posledním odchodu agenta ze sítě. Pokud se v běhu simulace zvýší parametr \texttt{margin}, budou agenti reagovat zvýšením příjmových očekávání a naopak. Celkem je podmínka daná takto:
 \[(\texttt{my-rev-exp} + \texttt{avg-srev-exp}) \cdot (1+\texttt{d-margin}) \geq \texttt{be-point} + \texttt{monthly-fee}\]
 \begin{description}
-\item[\texttt{my-rev-exp}] je očekávaný příjem z přímeho prodeje přátelům agenta. Pokud některému z nich může zboží dodávat více poradců, je spotřeba rozdělena rovnoměrně mezi ně. Přesný postup je uveden v algortimu \ref{alg:myrevexp}.
+\item[\texttt{my-rev-exp}] je očekávaný příjem z přímeho prodeje přátelům agenta. Pokud některému z nich může zboží dodávat více prodejců, je spotřeba rozdělena rovnoměrně mezi ně. Přesný postup je uveden v algortimu \ref{alg:myrevexp}.
 \begin{algorithm}
 \caption{Výpočet \texttt{my-rev-exp}}
 \label{alg:myrevexp}
@@ -385,7 +386,7 @@ Zde shrneme zjednodušení použitá při vytváření modelu:
 \item Tvorba sítě sociálních vztahů je nepostihuje v celé rozmanitosti, která je v reálné společnosti přítomna. Tato problematika může být předmětem zvláštního zkoumání.
 \item Samotný rozsah sítě je z důvodu výpočetní kapacity omezen.
 \item Chování agenta \texttt{person} je založeno ja jednoduché ekonomické úvaze. Skutečný člověk se rozhoduje mnohem komplexněji.
-\item Model neuvažuje limit 100 bodů pro zisk výdělku ze skupin. To je odůvodněno tím, že člověk, který má možnost vysokého výdělku se tímto nenechá odradit a vždy tuto podmínku nějakým způsobem splní, např. zvýšením své vlastní spotřeby kosmetických výrobků. O tomto hovoří zkušenosti skutečných prodejců Oriflame.
+\item Model neuvažuje limit 100 bodů pro zisk výdělku ze skupin. To je odůvodněno tím, že člověk, který má možnost vysokého výdělku se jím nenechá odradit a vždy tuto podmínku nějakým způsobem splní, např. zvýšením své vlastní spotřeby kosmetických výrobků -- o tomto hovoří zkušenosti skutečných prodejců Oriflame. Zde však považujeme spotřebu za konstantní.
 \end{itemize}
 %
 %
@@ -431,7 +432,7 @@ Vidíme, že průměrný běh trval 24 kol. Členy sítě se v průběhu stalo m
 \begin{figure}[h]
   \centering
   \includegraphics{member_count.eps}
-  \caption{Vybraný běh experimentu \texttt{spread1}}
+  \caption{Vybraný běh simulace \texttt{spread1}}
   \label{fig:spread1_run}
 \end{figure}
 %\begin{center}\includegraphics{member_count.eps}\end{center}
@@ -456,7 +457,7 @@ Hypotéza: $M_1=M_2$ proti $M_1>M_2$\\
 P-hodnota testové statistiky $T = 9.51\cdot 10^{-97}$\\
 Jednoznačně tedy zamítáme nulovou hypotézu a je zřejmé, že stálí členové sítě mají nadprůměrný počet přátel.\vspace{3mm}
 
-Druhým důvodem může být malý \texttt{be-point}, což způsobí výhodnost členství. Experiment provedeme stejným způsobem jako u počtu přátel. Statistiky vidíme v tabulce \ref{tab:spread3_desc}. Výsledky lze nalézt v souboru \texttt{spread3.csv}.
+Druhým důvodem může být malý \texttt{be-point}, což způsobí výhodnost členství. Simulaci provedeme stejným způsobem jako u počtu přátel. Statistiky vidíme v tabulce \ref{tab:spread3_desc}. Výsledky lze nalézt v souboru \texttt{spread3.csv}.
 \begin{table}[H]
   \begin{center}
   \begin{tabular}{|r|r|r|r|}
@@ -475,14 +476,14 @@ Hypotéza: $M_1=M_2$ proti $M_1>M_2$\\
 P-hodnota testové statistiky $T = 3.06\cdot 10^{-109}$\\
 Nade vší pochybnost opět zamítáme možnost rovnosti průměrů. Členové tedy maji obecně podprůměrný \texttt{be-point}.\vspace{3mm}
 
-Z těchto dvou experimentů je patrné, že poradci se rekrutují z řad lidí s nižším příjmem a velkým počtem přátel. Model z tohoto pohledu věrně vystihuje realitu, neboť ve společnosti tuto skupinu tvoří převážně studenti a např. rodiče na mateřské dovolené --- největší část poradců Oriflame.
+Z těchto dvou simulací je patrné, že prodejci se rekrutují z řad lidí s nižším příjmem a velkým počtem přátel. Model z tohoto pohledu věrně vystihuje realitu, neboť ve společnosti tuto skupinu tvoří převážně studenti a např. rodiče na mateřské dovolené -- největší část prodejců Oriflame.
 \section{Vliv náborových akcí}
-Jak již bylo uvedeno, někteří poradci z vlastní iniciativy pořádají náborové akce, kde se snaží přivést k Oriflame i lidi mimo své přátele. Model to simuluje tak, že se v každém kole nabídne členství jednomu náhodnému nečlenovi. Budeme zjišťovat, zda-li to má význam pro počet členů po stabilizaci. Provedeme dva experimenty, první s \texttt{random-join?} vypnutým a druhý se zapnutým. V obou bude celkem 226 běhů modelu s \texttt{number-of-friendships} zvyšujícím se od 50 do 500 po krocích velikosti 2. Data jsou uložena v souborech \texttt{random-join1.csv} a \texttt{random-join2.csv}. Výsledné bodové grafy jsou na obrázku \ref{fig:random-join}. Metodou nejmenších čtverců byly nalezeny tyto regresní přímky:
+Jak již bylo uvedeno, někteří prodejci z vlastní iniciativy pořádají náborové akce, kde se snaží přivést k Oriflame i lidi mimo své přátele. Model to simuluje tak, že se v každém kole nabídne členství jednomu náhodnému nečlenovi. Budeme zjišťovat, zda-li to má význam pro počet členů po stabilizaci. Provedeme dvě simulace, první s \texttt{random-join?} vypnutým a druhý se zapnutým. V obou bude celkem 226 běhů modelu s \texttt{number-of-friendships} zvyšujícím se od 50 do 500 po krocích velikosti 2. Data jsou uložena v souborech \texttt{random-join1.csv} a \texttt{random-join2.csv}. Výsledné bodové grafy jsou na obrázku \ref{fig:random-join}. Metodou nejmenších čtverců byly nalezeny tyto regresní přímky:
 \begin{figure}[h]
   \centering
   \subfloat[\texttt{random-join?} vypnuto]{\label{fig:random_join1}\includegraphics[width=0.5\textwidth]{random-join1-1.eps}}                
   \subfloat[\texttt{random-join?} zapnuto]{\label{fig:random_join2}\includegraphics[width=0.5\textwidth]{random-join2-1.eps}}
-  \caption{Bodový graf experimentů \texttt{random-join} s OLS přímkou}
+  \caption{Bodový graf simulací \texttt{random-join} s OLS přímkou}
   \label{fig:random-join}
 \end{figure}
 \begin{itemize}
@@ -494,6 +495,22 @@ Jak již bylo uvedeno, někteří poradci z vlastní iniciativy pořádají náb
  \notag \\
 T = 226 \quad \bar{R}^2 = 0.8197 \quad F(1,224) = 1023.8 \quad \hat{\sigma} = 3.9530 \notag
 \end{gather}
+\begin{center}
+
+\begin{raggedright}
+Test for normality of residual --\\
+\quad Null hypothesis: error is normally distributed\\
+\quad Test statistic: $\chi^2(2)$ = 2.93214\\
+\quad with p-value = 0.230831\\
+\vspace{1ex}
+Breusch-Pagan test for heteroskedasticity --\\
+\quad Null hypothesis: heteroskedasticity not present\\
+\quad Test statistic: LM = 1.77929\\
+\quad with p-value = $P$($\chi^2(1) >$ 1.77929) = 0.182237\\
+\vspace{1ex}
+\end{raggedright}
+
+\end{center}
 
 \item \texttt{random-join?} zapnuto\\
 \begin{gather}
@@ -503,8 +520,28 @@ T = 226 \quad \bar{R}^2 = 0.8197 \quad F(1,224) = 1023.8 \quad \hat{\sigma} = 3.
  \notag \\
 T = 226 \quad \bar{R}^2 = 0.6591 \quad F(1,224) = 435.94 \quad \hat{\sigma} = 4.0024 \notag
 \end{gather}
+\begin{center}
+
+\begin{raggedright}
+Test for normality of residual --\\
+\quad Null hypothesis: error is normally distributed\\
+\quad Test statistic: $\chi^2(2)$ = 1.1743\\
+\quad with p-value = 0.555909\\
+\vspace{1ex}
+Breusch-Pagan test for heteroskedasticity --\\
+\quad Null hypothesis: heteroskedasticity not present\\
+\quad Test statistic: LM = 0.0174692\\
+\quad with p-value = $P$($\chi^2(1) >$ 0.0174692) = 0.894849\\
+\vspace{1ex}
+\end{raggedright}
+
+\end{center}
+
 \end{itemize}
-Z rovnic vidíme, že náborové akce jsou zvlášť výhodné pro skupiny lidí s nižšími počty přátel. Existuje tam možnost vzniku slabých článků, které zabrání dalšímu šíření sítě. Bez zajímavostí není, že dojde k průniku přímek při $\texttt{number-of-friendships}=584$, což přibližne odpovídá průměrnému počtu přátel $5,84$. Pro poradce z toho plyne doporučení, že pokud je počet přátelství v jejich okolí (za předpokladu jisté homogenity) vyšší než tato hodnota, není pro ně výhodné pořádat nábory, protože síť si ke všem najde cestu sama.
+V závorkách jsou uvedeny standardní chyby. Testy o normalitě reziduí a nepřítomnosti heteroskedasticity ve všech případech na 5\% hladině významnosti nulovou hypotézu nezamítají.
+
+Z rovnic vidíme, že náborové akce jsou zvlášť výhodné pro skupiny lidí s nižšími počty přátel. Při $\texttt{number-of-friendships}=50$ a využití náborových akcí je počet prodejců o téměř 13 osob (20\%) vyšší než bez nich.
+Existuje tam možnost vzniku slabých článků, které zabrání dalšímu šíření sítě. Koeficinet u friendships je naopak nižší. Tím dojde k průniku regresních přímek při $\texttt{number-of-friendships}=584$, což přibližne odpovídá průměrnému počtu přátel na osobu $5,84$. Pro prodejce z toho plyne doporučení, že pokud je počet přátelství v jejich okolí (za předpokladu jisté homogenity) vyšší než tato hodnota, není pro ně výhodné pořádat nábory, protože síť si ke všem najde cestu sama.
 \section{Slabé články}
 V předchozí části jsme zjistili existenci slabých článků, tj. agetů, přes které síť neprojde a její šíření se zastaví. Zde se je pokusíme identifikovat a objevit jejich společné vlastnosti. Slabý článek (bottleneck) bude určen tímto postupem:
 \begin{enumerate}
@@ -512,24 +549,34 @@ V předchozí části jsme zjistili existenci slabých článků, tj. agetů, p�
 \item Necháme síť šířit standardním způsobem bez náhodných náborových akcí do stabilizace, příčemž všem agentům, kterým bylo nabídnuto členství nastavíme \texttt{invited?} na pravdu.
 \item Projdeme všechny přátele všech agentů, kterým nebylo nabídnuto členství, a za slabý článek jsou označeni ti, kterým bylo nabídnuto členství.
 \end{enumerate}
-Zkoumejme nejprve, zda-li existuje závislost mezi \texttt{number-of-friendships} a počtem slabých článků. Sestavíme experiment, který bude \texttt{number-of-friendships} v každém běhu v rozmezí 50 až 500 zvyšovat o 1. Data jsou uložena v souboru \texttt{bottleneck-count.csv}.
+\begin{displaymath}
+    \xymatrix{ A \ar[d] & \text{prodejce}  \\
+               B \ar[d] & \text{slabý článek -- nikdy nepřijal členství} \\
+               C & \text{nikdy nebylo nabídnuto členství} }
+\end{displaymath}
+\begin{center}
+Šipka značí směr šíření sítě.
+\end{center}
+Zkoumejme nejprve, zda-li existuje závislost mezi \texttt{number-of-friendships} a počtem slabých článků. Sestavíme simulaci, který bude \texttt{number-of-friendships} v každém běhu v rozmezí 50 až 500 zvyšovat o 1. Data jsou uložena v souboru \texttt{bottleneck-count.csv}.
 \begin{figure}[h]
   \centering
   \includegraphics{bottleneck-count.eps}
-  \caption{Běh experimentu \texttt{bottleneck-count} s regresní křivkou}
+  \caption{Běh simulace \texttt{bottleneck-count} s regresní křivkou}
   \label{fig:bottleneck-count}
 \end{figure}
 \begin{gather}
 \widehat{\rm bottlenecks} = 
-\underset{(4.2151)}{111.272}
--\underset{(0.98347)}{21.4307}\,\mbox{l\_friendships}
-+\underset{(0.0044562)}{0.0440456}\,\mbox{friendships}
+\underset{(6.2059)}{111.272}
+-\underset{(1.3764)}{21.4307}\,\mbox{l\_friendships}
++\underset{(0.0052075)}{0.0440456}\,\mbox{friendships}
  \notag \\
-T = 451 \quad \bar{R}^2 = 0.8278 \quad F(2,448) = 1082.9 \quad \hat{\sigma} = 3.3252 \notag
+T = 451 \quad \bar{R}^2 = 0.8278 \quad F(2,448) = 591.45 \quad \hat{\sigma} = 3.3252 \notag \\
+\text{Vzhledem k přítomnosti heteroskedasticity byl použit estimátor HC1. } \notag \\
+\text{\mbox{l\_friendships} značí přirozený logaritmus hodnot \mbox{friendships}.} \notag
 \end{gather}
 Vidíme, že s houstnocí sítí vcelku logicky dochází k rychlému poklesu počtu slabých čláků. Ideální hodnotou \texttt{number-of-friendships} pro další zkoumání se jeví 150, kdy již není počet slabých článků tak rozptýlen, ale stále je dost vysoký.
 
-Provedeme experiment se 100 běhy při $\texttt{number-of-friendships}=150$. Zkoumáme průměrný počet přátel a \texttt{be-point} pro všechny a pro slabé články. Výsledné hodnoty jsou v souboru \texttt{bottleneck1.csv}. Popisné statistiky obsahuje tabulka \ref{tab:bottleneck1_desc}. Z ní je patrné, že slabé články mají podprůměrný počet přátel a velmi nadprůměrný \texttt{be-point}. Doporučením pro poradce v případě, že se s nekým takovým setkají, je pokusit se od něj získat alespoň kontakt na jeho známé a tím jej v síti přeskočit.
+Provedeme simulaci se 100 běhy při $\texttt{number-of-friendships}=150$. Zkoumáme průměrný počet přátel a \texttt{be-point} pro všechny a pro slabé články. Výsledné hodnoty jsou v souboru \texttt{bottleneck1.csv}. Popisné statistiky obsahuje tabulka \ref{tab:bottleneck1_desc}. Z ní je patrné, že slabé články mají podprůměrný počet přátel a velmi nadprůměrný \texttt{be-point}. Doporučením pro prodejce v případě, že se s nekým takovým setkají, je pokusit se od něj získat alespoň kontakt na jeho známé a tím jej v síti přeskočit.
 \begin{table}[h]
   \begin{center}
   \begin{tabular}{|r|r|r|r|r|}
@@ -555,7 +602,7 @@ Přičemž platí funkční závislosti:
 \texttt{scost}=f_3(\texttt{fee},\texttt{margin})\notag\\
 \texttt{mcost}=\frac{\texttt{network-sale-revenue}}{1-\texttt{margin}}\cdot\texttt{manufacturing-cost}\notag
 \end{align}
-Funkce $f$ zjistíme experimentálně. Budeme měnit \texttt{margin} v rozsahu $0.05$ až $0.9$ po kroku velikosti $0.01$ a \texttt{monthly-fee} na množině $\{0,50,100,150,200,250,300,350,400\}$. Pro každou iteraci provedeme 100 běhů modelu, celkem 77100 běhů. Pak z nich vypočítáme průměry jednotlivých veličin. Získaná data jsou přiloženém souboru \texttt{max-profit.csv}\footnote{Pozor, soubor má velikost 5.5MB, jeho otevření v tabulkovém procesoru je poměrně náročná operace.}. Ke zpracování průměrů byl vytvořen skript \texttt{max-profit.py} v jazyce Python\footnote{Python, \url{http://www.python.org/download/releases/3.2/}} a výsledek je uložen v souboru \texttt{max-profit-avg.tsv}. Na obrázku \ref{fig:max-profit-avg} vidíme bodové grafy funkcí $f$ pro $\texttt{monthly-fee}=100$ a zisku pro $\texttt{manufacturing-cost}=0.5$. 
+Funkce $f_i$ zjistíme experimentálně. Budeme měnit \texttt{margin} v rozsahu $0.05$ až $0.9$ po kroku velikosti $0.01$ a \texttt{monthly-fee} na množině $\{0,50,100,150,200,250,300,350,400\}$. Pro každou iteraci provedeme 100 běhů modelu, celkem 77100 běhů. Pak z nich vypočítáme průměry jednotlivých veličin. Získaná data jsou přiloženém souboru \texttt{max-profit.csv}\footnote{Pozor, soubor má velikost 5.5MB, jeho otevření v tabulkovém procesoru je poměrně náročná operace.}. Ke zpracování průměrů byl vytvořen skript \texttt{max-profit.py} v jazyce Python\footnote{Python, \url{http://www.python.org/download/releases/3.2/}} a výsledek je uložen v souboru \texttt{max-profit-avg.tsv}. Na obrázku \ref{fig:max-profit-avg} vidíme bodové grafy funkcí $f$ pro $\texttt{monthly-fee}=100$ a zisku pro $\texttt{manufacturing-cost}=0.5$. 
 \begin{figure}[h]
   \centering
   \subfloat[\texttt{network-fee-revenue}]{\label{fig:max-profit-avg-fr}\includegraphics[width=0.5\textwidth]{max-profit-avg-fr.eps}}                
@@ -565,7 +612,7 @@ Funkce $f$ zjistíme experimentálně. Budeme měnit \texttt{margin} v rozsahu $
   \caption{Bodové grafy \texttt{max-profit-avg} pro $\texttt{monthly-fee}=100$}
   \label{fig:max-profit-avg}
 \end{figure}
-Tabulka \ref{tab:max-profit2} je hledanou pomůckou pro stanovení optimálních \texttt{margin} a \texttt{monthly-fee} podle \texttt{manufacturing-cost}. Např. pro $\texttt{manufacturing-cost}=0.4$ je predikován maximální zisk při $\texttt{margin}=0.18$ a $\texttt{monthly-fee}=50$. Nicméně zisk pro $\texttt{monthly-fee}=0$ je pouze o 92 nižší, což by firmě jistě nepokrylo administrativní náklady spojené s jeho výběrem, a je tak lepší jej zrušit a stanovit $\texttt{margin}=0.16$.
+Tabulka \ref{tab:max-profit2} je hledanou pomůckou pro stanovení optimálních \texttt{margin} a \texttt{monthly-fee} podle \texttt{manufacturing-cost}. Např. pro $\texttt{manufacturing-cost}=0.4$ je predikován maximální zisk při $\texttt{margin}=0.18$ a $\texttt{monthly-fee}=50$. Nicméně zisk pro $\texttt{monthly-fee}=0$ je pouze o 92 jednotek nižší, což by firmě jistě nepokrylo administrativní náklady spojené s jeho výběrem, a je tak lepší jej zrušit a stanovit $\texttt{margin}=0.16$.
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{|l|r|r|r|r|r|r|r|}
@@ -594,7 +641,7 @@ fee & \multicolumn{1}{l|}{mc 0.1} & \multicolumn{1}{l|}{mc 0.2} & \multicolumn{1
 \caption{Optimální \texttt{margin} a z nich vypočítaný zisk pro dané \texttt{manufacturing-cost} a různé \texttt{monthly-fee}}
 \label{tab:max-profit2}
 \end{table}
-Na obrázku \ref{fig:max-profit-04-f0} vidíme bodový graf zisku v závisloti na \texttt{margin} pro $\texttt{monthly-fee}=0$ a $\texttt{manufacturing-cost}=0.4$. Firmou Oriflame stanovený $\texttt{margin}=0.23$ je těsně na hranici, kde už začíná zisk rychle klesat. Predikovaný zisk je přibližne o 10\% nižší než maximum. Firma však takto může tvrdit, že poradce bude mít výdělek 30\% (byť z nákupních cen). To je zřejmě pro mnohé pychologická hranice, což tento model do vstupní podmínky nezahrnuje.
+Na obrázku \ref{fig:max-profit-04-f0} vidíme bodový graf zisku v závisloti na \texttt{margin} pro $\texttt{monthly-fee}=0$ a $\mbox{\texttt{manufacturing-cost}=0.4}$. Firmou Oriflame stanovený $\texttt{margin}=0.23$ je těsně na hranici, kde už začíná zisk rychle klesat. Predikovaný zisk je přibližne o 10\% nižší než maximum. Firma však takto může tvrdit, že prodejce bude mít výdělek 30\% (byť z nákupních cen). To je zřejmě pro mnohé pychologická hranice, což tento model do vstupní podmínky nezahrnuje.
 \begin{figure}[h]
   \centering
   \includegraphics{max-profit-04-f0.eps}
@@ -602,10 +649,8 @@ Na obrázku \ref{fig:max-profit-04-f0} vidíme bodový graf zisku v závisloti n
   \label{fig:max-profit-04-f0}
 \end{figure}
 
-Nyní se na tabulku \ref{tab:max-profit2} podívejme z toho pohledu, že firma z psychologických a marketingových důvodů chce stanovit $\texttt{margin}=0.23$. Pak odvodíme, že pro $\texttt{manufacturing-cost}=0.4$ je nejziskovější vybírat $\texttt{monthly-fee}=350$. Jak bylo uvedeno v kapitole 1, existuje hranice 100 BO (což odpovídá přibližne 1380 Kč obchodního obratu) pro výplatu výdělku ze sponzorování. Toto a další faktory jako rozsáhlost katalogu, snadnost nákupu atd. vedou poradce ke zkušeností dokázanému zvýšení spotřeby kosmetických výrobku, což model nezahrnuje z důvodu složité kvantifikovatelnosti. Tento jev lze však vnímat jako jistý skrytý poplatek. Zda dodatečný zisk ze zvýšené spotřeby dosahuje měsíční výše 350 zde není možné určit. Tato otázka může být předmětem dalšího zkoumání.
+Nyní se na tabulku \ref{tab:max-profit2} podívejme z toho pohledu, že firma z psychologických a marketingových důvodů chce stanovit $\texttt{margin}=0.23$. Pak odvodíme, že pro \mbox{$\texttt{manufacturing-cost}=0.4$} je nejziskovější vybírat $\texttt{monthly-fee}=350$. Jak bylo uvedeno v kapitole 1, existuje hranice 100 BO (což odpovídá přibližne 1380 Kč obchodního obratu) pro výplatu výdělku ze sponzorování. Toto a další faktory jako rozsáhlost katalogu, snadnost nákupu atd. vedou prodejce ke zvýšení spotřeby kosmetických výrobku prokázanému zkušeností, což model nezahrnuje z důvodu složité kvantifikovatelnosti. Tento jev lze však vnímat jako jistý skrytý poplatek. Zda dodatečný zisk ze zvýšené spotřeby dosahuje měsíční výše 350 zde není možné určit. Tato otázka může být předmětem dalšího zkoumání.
 
-\section{Reakce na šoky}
-\section{Pobídky}
 \chapter*{Závěr}
 \addcontentsline{toc}{chapter}{Závěr}
 \addtocounter{chapter}{1}
