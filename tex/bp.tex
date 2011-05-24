@@ -19,6 +19,7 @@
 \usetikzlibrary{shapes.misc}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \hyphenation{NetLogo}
+\floatname{algorithm}{Algoritmus}
 \title{sds}
 \author{Marek Bryša}
 \date{Brno 2011}
@@ -38,7 +39,7 @@
 {\LARGE BAKALÁŘSKÁ PRÁCE}\\[0.5cm]
 {\LARGE Marek Bryša}\\[0.5cm]
 
-{ \huge \bfseries Lager brewing techniques}\\[0.4cm]
+{ \huge \bfseries !!!Zadání!!!}\\[0.4cm]
 {\large Vedoucí práce: Ing. Michal Kvasnička, Ph.D.}\\[0.5cm]
 {\large Studijní program: Aplikovaná matematika}\\
 {\large Studijní obor: Matematika-Ekonomie}\\[0.5cm]
@@ -74,11 +75,11 @@ abstrakt
 
 \chapter*{Úvod}
 \addcontentsline{toc}{chapter}{Úvod}
-Tato bakalářská práce se bude zajímat o studium síťového marketingu z ekonomického pohledu. To je systém, kde se samotní spotřebitelé mohou stát za učitých podmínek prodejci. K tomu a zejména k přivedení dalších lidí se je provozovatel snaží finančně motivovat. Tím provozovatel ušetří náklady na budování kamenných prodejen. Cílem bude analýza vzniku sítě, průběhu jejího šíření a její výsledné struktury. Pokusíme se také nalézt příjmové a nákladové funkce provozovatele i jednotlivých členů a z nich pro ně odvodit doporučení vedoucí k optimalizaci zisku.
+Tato bakalářská práce se zabývá studiem síťového marketingu z ekonomického pohledu. To je systém, kde se samotní spotřebitelé mohou stát za učitých podmínek prodejci a distribuovat výrobky. K tomu a zejména k přivedení dalších lidí se je provozovatel prodejní sítě snaží finančně motivovat. Ušetří naopak drtivou většinu nákladů na vybudování kamenných prvozoven. Cílem práce je analýza vzniku takové sítě, průběhu jejího šíření a její výsledné struktury. Pokusíme se také nalézt příjmové a nákladové funkce provozovatele i jednotlivých členů a z nich pro ně odvodit doporučení vedoucí k optimalizaci jejich chování a maximalizaci zisku.
 
-Metodou zvolenou k dosažení těchto cílů je vytvoření počítačového modelu se snahou o co nejvěrnější napodobení skutečnosti. Na něm pak budeme provádět simulace a experimenty a jejich výsledky interpretujeme pomocí statistických a ekonometrických nástrojů. Z důvodu reálné využitelnosti získaných závěrů bude tato práce konkrétně modelovat systémem síťového marketingu, který používá firma Oriflame\footnote{Oriflame --- Přírodní švédská kosmetika, \url{http://cz.oriflame.com/index.jhtml}}. Ten byl zvolen pro svou relativní jednoduchost, úzké zaměření na kosmetické výrobky, což usnadní ekonomické úvahy, a autorovu blízkost k současným členům sítě. Informace přensném fungování systému byly získány z interních materiálů firmy a osobních rozhovorů se zaměstnanci a členy prodejní sítě.
+Metodou zvolenou k dosažení těchto cílů je vytvoření počítačového modelu se snahou o co nejvěrnější napodobení skutečnosti. Na něm pak budeme provádět simulace a experimenty, jejichž výsledky interpretujeme pomocí statistických a ekonometrických nástrojů. Z důvodu reálné využitelnosti získaných závěrů bude tato práce konkrétně modelovat systémem síťového marketingu, který používá firma Oriflame\footnote{Oriflame --- Přírodní švédská kosmetika, \url{http://cz.oriflame.com/index.jhtml}}. Ten byl zvolen pro svou relativní jednoduchost, úzké zaměření na kosmetické výrobky, což usnadní ekonomické úvahy, a autorovu blízkost k současným členům sítě. Informace přensném fungování systému byly získány z interních materiálů firmy a osobních rozhovorů se zaměstnanci a členy prodejní sítě.
 
-První kapitola poskytne úvod do fungování sítě firmy Oriflame. Seznámíme se s konkrétními parametry, na kterých je postavena, a s motivací, kterou firma svým prodejcům poskytuje. Ve druhé kapitole se budeme zabývat tvorbou sociálních vazeb, ekonomickými úvahami o síti a implementací obojího do počítačového modelu. Třetí kapitova bude věnována samotné analýze chování sítě a jejích členů, provádění multiagentových simulací a interpretaci získaných dat.
+První kapitola poskytne úvod do fungování sítě firmy Oriflame. Seznámíme se s konkrétními parametry, na kterých je postavena, a s motivací, kterou firma svým prodejcům poskytuje. Ve druhé kapitole se budeme zabývat tvorbou sociálních vazeb, ekonomickými úvahami prodejní síti a implementací obojího do počítačového modelu. Třetí kapitola bude věnována samotné analýze chování sítě a jejích členů, provádění multiagentových simulací a interpretaci získaných dat.
 \chapter{Prodejní síť Oriflame}
 Tato kapitola nabízí úvod do fungování prodejní sítě Oriflame a jejích parametrů. Poslouží jako základ k vybudování počítačového modelu v příští kapitole. Zde se ze začátku seznámíme s historií Oriflame a sortimentem produktů. Dále se budeme věnovat struktuře katalogu, tvorbě cen a podrobně podmínkám, na základě kterých mohou si lidé s Oriflame přivydělat. Závěrem je uveden obrázek s příkladem, jehož účelem je objasnění na první pohled komplikovaného systému.
 \section{Historie firmy Oriflame}
@@ -97,7 +98,7 @@ Každému výrobku jsou v ceníku přiděleny čtyři hodnoty:
 \end{description}
 Výjimku tvoří např. tiskoviny, vzorky a oblečení s logem Oriflame, které mají pouze nákupní cenu,  nejsou určeny k dalšímu prodeji a slouží jen jako pomůcka pro prodejce.
 
-Rok firma rovnoměrně rozdělila na 17 období, které odpovídají vydáním katalogů výrobků. Prodejce, který podal v předchozích třech obdobích alespoň jednu objednávku, obdrží sadu tiskovin zdarma, jinak je pro něj téměř nutnost si tištěný katalog zakoupit za TODO:cena katalogu.
+Rok firma rovnoměrně rozdělila na 17 období, které odpovídají vydáním katalogů výrobků. Prodejce, který podal v předchozích třech obdobích alespoň jednu objednávku, obdrží sadu tiskovin zdarma, jinak je pro něj téměř nutnost si tištěný katalog zakoupit za 15 Kč.
 
 Prodejce dále získá body všech lidí které přivedl, těch pod nimi atd. Na konci každého katalogového období dochází k vyhodnocení. Sečtou se všechny body a podle tabulky \ref{tab:perc_level} se určí procentní úroveň.
 \begin{table}[htb]
@@ -218,7 +219,7 @@ Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným param
 
 Při dosažení 12\% úrovně se prodejce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních zdarma aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
 
-V případě, že je prodejce 12 měsíců neaktivní, tj. nepodal žádnou objednávku, je mu členství zrušeno a přichází o svou podsíť. Ta je napojena na prodejce nad ním. Pokud se rozhodne opět k Oriflame přidat, začíná zcela od začátku.
+V případě, že je prodejce 12 měsíců neaktivní, tj. nepodal žádnou objednávku, je mu členství zrušeno a přichází o svou podskupinu. Ta je napojena na prodejce nad ním. Pokud se rozhodne opět k Oriflame přidat, začíná zcela od začátku.
 
 Tento systém slouží jako motivace lidí pro rozšíření prodejní sítě. Je založen na očekávaní vysokého výdělku v budoucnosti. Firma ve svých materiálech jako příklad uvádí lineární růst výdělku pro prodejce z přímého prodeje a exponenciální ze sponzorování -- přivádění dalších lidí.
 
@@ -385,8 +386,11 @@ Zde shrneme zjednodušení použitá při vytváření modelu:
 \begin{itemize}
 \item Tvorba sítě sociálních vztahů je nepostihuje v celé rozmanitosti, která je v reálné společnosti přítomna. Tato problematika může být předmětem zvláštního zkoumání.
 \item Samotný rozsah sítě je z důvodu výpočetní kapacity omezen.
-\item Chování agenta \texttt{person} je založeno ja jednoduché ekonomické úvaze. Skutečný člověk se rozhoduje mnohem komplexněji.
+\item Chování agenta \texttt{person} je založeno ja jednoduché ekonomické úvaze. Skutečný člověk se rozhoduje mnohem komplexněji. Také rozhodování probíhá okamžitě, v realitě lze očekávat jistá zpoždění.
 \item Model neuvažuje limit 100 bodů pro zisk výdělku ze skupin. To je odůvodněno tím, že člověk, který má možnost vysokého výdělku se jím nenechá odradit a vždy tuto podmínku nějakým způsobem splní, např. zvýšením své vlastní spotřeby kosmetických výrobků -- o tomto hovoří zkušenosti skutečných prodejců Oriflame. Zde však považujeme spotřebu za konstantní.
+\item Explicitně nepočítáme se vstupním poplatkem 99 Kč. Považuje se za zahrnutý do \texttt{be-point}.
+\item Neuvažujeme dárkové balíčky pro nové prodejce. Jejich vliv vzledem k jiným očekáváním nominálně malý a pouze krátkodobý, přibližně 4 katalogová období.
+\item Předpokládáme, že všichni agenti mají dostatek likvidity na nákup výrobků. Tím zde nemají krátkodobé půjčky pro tyto účely smysl.
 \end{itemize}
 %
 %
@@ -411,7 +415,7 @@ K měření budou sloužit mimo jiné tyto veličiny:
 Ke statistické analýze bude využit ekonometrický software GRETL\cite{gretl} verze 1.9.1 a tabulkový procesor Gnumeric\footnote{Gnumeric --- The Gnome Office Spreadsheet, \url{http://projects.gnome.org/gnumeric/}} 1.10.14.
 \section{Šíření sítě}
 Zde se budeme zkoumat šíření sítě a její výsledné vlastnosti. 
-\subsection{Průběh šíření}
+\subsubsection{Průběh šíření}
 Bylo provedeno 100 nezavislých náhodných běhů pro výchozí parametry z úvodu kapitoly. Podmínkou ukončení je stabilizace sítě, tj. rovnost dvou po sobě následujících \texttt{network-profit}. Získaná data jsou v přiloženém souboru \texttt{spread1.csv}. Z nich odvozené popisné statistiky jsou v tabulce \ref{tab:spread1_desc}.
 \begin{table}[h]
   \begin{center}
@@ -435,9 +439,8 @@ Vidíme, že průměrný běh trval 24 kol. Členy sítě se v průběhu stalo m
   \caption{Vybraný běh simulace \texttt{spread1}}
   \label{fig:spread1_run}
 \end{figure}
-%\begin{center}\includegraphics{member_count.eps}\end{center}
-Je patrné, že síť se z počátku rychle rozrůstá díky velkým očekáváním. Ta ale nejsou většinou naplňena a dochází k postupnému úbytku.
-\subsection{Vlastnosti agentů}
+Je patrné, že síť se z počátku rychle rozrůstá díky vysokým očekáváním. Ta ale nejsou většinou naplňena a dochází k postupnému úbytku. Z toho lze učinit závěr, že výdělková očekávání, která Oriflame poskytuje jsou příliš vysoká, resp. platí pouze pro menší část lidí.
+\subsubsection{Vlastnosti agentů}
 Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Jedním důvodem může být nadprůměrný počet přátel. Za stejných podmínek jako v předchozím případě sestavíme simulaci. Výsledkem běhu je průměrný počet přátel pro člena sítě a pro všechny osoby. Data jsou k dispozici v souboru \texttt{spread2.csv}. Popisné statistiky jsou v tabulce \ref{tab:spread2_desc}.
 \begin{table}[H]
   \begin{center}
@@ -555,7 +558,7 @@ V předchozí části jsme zjistili existenci slabých článků, tj. agetů, p�
                C & \text{nikdy nebylo nabídnuto členství} }
 \end{displaymath}
 \begin{center}
-Šipka značí směr šíření sítě.
+Šipka značí směr šíření prodejní sítě.
 \end{center}
 Zkoumejme nejprve, zda-li existuje závislost mezi \texttt{number-of-friendships} a počtem slabých článků. Sestavíme simulaci, který bude \texttt{number-of-friendships} v každém běhu v rozmezí 50 až 500 zvyšovat o 1. Data jsou uložena v souboru \texttt{bottleneck-count.csv}.
 \begin{figure}[h]
@@ -649,11 +652,15 @@ Na obrázku \ref{fig:max-profit-04-f0} vidíme bodový graf zisku v závisloti n
   \label{fig:max-profit-04-f0}
 \end{figure}
 
-Nyní se na tabulku \ref{tab:max-profit2} podívejme z toho pohledu, že firma z psychologických a marketingových důvodů chce stanovit $\texttt{margin}=0.23$. Pak odvodíme, že pro \mbox{$\texttt{manufacturing-cost}=0.4$} je nejziskovější vybírat $\texttt{monthly-fee}=350$. Jak bylo uvedeno v kapitole 1, existuje hranice 100 BO (což odpovídá přibližne 1380 Kč obchodního obratu) pro výplatu výdělku ze sponzorování. Toto a další faktory jako rozsáhlost katalogu, snadnost nákupu atd. vedou prodejce ke zvýšení spotřeby kosmetických výrobku prokázanému zkušeností, což model nezahrnuje z důvodu složité kvantifikovatelnosti. Tento jev lze však vnímat jako jistý skrytý poplatek. Zda dodatečný zisk ze zvýšené spotřeby dosahuje měsíční výše 350 zde není možné určit. Tato otázka může být předmětem dalšího zkoumání.
+Nyní se na tabulku \ref{tab:max-profit2} podívejme z toho pohledu, že firma z psychologických a marketingových důvodů chce stanovit $\texttt{margin}=0.23$. Pak z ní odečteme, že pro $\texttt{manufacturing-cost}=0.4$ je nejziskovější vybírat $\texttt{monthly-fee}=350$. Jak bylo uvedeno v kapitole 1, existuje hranice 100 BO (což odpovídá přibližne 1380 Kč obchodního obratu) pro výplatu výdělku ze sponzorování. Toto a další faktory jako rozsáhlost katalogu, snadnost nákupu atd. vedou prodejce ke zvýšení spotřeby kosmetických výrobku prokázanému zkušeností, což model nezahrnuje z důvodu složité kvantifikovatelnosti. Tento jev lze však vnímat jako jistý skrytý poplatek. Zda dodatečný zisk ze zvýšené spotřeby dosahuje měsíční výše 350 zde není možné určit. Tato otázka může být předmětem dalšího zkoumání.
 
 \chapter*{Závěr}
 \addcontentsline{toc}{chapter}{Závěr}
 \addtocounter{chapter}{1}
+Primárním cílem práce byla analýza vzniku prodejní sítě, průběhu jejího šíření a její výsledné struktury. Ukázali jsme, že zpočátku dochází k bouřlivému nárustu počtu prodejců. Ten se ale postupně snižuje až dojde k jeho stabilizaci. Důvodem je vysoké očekávání výdělku, které se ovšem naplní jen pro přibližně čtvtinu lidí. Stabilními prodejci zůstávají zejména osoby s relativně nízkými celkovými ekonomickými náklady plynoucími členství v prodejní síti a vysokým počtem sociálních kontaktů, kterým mohou výrobky distribuovat. Identifikovali jsme tzv. slabé články -- osoby, které zabrání šíření prodejní sítě. Těmi jsou naopak lidé s nízkým počtem přátel a vysokými ekonomickými náklady na členství. Analyzovali jsme účinnost náborových akcí, kdy se někteří prodejci snaží rozšířit prodejní síť mimo okruh svých přátel. Mají smysl zejména pro řídké sociální sítě s průměrným počtem přátelství na osobu méně než 5,84.
+
+Dalším cílem bylo odvození 
+Pokusíme se také nalézt příjmové a nákladové funkce provozovatele i jednotlivých členů a z nich pro ně odvodit doporučení vedoucí k optimalizaci jejich chování a maximalizaci zisku.
 \begin{thebibliography}{9}
 
 \bibitem{gretl}
