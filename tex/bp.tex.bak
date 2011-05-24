@@ -74,7 +74,7 @@ V Brně, dne \today \hfill Marek Bryša\hspace{3cm}
 \item[Název práce:] Název bakalářské práce
 \item[Autor:] Marek Bryša, Ústav matematiky a statistiky Přírodovědecké fakulty, MU
 \item[Vedoucí bakalářské práce:] Ing. Michal Kvasnička, Ph.D., Katedra ekonomie Ekonomicko-správní fakulty, MU
-\item[Abstrakt:] Cílem této práce je analýza síťového marketingu z ekonomického pohledu, zejména šíření prodejní sítě a vlastností prodejců, dále odvození příjmových a nákladových funkcí provozovatele sítě. Byl zvolen konkrétní systém používaný firmou Oriflame. Metodou je vytvoření agentového modelu, běh simulací na něm a interpretace získaných dat pomocí ekonometrických a statistický nástrojů. Ukázalo se, že výdělková očekávání prodejců jsou naplněna jen v přibližně čtvrtině případů. Byly identifikovány společné vlastnosti stabilních prodejců i tzv. slabých článků, které brání šíření prodejní sítě. Byly nalezeny zjednodušené příjmové a nákladové funkce firmy Oriflame a z nich dána doporučení k parametrickým úpravám vedoucím k maximalizaci jejího zisku.
+\item[Abstrakt:] Cílem této práce je analýza síťového marketingu z ekonomického pohledu, zejména šíření prodejní sítě a vlastností prodejců, dále odvození příjmových a nákladových funkcí provozovatele sítě. Byl zvolen konkrétní systém používaný firmou Oriflame. Metodou je vytvoření agentového modelu, běh simulací na něm a interpretace získaných dat pomocí ekonometrických a statistický nástrojů. Ukázalo se, že výdělková očekávání prodejců jsou naplněna jen v přibližne čtvrtině případů. Byly identifikovány společné vlastnosti stabilních prodejců i tzv. slabých článků, které brání šíření prodejní sítě. Byly nalezeny zjednodušené příjmové a nákladové funkce firmy Oriflame a z nich dána doporučení k parametrickým úpravám vedoucím k maximalizaci jejího zisku.
 \item[Klíčová slova:] síťový marketing, agentový model, ekonometrie
 \end{description}
 \subsubsection{\large Abstract}
@@ -90,15 +90,15 @@ V Brně, dne \today \hfill Marek Bryša\hspace{3cm}
 
 \chapter*{Úvod}
 \addcontentsline{toc}{chapter}{Úvod}
-Tato bakalářská práce se zabývá studiem síťového marketingu z ekonomického pohledu. To je systém, kde se samotní spotřebitelé mohou stát za určitých podmínek prodejci a distribuovat výrobky. K tomu a zejména k přivedení dalších lidí se je provozovatel prodejní sítě snaží finančně motivovat. Ušetří naopak drtivou většinu nákladů na vybudování kamenných provozoven. Cílem práce je analýza vzniku takové sítě, průběhu jejího šíření a její výsledné struktury. Pokusíme se také nalézt příjmové a nákladové funkce provozovatele a z nich pro něj odvodit doporučení vedoucí k optimalizaci jeho chování a maximalizaci zisku.
+Tato bakalářská práce se zabývá studiem síťového marketingu z ekonomického pohledu. To je systém, kde se samotní spotřebitelé mohou stát za učitých podmínek prodejci a distribuovat výrobky. K tomu a zejména k přivedení dalších lidí se je provozovatel prodejní sítě snaží finančně motivovat. Ušetří naopak drtivou většinu nákladů na vybudování kamenných prvozoven. Cílem práce je analýza vzniku takové sítě, průběhu jejího šíření a její výsledné struktury. Pokusíme se také nalézt příjmové a nákladové funkce provozovatele a z nich pro něj odvodit doporučení vedoucí k optimalizaci jeho chování a maximalizaci zisku.
 
-Metodou zvolenou k dosažení těchto cílů je vytvoření počítačového multiagentového modelu se snahou o co nejvěrnější napodobení skutečnosti. Na něm pak budeme provádět simulace a experimenty, jejichž výsledky interpretujeme pomocí statistických a ekonometrických nástrojů. Z důvodu reálné využitelnosti získaných závěrů bude tato práce konkrétně modelovat systémem síťového marketingu, který používá firma Oriflame\footnote{Oriflame --- Přírodní švédská kosmetika, \url{http://cz.oriflame.com/index.jhtml}}. Ten byl zvolen pro svou relativní jednoduchost, úzké zaměření na kosmetické výrobky, což usnadní ekonomické úvahy, a autorovu blízkost k současným členům sítě. Informace o přesném fungování systému byly získány z interních materiálů firmy a osobních rozhovorů se zaměstnanci a členy prodejní sítě.
+Metodou zvolenou k dosažení těchto cílů je vytvoření počítačového multiagentového modelu se snahou o co nejvěrnější napodobení skutečnosti. Na něm pak budeme provádět simulace a experimenty, jejichž výsledky interpretujeme pomocí statistických a ekonometrických nástrojů. Z důvodu reálné využitelnosti získaných závěrů bude tato práce konkrétně modelovat systémem síťového marketingu, který používá firma Oriflame\footnote{Oriflame --- Přírodní švédská kosmetika, \url{http://cz.oriflame.com/index.jhtml}}. Ten byl zvolen pro svou relativní jednoduchost, úzké zaměření na kosmetické výrobky, což usnadní ekonomické úvahy, a autorovu blízkost k současným členům sítě. Informace přensném fungování systému byly získány z interních materiálů firmy a osobních rozhovorů se zaměstnanci a členy prodejní sítě.
 
 První kapitola poskytne úvod do fungování sítě firmy Oriflame. Seznámíme se s konkrétními parametry, na kterých je postavena, a s motivací, kterou firma svým prodejcům poskytuje. Ve druhé kapitole se budeme zabývat tvorbou sociálních vazeb, ekonomickými úvahami prodejní síti a implementací obojího do počítačového modelu. Třetí kapitola bude věnována samotné analýze chování sítě a jejích členů, provádění multiagentových simulací a interpretaci získaných dat.
 \chapter{Prodejní síť Oriflame}
 Tato kapitola nabízí úvod do fungování prodejní sítě Oriflame a jejích parametrů. Poslouží jako základ k vybudování počítačového modelu v příští kapitole. Zde se ze začátku seznámíme s historií Oriflame a sortimentem produktů. Dále se budeme věnovat struktuře katalogu, tvorbě cen a podrobně podmínkám, na základě kterých mohou si lidé s Oriflame přivydělat. Závěrem je uveden obrázek s příkladem, jehož účelem je objasnění na první pohled komplikovaného systému.
 \section{Historie firmy Oriflame}
-Firma Oriflame byla založena v roce 1967 ve Švédsku bratry Jonasem a Robertem Jochnick. Cílem bylo nabídnout lidem přirozenou a přírodní péči o svou pleť. Místo aby nákladně budovali kamenné obchody, rozhodli se dostat prodej přímo do domovů a využít tak vrozenou podnikavost lidí. Tento základní koncept zůstává po více než čtyřicet let nezměněn. V roce 1990, po po pádu železné opony, firma expandovala po střední a východní Evropě a založila pobočku i v České republice. V roce 2001 dosáhl počet prodejců zapojených v síti Oriflame na celém světě jednoho miliónu a obrat téměř 450 miliónů EUR.
+Firma Oriflame byla založena v roce 1967 ve Švédsku bratry Jonasem a Robertem Jochnick. Cílem bylo nabídnout lidem přirozenou a přírodní péči o svou pleť. Místo aby nákladně budovali kamenné obchody, rozhodli se dostat prodej přímo do domovů a využít tak vrozenou podnikavost lidí. Tento základní koncept zůstáva po více než čtyřicet let nezměněn. V roce 1990, po po pádu železné opony, firma expandovala po střední a východní Evropě a založila pobočku i v České republice. V roce 2001 dosasáhl počet prodejců zapojených v síti Oriflame na celém světě jednoho miliónu a obrat téměř 450 miliónů EUR.
 
 Sortiment je opravdu široký, katalog obsahuje přes 1 500 výrobků v cenách přibližně od 50 do 1 000 Kč. Většina typů produktů obsahuje několik cenou a kvalitou odlišených řad. Celkově lze říci, že zákazník má možnost nákupu komplexní péče s téměř libovolným rozpočtovým omezením.
 \section{Podmínky síťového prodeje}
@@ -109,7 +109,7 @@ Každému výrobku jsou v ceníku přiděleny čtyři hodnoty:
 \item[PC] Doporučená prodejní cena spotřebitelům, která je uvedena v katalogu.
 \item[NC] Nákupní cena včetně DPH. Za tu prodejci mohou zboží zakoupit v centrech Oriflame a na internetu. V České republice se nyní nachází tři hlavní centra (Praha, Brno, Ostrava) a tři centra (České Budějovice, Olomouc, Plzeň).
 \item[OO] Obchodní obrat. Typicky je roven nákupní ceně bez DPH. V případě produktů, které nemají daný objem (např. kartáč na vlasy, houba na mytí), je ještě přibližně poloviční.
-\item[BO] Bodové ohodnocení. Na inflaci nezávislý počet bodů, které prodejce nákupem zboží získá. Jestliže cena výrobku důsledkem inflace stoupne, bodové ohodnocení zůstává, a tím se poměr mezi nimi v čase mění. V současnosti jeden bod obdrží za přibližně 13,80 Kč obchodního obratu.
+\item[BO] Bodové ohodnocení. Na inflaci nezávislý počet bodů, které prodejce nákupem zboží získá. Jestliže cena výrobku důsledkem inflace stoupne, bodové ohodnocení zůstává, a tím se poměr mezi nimi v čase mění. V současnoti jeden bod obdrží za přibližně 13,80 Kč obchodního obratu.
 \end{description}
 Výjimku tvoří např. tiskoviny, vzorky a oblečení s logem Oriflame, které mají pouze nákupní cenu,  nejsou určeny k dalšímu prodeji a slouží jen jako pomůcka pro prodejce.
 
@@ -135,7 +135,7 @@ Tím je zajištěno, že člověk, který se stal prodejcem Oriflame později, a
 
 Prodejcem (v terminologii Oriflame \emph{poradcem}) se zájemce stane vyplněním jednoduchého formuláře a zaplacením poplatku 99 Kč. Tím získá možnost výdělku následujícími způsoby:
 \begin{enumerate}
-\item Nákupem kosmetických výrobků v centrech Oriflame nebo na objednávkou přes internet za nákupní ceny, které jsou nižší než prodejní ceny, přičemž platí, že
+\item Nákupem kosmetických výrobků v centrech Oriflame nebo na objednávkou přes internet za nákupní ceny, které jsou nižší než prodejní ceny, příčemž platí, že
 \begin{equation} \label{eq:pcnc}
 PC=1.3 \cdot NC \Leftrightarrow NC = 0.769 \cdot PC.
 \end{equation}
@@ -148,7 +148,7 @@ Prodejce tak realizuje 30\% marži z nákupních cen při prodeji sobě a svým 
 \end{enumerate}
 Peníze z bodů 2. a 3. prodejce dostane bezhotovostně na začátku následujícího katalogového období. Podmínkou je, že jeho vlastní prodej musí dosáhnout 100 bodů. To firma zdůvodňuje tím, že prodejce musí být sám schopným prodejcem, aby mohl učit ostatní.
 
-Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným parametrem pro každého prodejce je osobní OO, zbytek je dopočítán. Postupujme zezdola. Eva nedosahuje hranice 100 BO, takže její výdělek tvoří pouze okamžitý zisk z prodeje. Daniela má vysoký osobní OO, čímž se sama dostává na 6\% úroveň. Kromě okamžitého zisku tak dostane i 6\% z osobního OO. Podobná situace je u Boba, který má ovšem nižší osobní OO a dosahuje jen 3\% úrovně. Cyril přivedl k Oriflame Danielu a Evu. K jeho osobnímu OO a BO se tak přičtou OO a BO těchto dvou. Díky tomu Cyril povýšil na 6\% úroveň a tím dostane 6\% z osobního OO a 6\% z Evina OO. Daniela má ale vyšší OO než Cyril a rozdíl procentních úrovní mezi nimi je 0. Z Danielina OO tedy Cyril neobdrží nic. Alice dosáhla 9\% úrovně, získá 9\% ze svého OO, 3\% z Cyrilova skupinového OO a 6\% z Bobova skupinového OO.
+Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným parametrem pro každého prodejce je osobní OO, zbytek je dopočítán. Postupujme zezdola. Eva nedosahuje hranice 100 BO, takže její výdělek tvoří pouze okamžitý zisk z prodeje. Daniela má vysoký osobní OO, čímž se sama dostává na 6\% úroveň. Kromě okamžitého zisku tak dostane i 6\% z osobního OO. Podobná situace je u Boba, který má ovšem nižší osobní OO a dosahuje jen 3\% úrovně. Cyril přivedl k Oriflame Danielu a Evu. K jeho osobnímu OO a BO se tak přičtou OO a BO těchto dvou. Díky tomu Cyril povýšil na 6\% úroveň a tím dostane 6\% z osobního OO a 6\% z Evina OO. Daniela má ale vyšší OO než Cyril a rozdíl procentních úrovní mezi nimi je 0. Z Danielina OO tedy Cyril neobdrží nic. Alice dosáhla 9\% úrovně, ziská 9\% ze svého OO, 3\% z Cyrilova skupinového OO a 6\% z Bobova skupinového OO.
 
 \begin{figure}[h]
 \begin{center}
@@ -160,8 +160,8 @@ Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným param
 \node[person]{
     \begin{tabular}{l l}
       \textbf{Alice}&\\
-      Osobní OO & 7000\\
-      Osobní BO & 507\\
+      Osoboní OO & 7000\\
+      Osoboní BO & 507\\
       Skupin. OO & 26000\\
       Skupin. BO & 1884\\
       Proc. úroveň & 9\%\\
@@ -173,8 +173,8 @@ Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným param
       node[person] {
       \begin{tabular}{l l}
         \textbf{Bob}&\\
-        Osobní OO & 3000\\
-        Osobní BO & 217\\
+        Osoboní OO & 3000\\
+        Osoboní BO & 217\\
         Skupin. OO & 3000\\
         Skupin. BO & 217\\
         Proc. úroveň & 3\%\\
@@ -187,8 +187,8 @@ Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným param
     child {node[person] {
       \begin{tabular}{l l}
         \textbf{Cyril}&\\
-        Osobní OO & 5000\\
-        Osobní BO & 362\\
+        Osoboní OO & 5000\\
+        Osoboní BO & 362\\
         Skupin. OO & 16000\\
         Skupin. BO & 1159\\
         Proc. úroveň & 6\%\\
@@ -199,8 +199,8 @@ Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným param
       child {node[person] {
         \begin{tabular}{l l}
           \textbf{Daniela}&\\
-          Osobní OO & 10000\\
-          Osobní BO & 724\\
+          Osoboní OO & 10000\\
+          Osoboní BO & 724\\
           Skupin. OO & 10000\\
           Skupin. BO & 724\\
           Proc. úroveň & 6\%\\
@@ -213,8 +213,8 @@ Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným param
       child {node[person] {
         \begin{tabular}{l l}
           \textbf{Eva}&\\
-          Osobní OO & 1000\\
-          Osobní BO & 72\\
+          Osoboní OO & 1000\\
+          Osoboní BO & 72\\
           Skupin. OO & 1000\\
           Skupin. BO & 72\\
           Proc. úroveň & 0\%\\
@@ -232,7 +232,7 @@ Na obrázku \ref{fig:ggraph} je uveden příklad skupiny prodejců. Daným param
 \label{fig:ggraph}
 \end{figure}
 
-Při dosažení 12\% úrovně se prodejce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních zdarma aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procentní rozdíl úrovní na 3\%.
+Při dosažení 12\% úrovně se prodejce stává tzv. manažerem, při 21\% direktorem. Za to má možnost získat věcné i finanční prémie, účast na školeních zdarma aj. V případě, že osoba na 21\% úrovní sponzoruje někoho, kdo jí dosáhl také, stanovuje se procetní rozdíl úrovní na 3\%.
 
 V případě, že je prodejce 12 měsíců neaktivní, tj. nepodal žádnou objednávku, je mu členství zrušeno a přichází o svou podskupinu. Ta je napojena na prodejce nad ním. Pokud se rozhodne opět k Oriflame přidat, začíná zcela od začátku.
 
@@ -240,7 +240,7 @@ Tento systém slouží jako motivace lidí pro rozšíření prodejní sítě. J
 
 Firma dále nabízí pro začínající prodejce ve čtyřech krocích motivaci ve formě věcných darů za splnění určitých objemů obratu, např. v prvním kroku za obrat 1 250 Kč tašku, průvodce péčí o pleť a krém v celkové hodnotě 510 Kč.
 
-Také jsou k dispozici úvěry do výše 7 000 Kč na zaplacení za zboží, které hodlá prodejce dodat zákazníkům a nemusí tak od nich vybírat peníze předem.
+Také jsou k dispozici úvěry do výše 7 000 Kč na zaplacení za zobží, které hodlá prodejce dodat zákazníkum a nemusí tak od nich vybírat peníze předem.
 
 Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez udání důvodu a to i v případě, že výrobek obsahuje aspoň 80\% původního objemu.
 
@@ -249,7 +249,7 @@ Oriflame poskytuje garanci vrácení peněz do 30 dnů od nákupu výrobku bez u
 \chapter{Popis modelu}
 V této kapitole se budeme věnovat popisu modelu sítě Oriflame. Nejdříve se seznámíme jeho s technickým zázemím a základními prvky. Dále se budeme věnovat generování sociálních vztahů a vlastnostem zvoleného postupu. Pak podrobně rozebereme jednotlivé prvky a objasníme jejich chování. Závěrem se budeme zabývat výpočetními algoritmy a rozdílům mezi modelem a skutečností.
 \section{Základní prvky}
-Pro vytvoření modelu bylo zvoleno prostředí NetLogo\cite{netlogo} ve verzi 4.1.3. Je to otevřený a volně šiřitelný software umožňující snadnou tvorbu multiagentových a systémově-dynamických modelů. Pod pojmem agent si můžeme představit jednu osobu s naprogramovaným chováním. Na jeho základě mezi sebou agenti provádí interakce. Tím se jejich chování promítá do celého modelu, na němž pak můžeme měřit různé parametry. Tato měření budou předmětem příští kapitoly.
+Pro vytvoření modelu bylo zvoleno prostředí NetLogo\cite{netlogo} ve verzi 4.1.3. Je to oteřený a volně šiřitelný software umožňující snadnou tvorbu multiagnetových a systémově-dynamických modelů. Pod pojmem agent si můžeme představit jednu osobu s naprogramovaným chováním. Na jeho základě mezi sebou agenti provádí interakce. Tím se jejich chování promítá do celého modelu, na němž pak můžeme měřit různé parametry. Tato měření budou předmětem příští kapitoly.
 
 Tento model pracuje s jediným agentem -- \texttt{person}. Mezi nimi mohou vznikat vztahy, v našem případě obousměrný \texttt{friend} značící přátelství mezi dvěma osobami a jednosměrný \texttt{sponsor} udávající kdo koho do sítě přivedl. Platí, že
 \[ A \text{ je přítel } B \iff A \xleftrightarrow{\texttt{friend}} B,\]
@@ -259,10 +259,10 @@ přičemž vztahy \texttt{sponsor} tvoří hrany stromu, vztahy \texttt{friend} 
 Běh modelu zahrnuje dvě části:
 \begin{enumerate}
 \item Inicializace (setup). Zde se nastaví všechny proměnné na výchozí hodnoty, většinou také dojde k vygenerování náhodných parametrů a vztahů pro jednotlivé agenty.
-\item Vlastní běh. Ten probíhá v opakovaných oddělených krocích. V každém z nich dojde k projevu chování agentů a tím změně proměnných, vztahů mezi agenty atd.
+\item Vlastní běh. Ten probíhá v opakovaných oddělených krocích. V každém z nich dojde k projevu chování agentů a tím změně promenných, vztahů mezi agenty atd.
 \end{enumerate}
 \section{Generování sociálních vazeb}
-Je nutné, aby model zachytil sociální vztahy ve společnosti. Každý agent má jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Dále je třeba, aby graf tvořil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet přidaných náhodných přátelství mezi nimi. Lze jimi tedy určovat velikost sítě a hustotu přátelství. Po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má, následně se vytvoří dodatečná přátelství. Tento postup je uveden v algoritmu \ref{alg:friend}.
+Je nutné, aby model zachytil sociální vztahy ve společnosti. Každý agent ma jistý okruh přátel, kterým může prodávat kosmetické výrobky a nabídnout jim členství v prodejní síti. Dále je třeba, aby graf tvořil jednu komponentu, protože na světě prakticky neexistují uzavřené a s nikým nekomunikující skupiny lidí. Model obsahuje konstanty \texttt{number-of-persons} a \texttt{number-of-friendships}. První značí počet vygenerovaných osob, druhá počet přidaných náhodných přátelství mezi nimi. Lze jimi tedy určovat velikost sítě a hustotu přátelství. Po vygenerování všech lidí každý postupně vytvoří přátelství s někým, kdo už nějaké má, následně se vytvoří dodatečná přátelství. Tento postup je uveden v algoritmu \ref{alg:friend}.
 \begin{algorithm}
 \caption{Generování přátelství}
 \label{alg:friend}
@@ -270,7 +270,7 @@ Je nutné, aby model zachytil sociální vztahy ve společnosti. Každý agent m
 \STATE vygeneruj \texttt{number-of-persons} agentů \texttt{person}
 \STATE vytvoř jedno přátelství mezi dvěma náhodnými osobami
 \FORALL{\texttt{persons}}
-  \STATE vytvoř jedno přátelství s osobou, která již nějaké má
+  \STATE vytvoř jedno přátelství s obosou, která již nějaké má
 \ENDFOR
 \FOR{$i=0$ to \texttt{number-of-friendships}}
   \STATE vytvoř jedno přátelství mezi dvěma náhodnými osobami
@@ -300,21 +300,21 @@ Agenti jsou generování v izolovaném prostředí. Jsou přítomny tyto za běh
 \label{sec:vl_agenta}
 Agent \texttt{person} představuje v modelu jednoho člověka. Má tyto důležité vlastnosti:
 \begin{description}
-\item[\texttt{consumption}] Celé číslo udávající množství peněz, které daná osoba během jednom období může utratit za kosmetické výrobky, které je možno koupit v síti Oriflame. Je to část osobního rozpočtového omezení a považuje se za konstantní. Ve výchozím nastavení je generováno jako
+\item[\texttt{consupmtion}] Celé číslo udávající množství peněz, které daná osoba během jednom období může utratit za kosmetické výrobky, které je možno koupit v síti Oriflame. Je to část osobního rozpočtového omezení a považuje se za konstantní. Ve výchozím nastavení je generováno jako
 $$\max\{100,\texttt{random-normal(1000,500)}\},$$
 tj. náhodná hodnota z normálního rozdělení se střední hodnotou 1000, rozptylem 500, zdola omezená 100. Lidé s nižší spotřebou kosmetických výrobků ve skutečnosti samozřejmě existují, ale z pohledu této práce nejsou významní.
-\item[\texttt{be-point}] Celé číslo znamenající bod ukončení činnosti. Za běhu se nemění. Členstvím v síti vznikají každému náklady. Tvoří je explicitní např. výdaje za cestu k zákazníkům a implicitní za čas obětovaný této práci. Obecně lze říci, že implicitní složka bude tím vyš\-ší, čím lépe na daný člověk placené hlavní zaměstnání. A tím se také zvyšuje jeho rozpočtové omezení. Proto existuje závislost mezi \texttt{consumption} a \texttt{be-point} vyjádřená
+\item[\texttt{be-point}] Celé čislo znamenající bod ukončení činnosti. Za běhu se nemění. Členstvím v síti vznikají každému náklady. Tvoří je explicitní např. výdaje za cestu k zakazníkům a implicitní za čas obětovaný této práci. Obecně lze říci, že implicitní složka bude tím vyš\-ší, čím lépe na daný člověk placené hlavní zaměstnání. A tím se také zvyšuje jeho rozpočtové omezení. Proto existuje závislost mezi \texttt{consumption} a \texttt{be-point} vyjádřená
 $$\max\{0.5\cdot\texttt{consumption},\texttt{consumption}\cdot\texttt{random-normal(1,0.5)}\},$$
 což znamená minimálně polovina měsíční spotřeby, jinak násobek spotřeby se střední hodnotou 1 a rozptylem 0.5.
-\item[\texttt{netmember?}] Příznak určující, zda je agent členem sítě -- prodejcem. Při inicializaci je nastaven na nepravdu a za běhu dojde k jeho změně, pokud se agent rozhodne vstoupit do prodejní sítě nebo z ní naopak vystoupit.
+\item[\texttt{netmember?}] Příznak učující, zda je agent členem sítě -- prodejcem. Při inicializaci je nastaven na nepravdu a za běhu dojde k jeho změně, pokud se agent rozhodne vstoupit do prodejní sítě nebo z ní naopak vystoupit.
 \end{description}
 \section{Chování agenta \texttt{person}}
 Chování vychází z jednoduché úvahy -- vyplatí se do sítě vstoupit a zůstat v ní? Lze jej tedy rozdělit na dvě části: podmínku vstupní a podmínku setrvání. Předpokládá se, že pokud se agent stane prodejcem, bude on a jeho přátelé svou potřebu kosmetických výrobků uspokojovat přednostně nákupem u něj. Ostatním agentům zboží neprodává.
 \subsubsection{Vstupní podmínka}
-Pokud je agentovi nabídnuto členství, přijme ho jestliže jeho očekávaný příjem převýší celkové ekonomické náklady. První část příjmů tvoří očekávaný výdělek z přímého prodeje, který lze přesně vypočítat, neboť agent zná spotřebu svou a svého bezprostředního okolí a tuto sumu pak jen vynásobí prodejní marží. Druhou částí je očekávaný příjem z budování skupiny prodejců, tj. přivádění dalších lidí k Oriflame. Jeho velikost může agent zpočátku pouze odhadnout, protože nevidí hlouběji do struktury sítě přátelství. Zde je určen podle vzorce, který přibližně odpovídá výpočtu uváděnému skutečnými prodejci Oriflame. Příjmová strana je ještě vynásobena diferencí mezi současnou prodejní marží a tou, která byla platná při posledním odchodu agenta ze sítě. Pokud se v běhu simulace zvýší parametr \texttt{margin}, budou agenti reagovat zvýšením příjmových očekávání a naopak. Celkem je podmínka daná takto:
+Pokud je agentovi nabídnuto členství, přijme ho jestliže jeho očekávaný příjem převýší celkové ekonomické náklady. První část příjmů tvoří očekávaný výdělek z přímého prodeje, který lze přesně vypočítat, neboť agent zná spotřebu svou a svého bezprostředního okolí a tuto sumu pak jen vynásobí prodejní marží. Druhou částí je očekávaný příjem z budování skupiny prodejců, tj. přívádění dalších lidí k Oriflame. Jeho velikost může agent zpočátku pouze odhadnout, protože nevidí hloubějí do struktury sítě přátelství. Zde je určen podle vzorce, který přibližně odpovída výpočtu uváděnému skutečnými prodejci Oriflame. Příjmová strana je ještě vynásobena diferencí mezi současnou prodejní marží a tou, která byla platná při posledním odchodu agenta ze sítě. Pokud se v běhu simulace zvýší parametr \texttt{margin}, budou agenti reagovat zvýšením příjmových očekávání a naopak. Celkem je podmínka daná takto:
 \[(\texttt{my-rev-exp} + \texttt{avg-srev-exp}) \cdot (1+\texttt{d-margin}) \geq \texttt{be-point} + \texttt{monthly-fee}\]
 \begin{description}
-\item[\texttt{my-rev-exp}] je očekávaný příjem z přímého prodeje přátelům agenta. Pokud některému z nich může zboží dodávat více prodejců, je spotřeba rozdělena rovnoměrně mezi ně. Přesný postup je uveden v algoritmu \ref{alg:myrevexp}.
+\item[\texttt{my-rev-exp}] je očekávaný příjem z přímeho prodeje přátelům agenta. Pokud některému z nich může zboží dodávat více prodejců, je spotřeba rozdělena rovnoměrně mezi ně. Přesný postup je uveden v algortimu \ref{alg:myrevexp}.
 \begin{algorithm}
 \caption{Výpočet \texttt{my-rev-exp}}
 \label{alg:myrevexp}
@@ -322,24 +322,24 @@ Pokud je agentovi nabídnuto členství, přijme ho jestliže jeho očekávaný 
 \STATE \texttt{my-rev-exp} $\gets$ moje spotřeba $\cdot$ \texttt{margin}
 \FORALL{$f\in$ moji přátelé}
   \STATE $n\gets 1 + $ počet přátel osoby $f$, kteří jsou prodejci
-  \STATE $\texttt{my-rev-exp}\gets\texttt{my-rev-exp}+(\text{spotřeba osoby }f \cdot \texttt{margin}) / n$
+  \STATE $\texttt{my-rev-exp}\gets\texttt{my-rev-exp}+(\text{spořeba osoby }f \cdot \texttt{margin}) / n$
 \ENDFOR
 \end{algorithmic}
 \end{algorithm}
 \item[\texttt{avg-srev-exp}] je očekávaný příjem ze sponzoringu a skupin. Protože v rozhodování člověka je jistá setrvačnost, je dán jako průměr posledních deseti skutečných příjmů z této činnosti. Agent \texttt{person} má tedy 10 prvkovou frontu \texttt{exp-srev-list}, na jejíž konec se v každém kole přidá skutečný příjem ze skupin a vypadne poslední prvek. \texttt{avg-srev-exp} je pak roven průměru hodnot v této frontě. Při inicializaci je fronta naplněna hodnotami
 \[ 0.09\cdot \text{suma spotřeby mých přátel}\cdot \text{počet mých přátel}^{1.3}.\]
-To odpovídá odhadu uváděnému při nabídce členství v síti, tedy přítomnosti na 9\% úrovni a mocnině počtu přátel z důvodu větvení stromu.
+To odpovídá odhadu uváděnému při nabídce členství v síti, tedy přítomnosti na 9\% úrovni a mocnině počtu přátel z důvodu větvění stromu.
 \item[\texttt{d-margin}] je rozdíl mezi současnou \texttt{margin} a tou při posledním odchodu agenta ze sítě.
 \end{description}
 \subsubsection{Podmínka setrvání}
 Vychází ze stejných úvah a je dána velmi podobně:
 \[ \texttt{my-rev} + \texttt{avg-srev-exp} \geq \texttt{be-point} + \texttt{monthly-fee} \]
-\texttt{my-rev} v tomto případě již není odhad, ale skutečná hodnota příjmu z přímého prodeje. Tím jak se fronta \texttt{exp-srev-list} naplňuje skutečnými velikostmi výdělku ze skupin může dojít ke snížení jejího průměru a agentovi se pak vyplatí nebýt nadále prodejcem.
+\texttt{my-rev} v tomto případě již není odhad, ale skutečná hodnota příjmu z přímeho prodeje. Tím jak se fronta \texttt{exp-srev-list} naplňuje skutečnými velikostmi výdělku ze skupin může dojít ke snížení jejího průměru a agentovi se pak vyplatí nebýt nadále prodejcem.
 \section{Šíření prodejní sítě}
 \label{sec:spread}
-Na začátku je jeden agent \texttt{person} určen jako zakladatel, je mu nastaveno \texttt{netmember?} na pravdu a \texttt{be-point} na 0, čímž je zajištěno, že nikdy nepřestane být prodejcem a prodejní síť se bude mít vždy odkud šířit. V každém kole je všem přátelům prodejců nabídnuto členství a dojde k vyhodnocení vstupní podmínky. Toto se děje nikoliv paralelně, ale postupně v náhodném pořadí, tj. pokud některé osobě mohou členství nabídnout dva nebo více prodejců, je zvolen jeden náhodný a ten si jej v případě splnění vstupní podmínky zařadí do svého podstromu grafu vztahů \texttt{sponsor}.
+Na začátku je jeden agnet \texttt{person} určen jako zakladatel, je mu nastaveno \texttt{netmember?} na pravdu a \texttt{be-point} na 0, čímž je zajištěno, že nikdy nepřestane být prodejcem a prodejní síť se bude mít vždy odkud šířit. V každém kole je všem přátelům prodejců nabídnuto členství a dojde k vyhodnocení vstupní podmínky. Toto se děje nikoliv paralelně, ale postupně v náhodném pořadí, tj. pokud některé osobě mohou členství nabídnout dva nebo více prodejců, je zvolen jeden náhodný a ten si jej v případě splnění vstupní podmínky zařadí do svého podstromu grafu vztahů \texttt{sponsor}.
 
-Je možné také zapnout volbu \texttt{random-join?}, která znamená, že v každém kole jeden náhodný agent nabídne členství jednomu náhodnému nečlenovi i mimo okruh svých přátel. To modeluje případ, kdy se prodejci snaží o nábor lidí např. na náměstích a u stánků v nákupních centrech.
+Je možne také zapnout volbu \texttt{random-join?}, která znamená, že v každém kole jeden náhodný agent nabídne členství jednomu náhodnému nečlenovi i mimo okruh svých přátel. To modeluje případ, kdy se prodejci snaží o nábor lidí např. na náměstích a u stánků v nákupních centrech.
  
 Pokud není splněna podmínka setrvání, přestane agent být prodejcem a všechny jeho vztahy \texttt{sponsor} jsou převedeny na agenta ve stromu nad ním.
 \section{Průběh kola a výpočty}
@@ -360,7 +360,7 @@ Nejprve se seznámíme s nejdůležitějšími body, pak se jim budeme věnovat 
   \STATE\COMMENT{velmi podobně jako při výpočtu očekávání}
   \FORALL{$f\in$ přátelé $s$}
     \STATE $n\gets $ počet přátel osoby $f$, kteří jsou prodejci
-    \STATE $\texttt{my-rev }s\gets\texttt{my-rev }s+(\text{spotřeba osoby }f \cdot \texttt{margin}) / n$
+    \STATE $\texttt{my-rev }s\gets\texttt{my-rev }s+(\text{spořeba osoby }f \cdot \texttt{margin}) / n$
   \ENDFOR
 \ENDFOR
 
@@ -386,7 +386,7 @@ Nejprve se seznámíme s nejdůležitějšími body, pak se jim budeme věnovat 
   \STATE \texttt{srev-level} $p\gets$ podle $sum$ odečti z tabulky \ref{tab:perc_level} procentní úroveň
   \FORALL{$s\in$ osoby, které $p$ přivedl}
     \STATE $dperc\gets \texttt{srev-level } p - \texttt{srev-level } s$ \COMMENT{rozdíl procentních úrovní}
-    \STATE \texttt{my-srev} $p\gets$ \texttt{my-srev} $p+dperc\cdot(\texttt{my-rev }s~/~\texttt{margin})$ \COMMENT{spotřeba podstromu vynásobená rozdílem procentních úrovní}
+    \STATE \texttt{my-srev} $p\gets$ \texttt{my-srev} $p+dperc\cdot(\texttt{my-rev }s~/~\texttt{margin})$ \COMMENT{spotřeba podstormu vynásobená rozdílem procentních úrovní}
   \ENDFOR
   \STATE {\bf return} $sum$
 \ENDIF 
@@ -401,10 +401,10 @@ Zde shrneme zjednodušení použitá při vytváření modelu:
 \begin{itemize}
 \item Tvorba sítě sociálních vztahů je nepostihuje v celé rozmanitosti, která je v reálné společnosti přítomna. Tato problematika může být předmětem zvláštního zkoumání.
 \item Samotný rozsah sítě je z důvodu výpočetní kapacity omezen.
-\item Chování agenta \texttt{person} je založeno na jednoduché ekonomické úvaze. Skutečný člověk se rozhoduje mnohem komplexněji. Také rozhodování probíhá okamžitě, v realitě lze očekávat jistá zpoždění.
+\item Chování agenta \texttt{person} je založeno ja jednoduché ekonomické úvaze. Skutečný člověk se rozhoduje mnohem komplexněji. Také rozhodování probíhá okamžitě, v realitě lze očekávat jistá zpoždění.
 \item Model neuvažuje limit 100 bodů pro zisk výdělku ze skupin. To je odůvodněno tím, že člověk, který má možnost vysokého výdělku se jím nenechá odradit a vždy tuto podmínku nějakým způsobem splní, např. zvýšením své vlastní spotřeby kosmetických výrobků -- o tomto hovoří zkušenosti skutečných prodejců Oriflame. Zde však považujeme spotřebu za konstantní.
 \item Explicitně nepočítáme se vstupním poplatkem 99 Kč. Považuje se za zahrnutý do \texttt{be-point}.
-\item Neuvažujeme dárkové balíčky pro nové prodejce. Jejich vliv vzhledem k jiným očekáváním nominálně malý a pouze krátkodobý, přibližně 4 katalogová období.
+\item Neuvažujeme dárkové balíčky pro nové prodejce. Jejich vliv vzledem k jiným očekáváním nominálně malý a pouze krátkodobý, přibližně 4 katalogová období.
 \item Předpokládáme, že všichni agenti mají dostatek likvidity na nákup výrobků. Tím zde nemají krátkodobé půjčky pro tyto účely smysl.
 \end{itemize}
 %
@@ -425,13 +425,13 @@ K měření budou sloužit mimo jiné tyto veličiny:
 \item[\texttt{revenue}] Součet předchozích dvou.
 \item[\texttt{scost}] Náklady na výplatu sponzoringu a skupin.
 \item[\texttt{mcost}] Výrobní náklady.
-\item[\texttt{network-profit}] Celkový účetní zisk provozovatele sítě Oriflame bez fixních nákladů. 
+\item[\texttt{network-profit}] Celkový účetní zisk provozovatele sítě Oriflame bez fixních nákadů. 
 \end{description}
 Ke statistické analýze bude využit ekonometrický software GRETL\cite{gretl} verze 1.9.1 a tabulkový procesor Gnumeric\footnote{Gnumeric --- The Gnome Office Spreadsheet, \url{http://projects.gnome.org/gnumeric/}} 1.10.14.
 \section{Šíření sítě}
 Zde se budeme zkoumat šíření sítě a její výsledné vlastnosti. 
 \subsubsection{Průběh šíření}
-Bylo provedeno 100 nezávislých náhodných běhů pro výchozí parametry z úvodu kapitoly. Podmínkou ukončení je stabilizace sítě, tj. rovnost dvou po sobě následujících \texttt{network-profit}. Získaná data jsou v přiloženém souboru \texttt{spread1.csv}. Z nich odvozené popisné statistiky jsou v tabulce \ref{tab:spread1_desc}.
+Bylo provedeno 100 nezavislých náhodných běhů pro výchozí parametry z úvodu kapitoly. Podmínkou ukončení je stabilizace sítě, tj. rovnost dvou po sobě následujících \texttt{network-profit}. Získaná data jsou v přiloženém souboru \texttt{spread1.csv}. Z nich odvozené popisné statistiky jsou v tabulce \ref{tab:spread1_desc}.
 \begin{table}[h]
   \begin{center}
   \begin{tabular}{|r|r|r|r|}
@@ -447,14 +447,14 @@ Bylo provedeno 100 nezávislých náhodných běhů pro výchozí parametry z ú
   \caption{Popisné statistiky pro \texttt{spread1}}
   \label{tab:spread1_desc}
 \end{table}
-Vidíme, že průměrný běh trval 24 kol. Členy sítě se v průběhu stalo maximálně 217 osob z 300 a nakonec zůstalo 81, tedy přibližně čtvrtina. Časová řada počtu členů jednoho vybraného běhu je vidět na grafu \ref{fig:spread1_run}.
+Vidíme, že průměrný běh trval 24 kol. Členy sítě se v průběhu stalo maximálně 217 osob z 300 a nakonec zůstalo 81, tedy přibližne čtvrtina. Časová řada počtu členů jednoho vybraného běhu je vidět na grafu \ref{fig:spread1_run}.
 \begin{figure}[h]
   \centering
   \includegraphics{member_count.eps}
   \caption{Vybraný běh simulace \texttt{spread1}}
   \label{fig:spread1_run}
 \end{figure}
-Je patrné, že síť se z počátku rychle rozrůstá díky vysokým očekáváním. Ta ale nejsou většinou naplněna a dochází k postupnému úbytku. Z toho lze učinit závěr, že výdělková očekávání, která Oriflame poskytuje jsou příliš vysoká, resp. platí pouze pro menší část lidí.
+Je patrné, že síť se z počátku rychle rozrůstá díky vysokým očekáváním. Ta ale nejsou většinou naplňena a dochází k postupnému úbytku. Z toho lze učinit závěr, že výdělková očekávání, která Oriflame poskytuje jsou příliš vysoká, resp. platí pouze pro menší část lidí.
 \subsubsection{Vlastnosti agentů}
 Nabízí se otázka, jakou vlastnost mají agenti, kteří v síti zůstali. Jedním důvodem může být nadprůměrný počet přátel. Za stejných podmínek jako v předchozím případě sestavíme simulaci. Výsledkem běhu je průměrný počet přátel pro člena sítě a pro všechny osoby. Data jsou k dispozici v souboru \texttt{spread2.csv}. Popisné statistiky jsou v tabulce \ref{tab:spread2_desc}.
 \begin{table}[H]
@@ -492,7 +492,7 @@ Druhým důvodem může být malý \texttt{be-point}, což způsobí výhodnost 
 \noindent
 Hypotéza: $M_1=M_2$ proti $M_1>M_2$\\
 P-hodnota testové statistiky $T = 3.06\cdot 10^{-109}$\\
-Nade vší pochybnost opět zamítáme možnost rovnosti průměrů. Členové tedy mají obecně podprůměrný \texttt{be-point}.\vspace{3mm}
+Nade vší pochybnost opět zamítáme možnost rovnosti průměrů. Členové tedy maji obecně podprůměrný \texttt{be-point}.\vspace{3mm}
 
 Z těchto dvou simulací je patrné, že prodejci se rekrutují z řad lidí s nižším příjmem a velkým počtem přátel. Model z tohoto pohledu věrně vystihuje realitu, neboť ve společnosti tuto skupinu tvoří převážně studenti a např. rodiče na mateřské dovolené -- největší část prodejců Oriflame.
 \section{Vliv náborových akcí}
@@ -559,12 +559,12 @@ Breusch-Pagan test for heteroskedasticity --\\
 V závorkách jsou uvedeny standardní chyby. Testy o normalitě reziduí a nepřítomnosti heteroskedasticity ve všech případech na 5\% hladině významnosti nulovou hypotézu nezamítají.
 
 Z rovnic vidíme, že náborové akce jsou zvlášť výhodné pro skupiny lidí s nižšími počty přátel. Při $\texttt{number-of-friendships}=50$ a využití náborových akcí je počet prodejců o téměř 13 osob (20\%) vyšší než bez nich.
-Existuje tam možnost vzniku slabých článků, které zabrání dalšímu šíření sítě. Koeficient u friendships je naopak nižší. Tím dojde k průniku regresních přímek při $\texttt{number-of-friendships}=584$, což přibližně odpovídá průměrnému počtu přátel na osobu $5,84$. Pro prodejce z toho plyne doporučení, že pokud je počet přátelství v jejich okolí (za předpokladu jisté homogenity) vyšší než tato hodnota, není pro ně výhodné pořádat nábory, protože síť si ke všem najde cestu sama.
+Existuje tam možnost vzniku slabých článků, které zabrání dalšímu šíření sítě. Koeficinet u friendships je naopak nižší. Tím dojde k průniku regresních přímek při $\texttt{number-of-friendships}=584$, což přibližne odpovídá průměrnému počtu přátel na osobu $5,84$. Pro prodejce z toho plyne doporučení, že pokud je počet přátelství v jejich okolí (za předpokladu jisté homogenity) vyšší než tato hodnota, není pro ně výhodné pořádat nábory, protože síť si ke všem najde cestu sama.
 \section{Slabé články}
-V předchozí části jsme zjistili existenci slabých článků, tj. agentů, přes které síť neprojde a její šíření se zastaví. Zde se je pokusíme identifikovat a objevit jejich společné vlastnosti. Slabý článek (bottleneck) bude určen tímto postupem:
+V předchozí části jsme zjistili existenci slabých článků, tj. agetů, přes které síť neprojde a její šíření se zastaví. Zde se je pokusíme identifikovat a objevit jejich společné vlastnosti. Slabý článek (bottleneck) bude určen tímto postupem:
 \begin{enumerate}
 \item Všem agentům se inicializujeme vlastnost \texttt{invited?} na nepravdu.
-\item Necháme síť šířit standardním způsobem bez náhodných náborových akcí do stabilizace, přičemž všem agentům, kterým bylo nabídnuto členství nastavíme \texttt{invited?} na pravdu.
+\item Necháme síť šířit standardním způsobem bez náhodných náborových akcí do stabilizace, příčemž všem agentům, kterým bylo nabídnuto členství nastavíme \texttt{invited?} na pravdu.
 \item Projdeme všechny přátele všech agentů, kterým nebylo nabídnuto členství, a za slabý článek jsou označeni ti, kterým bylo nabídnuto členství.
 \end{enumerate}
 \begin{displaymath}
@@ -592,9 +592,9 @@ T = 451 \quad \bar{R}^2 = 0.8278 \quad F(2,448) = 591.45 \quad \hat{\sigma} = 3.
 \text{Vzhledem k přítomnosti heteroskedasticity byl použit estimátor HC1. } \notag \\
 \text{\mbox{l\_friendships} značí přirozený logaritmus hodnot \mbox{friendships}.} \notag
 \end{gather}
-Vidíme, že s houstnoucí sítí vcelku logicky dochází k rychlému poklesu počtu slabých článků. Ideální hodnotou \texttt{number-of-friendships} pro další zkoumání se jeví 150, kdy již není počet slabých článků tak rozptýlen, ale stále je dost vysoký.
+Vidíme, že s houstnocí sítí vcelku logicky dochází k rychlému poklesu počtu slabých čláků. Ideální hodnotou \texttt{number-of-friendships} pro další zkoumání se jeví 150, kdy již není počet slabých článků tak rozptýlen, ale stále je dost vysoký.
 
-Provedeme simulaci se 100 běhy při $\texttt{number-of-friendships}=150$. Zkoumáme průměrný počet přátel a \texttt{be-point} pro všechny a pro slabé články. Výsledné hodnoty jsou v souboru \texttt{bottleneck1.csv}. Popisné statistiky obsahuje tabulka \ref{tab:bottleneck1_desc}. Z ní je patrné, že slabé články mají podprůměrný počet přátel a velmi nadprůměrný \texttt{be-point}. Doporučením pro prodejce v případě, že se s někým takovým setkají, je pokusit se od něj získat alespoň kontakt na jeho známé a tím jej v síti přeskočit.
+Provedeme simulaci se 100 běhy při $\texttt{number-of-friendships}=150$. Zkoumáme průměrný počet přátel a \texttt{be-point} pro všechny a pro slabé články. Výsledné hodnoty jsou v souboru \texttt{bottleneck1.csv}. Popisné statistiky obsahuje tabulka \ref{tab:bottleneck1_desc}. Z ní je patrné, že slabé články mají podprůměrný počet přátel a velmi nadprůměrný \texttt{be-point}. Doporučením pro prodejce v případě, že se s nekým takovým setkají, je pokusit se od něj získat alespoň kontakt na jeho známé a tím jej v síti přeskočit.
 \begin{table}[h]
   \begin{center}
   \begin{tabular}{|r|r|r|r|r|}
@@ -611,7 +611,7 @@ Provedeme simulaci se 100 běhy při $\texttt{number-of-friendships}=150$. Zkoum
   \label{tab:bottleneck1_desc}
 \end{table}
 \section{Optimální \texttt{margin} a \texttt{monthly-fee}}
-Zde se budeme věnovat optimálnímu chování provozovatele prodejní sítě vzhledem k maximalizaci jeho zisku. Budeme předpokládat, že může stanovovat \texttt{margin} a \texttt{monthly-fee}, naopak podíl výrobních nákladů na prodejní ceně je v krátkém období daný. Cílem bude nalézt funkci, která firmě v závislosti na jejích výrobních nákladech \texttt{manufacturing-cost} pomůže stanovit \texttt{margin} a \texttt{monthly-fee}. Zisk je stanoven jako rozdíl příjmových na nákladových veličin takto:
+Zde se budeme věnovat optimálnímu chování provozovatele prodejní sítě vzhledem k maximalizaci jeho zisku. Budeme předpokládat, že může stanovovat \texttt{margin} a \texttt{monthly-fee}, naopak podíl výrobních nákladů na prodejní ceně je v krátkém odbodí daný. Cílem bude nalézt funkci, která firmě v závislosti na jejích výrobních nákladech \texttt{manufacturing-cost} pomůže stanovit \texttt{margin} a \texttt{monthly-fee}. Zisk je stanoven jako rozdíl příjmových na nákladových veličin takto:
 \[ \text{zisk}=\texttt{network-fee-revenue}+\texttt{network-sale-revenue}-\texttt{scost}-\texttt{mcost} \]
 Přičemž platí funkční závislosti:
 \begin{align}
@@ -659,7 +659,7 @@ fee & \multicolumn{1}{l|}{mc 0.1} & \multicolumn{1}{l|}{mc 0.2} & \multicolumn{1
 \caption{Optimální \texttt{margin} a z nich vypočítaný zisk pro dané \texttt{manufacturing-cost} a různé \texttt{monthly-fee}}
 \label{tab:max-profit2}
 \end{table}
-Na obrázku \ref{fig:max-profit-04-f0} vidíme bodový graf zisku v závislosti na \texttt{margin} pro $\texttt{monthly-fee}=0$ a $\mbox{\texttt{manufacturing-cost}=0.4}$. Firmou Oriflame stanovený $\texttt{margin}=0.23$ je těsně na hranici, kde už začíná zisk rychle klesat. Predikovaný zisk je přibližně o 10\% nižší než maximum. Firma však takto může tvrdit, že prodejce bude mít výdělek 30\% (byť z nákupních cen). To je zřejmě pro mnohé psychologická hranice, což tento model do vstupní podmínky nezahrnuje.
+Na obrázku \ref{fig:max-profit-04-f0} vidíme bodový graf zisku v závisloti na \texttt{margin} pro $\texttt{monthly-fee}=0$ a $\mbox{\texttt{manufacturing-cost}=0.4}$. Firmou Oriflame stanovený $\texttt{margin}=0.23$ je těsně na hranici, kde už začíná zisk rychle klesat. Predikovaný zisk je přibližne o 10\% nižší než maximum. Firma však takto může tvrdit, že prodejce bude mít výdělek 30\% (byť z nákupních cen). To je zřejmě pro mnohé pychologická hranice, což tento model do vstupní podmínky nezahrnuje.
 \begin{figure}[h]
   \centering
   \includegraphics{max-profit-04-f0.eps}
@@ -667,14 +667,14 @@ Na obrázku \ref{fig:max-profit-04-f0} vidíme bodový graf zisku v závislosti 
   \label{fig:max-profit-04-f0}
 \end{figure}
 
-Nyní se na tabulku \ref{tab:max-profit2} podívejme z toho pohledu, že firma z psychologických a marketingových důvodů chce stanovit $\texttt{margin}=0.23$. Pak z ní odečteme, že pro $\texttt{manufacturing-cost}=0.4$ je nejziskovější vybírat $\texttt{monthly-fee}=350$. Jak bylo uvedeno v kapitole 1, existuje hranice 100 BO (což odpovídá přibližně 1380 Kč obchodního obratu) pro výplatu výdělku ze sponzorování. Toto a další faktory jako rozsáhlost katalogu, snadnost nákupu atd. vedou prodejce ke zvýšení spotřeby kosmetických výrobku prokázanému zkušeností, což model nezahrnuje z důvodu složité kvantifikovatelnosti. Tento jev lze však vnímat jako jistý skrytý poplatek. Zda dodatečný zisk ze zvýšené spotřeby dosahuje měsíční výše 350 zde není možné určit. Tato otázka může být předmětem dalšího zkoumání.
+Nyní se na tabulku \ref{tab:max-profit2} podívejme z toho pohledu, že firma z psychologických a marketingových důvodů chce stanovit $\texttt{margin}=0.23$. Pak z ní odečteme, že pro $\texttt{manufacturing-cost}=0.4$ je nejziskovější vybírat $\texttt{monthly-fee}=350$. Jak bylo uvedeno v kapitole 1, existuje hranice 100 BO (což odpovídá přibližne 1380 Kč obchodního obratu) pro výplatu výdělku ze sponzorování. Toto a další faktory jako rozsáhlost katalogu, snadnost nákupu atd. vedou prodejce ke zvýšení spotřeby kosmetických výrobku prokázanému zkušeností, což model nezahrnuje z důvodu složité kvantifikovatelnosti. Tento jev lze však vnímat jako jistý skrytý poplatek. Zda dodatečný zisk ze zvýšené spotřeby dosahuje měsíční výše 350 zde není možné určit. Tato otázka může být předmětem dalšího zkoumání.
 
 \chapter*{Závěr}
 \addcontentsline{toc}{chapter}{Závěr}
 \addtocounter{chapter}{1}
-Primárním cílem práce byla analýza vzniku prodejní sítě, průběhu jejího šíření a její výsledné struktury. Ukázali jsme, že zpočátku dochází k bouřlivému nárůstu počtu prodejců. Ten se ale postupně snižuje až dojde k jeho stabilizaci. Důvodem je vysoké očekávání výdělku, které se ovšem naplní jen pro přibližně čtvrtinu lidí. Stabilními prodejci zůstávají zejména osoby s relativně nízkými celkovými ekonomickými náklady plynoucími členství v prodejní síti a vysokým počtem sociálních kontaktů, kterým mohou výrobky distribuovat. Identifikovali jsme tzv. slabé články -- osoby, které zabrání šíření prodejní sítě. Těmi jsou naopak lidé s nízkým počtem přátel a vysokými ekonomickými náklady na členství. Analyzovali jsme účinnost náborových akcí, kdy se někteří prodejci snaží rozšířit prodejní síť mimo okruh svých přátel. Mají smysl zejména pro řídké sociální sítě s průměrným počtem přátelství na osobu méně než 5,84.
+Primárním cílem práce byla analýza vzniku prodejní sítě, průběhu jejího šíření a její výsledné struktury. Ukázali jsme, že zpočátku dochází k bouřlivému nárustu počtu prodejců. Ten se ale postupně snižuje až dojde k jeho stabilizaci. Důvodem je vysoké očekávání výdělku, které se ovšem naplní jen pro přibližně čtvtinu lidí. Stabilními prodejci zůstávají zejména osoby s relativně nízkými celkovými ekonomickými náklady plynoucími členství v prodejní síti a vysokým počtem sociálních kontaktů, kterým mohou výrobky distribuovat. Identifikovali jsme tzv. slabé články -- osoby, které zabrání šíření prodejní sítě. Těmi jsou naopak lidé s nízkým počtem přátel a vysokými ekonomickými náklady na členství. Analyzovali jsme účinnost náborových akcí, kdy se někteří prodejci snaží rozšířit prodejní síť mimo okruh svých přátel. Mají smysl zejména pro řídké sociální sítě s průměrným počtem přátelství na osobu méně než 5,84.
 
-Dalším cílem bylo nalezení příjmových a nákladových funkcí provozovatele sítě Oriflame a odvození doporučení vedoucích k optimalizaci jeho chování a maximalizaci zisku. Pro danou sociální síť jsou příjmy funkcí prodejní marže prodejců a pravidelně vybíraného poplatku. Tyto parametry totiž mají významný na počet osob, kterým se vyplatí být prodejci. Variabilní náklady jsou funkcí stejných parametrů a navíc výrobních nákladů, které ovšem nejsou pro Oriflame známy a je tak možno je v modelu měnit. Fixní náklady nejsou uvažovány, neboť nemají vliv na polohu maxima zisku. Výsledkem je, že maximálního zisku by bylo za daného 40\% podílu výrobních nákladů na prodejní ceně výrobků dosaženo při prodejní marži 16\% a nevybírání pravidelných poplatků. Firma Oriflame v současnosti pracuje s marží 23\%, což je při pohledu na graf funkce zisku na hranici, po které již začíná rychle klesat.
+Dalším cílem bylo nalezení příjmových a nákladových funkcí provozovatele sítě Oriflame a odvození doporučení vedoucích k optimalizaci jeho chování a maximalizaci zisku. Pro danou sociální síť jsou příjmy funkcí prodejní marže prodejců a pravidelně vybíraného polatku. Tyto parametry totiž mají významný na počet osob, kterým se vyplatí být prodejci. Variabilní náklady jsou funkcí stejných parametrů a navíc výrobních nákladů, které ovšem nejsou pro Oriflame známy a je tak možno je v modelu měnit. Fixní náklady nejsou uvažovány, neboť nemají vliv na polohu maxima zisku. Výsledkem je, že maximálního zisku by bylo za daného 40\% podílu výrobních nákladů na prodejní ceně výrobků dosaženo při prodejní marži 16\% a nevybírání pravidelných poplatků. Firma Oriflame v současnosti pracuje s marží 23\%, což je při pohledu na graf funkce zisku na hranici, po které již začíná rychle klesat.
 
 Další výzkum se může zaměřit zejména na dvě oblasti. První je tvorba rozmanitější sítě sociálních vztahů, což umožní přesnější analýzu šíření prodejní sítě. Druhou je zahrnutí více faktorů do rozhodovacího procesu agentů. Jde např. o variabilitu spotřeby kosmetických výrobků a možnost, že se prodej stane hlavním zaměstnáním, což změní pohled na implicitní náklady.
 \begin{thebibliography}{9}
