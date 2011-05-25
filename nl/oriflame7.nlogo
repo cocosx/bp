@@ -19,7 +19,6 @@ to setup
   set net-seed person 0
   repeat number-of-persons [
     create-persons 1 [
-      ;;set size 1
       set color blue
       set netmember? false
       set consumption round random-normal 1000 500
@@ -66,13 +65,11 @@ to setup
     set sum-exp-rev (exp-srev-init * 6)
     set invited? true
   ]
+
   layout-radial persons links (turtle 0)
-  ;repeat 20 [
-  ;  layout
-  ;]
   display
   ask persons [
-    ;set label exp-srev-init
+    set label exp-srev-init
   ]
   set last-profit -213218390218390
   set current-profit -1
@@ -91,7 +88,6 @@ to update-revenue
   let scost 0
   let mcost 0
   ask persons with [netmember?] [
-    ;set rev (rev + (consumption * (1 - margin)))
     set mcost mcost + consumption
     set scost scost + my-srev
   ]
@@ -101,7 +97,6 @@ to update-revenue
   ]
   
   ask persons with [(not netmember?) and (count friend-neighbors with [netmember?] > 0)] [
-    ;set rev (rev + (consumption * (1 - margin)))
     set mcost mcost + consumption
   ]
   set rev mcost * (1 - margin)
@@ -235,30 +230,15 @@ to update-points
   
   ask net-seed [
     set my-subnetrev update-my-subnetrev
-  ]
-  ;;TODO: rev po marginu -> sponsorship rev
-  
-  ;;ask persons with [netmember? and ((count my-in-sponsors) = 0)] [ ;;listy
-  ;;  set leaf true
-  ;;]
-  
-  
+  ]  
 end
 
 to spread-network
   update-points
   ask persons with [netmember?] [
-    ;;let my-rev-exp consumption * margin
-    ;;let my-rev-exp 0
-    ;;ask friend-neighbors with [not netmember?] [
-    ;;  set my-rev-exp my-rev-exp + ((consumption * margin) / count friend-neighbors with [netmember?])
-    ;;]
     set exp-srev-list lput my-srev exp-srev-list
     set exp-srev-list remove-item 0 exp-srev-list
     let avg-srev-exp (sum exp-srev-list) / (length exp-srev-list)
-    ;;set sum-exp-rev (sum-exp-rev + my-srev)
-    ;;let exp-rev sum-exp-rev / (6 + membership-length)
-    ;;let exp-rev ((exp-srev-init * 6) + my-subnetrev * membership-length) / (6 + membership-length)
     set label round (avg-srev-exp + my-rev) - (be-point + monthly-fee)
     ifelse avg-srev-exp + my-rev < (be-point + monthly-fee)  ;;leave condition
     [ 
@@ -272,13 +252,10 @@ to spread-network
       ask my-out-sponsors [die]
       ask my-in-sponsors [die]
       
-      ;;set exp-srev-init exp-rev - my-rev ;;pamatuje si pro priste svuj ocekavany prijem
       set srev-level 0
       set last-margin margin
     ]
     [ set membership-length membership-length + 1 ]
-    ;;set label round (my-rev-exp - consumption * margin)
-    ;;set label round my-rev-exp
   ]
   ask persons with [netmember?] [
       let p self
@@ -288,9 +265,7 @@ to spread-network
            set my-rev-exp my-rev-exp + ((consumption * margin) / (count friend-neighbors with [netmember?] + 1 ))
          ]
          let avg-srev-exp (sum exp-srev-list) / (length exp-srev-list)
-         ;;if (my-rev-exp + (avg-srev-exp * 1.2)) >= (be-point + monthly-fee) ;;join condition
-         let d-margin 1 + (margin - last-margin)
-         ;if d-margin > 0 [set d-margin 0]
+         let d-margin (margin - last-margin)
          if ((my-rev-exp + avg-srev-exp) * (1 + d-margin)) >= (be-point + monthly-fee) ;;join condition
          [
            set netmember? true
@@ -298,7 +273,6 @@ to spread-network
            set srev-level 0
            set membership-length 0
            set sum-exp-rev (exp-srev-init * 6)
-           ;;set exp-rev-list 
          ]
          set invited? true         
       ]
@@ -311,7 +285,6 @@ to spread-network
           ]
           let avg-srev-exp (sum exp-srev-list) / (length exp-srev-list)
           let d-margin (margin - last-margin)
-          ;if d-margin > 0 [set d-margin 0]
           if ((my-rev-exp + avg-srev-exp) * (1 + d-margin)) >= (be-point + monthly-fee) ;;join condition
           [
             create-sponsor-to one-of persons with [netmember?]
@@ -319,7 +292,6 @@ to spread-network
             set srev-level 0
             set membership-length 0
             set sum-exp-rev (exp-srev-init * 6)
-            ;;set exp-rev-list 
           ]
           set invited? true         
         ]
@@ -327,14 +299,12 @@ to spread-network
   ]
   ask persons with [netmember?] [
     set color green
-    ;;set label my-subnetrev
   ]
   ask persons with [not netmember?] [
     set color blue
   ]
   ask sponsors [
     set color red
-    ;;set thickness 0.2
   ]
   ask persons [
     ;set label my-srev
@@ -405,10 +375,10 @@ GRAPHICS-WINDOW
 ticks
 
 BUTTON
-52
-162
-135
-195
+36
+363
+149
+396
 NIL
 go
 T
@@ -423,7 +393,7 @@ NIL
 SLIDER
 10
 40
-189
+191
 73
 number-of-persons
 number-of-persons
@@ -436,9 +406,9 @@ NIL
 HORIZONTAL
 
 BUTTON
-56
+39
 122
-133
+152
 155
 NIL
 setup
@@ -454,39 +424,23 @@ NIL
 SLIDER
 10
 78
-189
+191
 111
 number-of-friendships
 number-of-friendships
 0
-500
+1000
 300
 1
 1
 NIL
 HORIZONTAL
 
-BUTTON
-48
-515
-119
-548
-layout
-layout
-T
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-
 SLIDER
-14
-307
-186
-340
+11
+216
+183
+249
 monthly-fee
 monthly-fee
 0
@@ -498,10 +452,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-14
-345
-186
-378
+11
+252
+183
+285
 margin
 margin
 0.07
@@ -535,10 +489,10 @@ network-fee-revenue
 11
 
 BUTTON
-52
-244
-115
-277
+36
+443
+149
+476
 step
 go
 NIL
@@ -569,10 +523,10 @@ PENS
 "revenue" 1.0 0 -16777216 true
 
 PLOT
-971
-272
-1171
-422
+970
+271
+1170
+421
 scost
 NIL
 NIL
@@ -586,10 +540,10 @@ PENS
 "default" 1.0 0 -16777216 true
 
 PLOT
-972
-605
-1172
-755
+970
+575
+1170
+725
 profit
 NIL
 NIL
@@ -603,10 +557,10 @@ PENS
 "default" 1.0 0 -16777216 true
 
 SWITCH
-14
-422
-162
-455
+11
+324
+183
+357
 random-join?
 random-join?
 1
@@ -637,10 +591,10 @@ NIL
 NIL
 
 PLOT
-972
-429
-1172
-579
+970
+423
+1170
+573
 mcost
 NIL
 NIL
@@ -654,10 +608,10 @@ PENS
 "default" 1.0 0 -16777216 true
 
 MONITOR
-1211
-645
-1315
-690
+970
+731
+1074
+776
 NIL
 network-profit
 17
@@ -665,10 +619,10 @@ network-profit
 11
 
 SLIDER
-14
-387
-186
-420
+11
+288
+183
+321
 manufacturing-cost
 manufacturing-cost
 0
@@ -680,10 +634,10 @@ NIL
 HORIZONTAL
 
 BUTTON
-39
-204
-152
-238
+36
+403
+149
+437
 go till stable
 stabilize
 NIL
@@ -694,6 +648,36 @@ NIL
 NIL
 NIL
 NIL
+
+TEXTBOX
+15
+17
+165
+35
+Setup variables
+12
+0.0
+1
+
+TEXTBOX
+14
+194
+164
+212
+Run-time variables
+12
+0.0
+1
+
+TEXTBOX
+9
+638
+159
+683
+Bottleneck experiment\nred = bottlenecks\nyellow = not invited
+12
+0.0
+1
 
 @#$#@#$#@
 WHAT IS IT?
@@ -998,7 +982,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 4.1.2
+NetLogo 4.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
