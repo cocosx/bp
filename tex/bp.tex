@@ -20,6 +20,9 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \hyphenation{NetLogo}
 \floatname{algorithm}{Algoritmus}
+\usepackage{enumitem}
+%\usepackage{tweaklist}
+%\renewcommand{\descripthook}{\setlength{\itemsep}{0.5\baselineskip}}
 \title{sds}
 \author{Marek Bryša}
 \date{Brno 2011}
@@ -277,10 +280,7 @@ Je nutné, aby model zachytil sociální vztahy ve společnosti. Každý agent m
 \ENDFOR
 \end{algorithmic}
 \end{algorithm}
-
-
-
-Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na obrázku \ref{fig:hist_fr} jsou histogramy jednoho běhu generování přátelství pro \[\texttt{number-of-persons}=\texttt{number-of-friendships}=300\] před a po přidání náhodných přátelství.\\
+Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu přátelství na osobu, které je ale vzhledem k počtu dále přidaných přátelství zanedbatelné. Na obrázku \ref{fig:hist_fr} jsou histogramy jednoho běhu generování přátelství pro \[\texttt{number-of-persons}=\texttt{number-of-friendships}=300\] před a po přidání náhodných přátelství.
 \begin{figure}[h]
   \centering
   \subfloat[Před přidáním náhodných]{\label{fig:hist_fr_v1}\includegraphics[width=0.5\textwidth]{hist_fr_v1.eps}}                
@@ -288,7 +288,13 @@ Tím vzniká mírné vychýlení oproti jinak normálnímu rozdělení počtu p�
   \caption{Histogram počtu přátelství}
   \label{fig:hist_fr}
 \end{figure}
-%\begin{center}\includegraphics{hist_fr_v1.eps}\includegraphics{hist_fr_v2.eps}\end{center}
+Na obrázku \ref{fig:socgen} vidíme výslednou vygenerovanou sociální síť pro 100 osob a 60 přidaných přátelství -- nižší hodnoty byly zvoleny z důvodu přehlednosti.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{oriflame7_view1.png}
+  \caption{Příklad výsledné sociální sítě pro 100 osob a 60 přidaných přátelství}
+  \label{fig:socgen}
+\end{figure}
 \section{Prostředí}
 Agenti jsou generování v izolovaném prostředí. Jsou přítomny tyto za běhu měnitelné konstanty:
 \begin{description}
@@ -355,6 +361,7 @@ Nejprve se seznámíme s nejdůležitějšími body, pak se jim budeme věnovat 
 \caption{Výpočet skutečného \texttt{my-rev} pro každého prodejce}
 \label{alg:myrev}
 \begin{algorithmic}[]
+
 \FORALL{$s\in$ prodejci}
   \STATE \texttt{my-rev }$s\gets$ spotřeba $s$ $\cdot$ \texttt{margin}
   \STATE\COMMENT{velmi podobně jako při výpočtu očekávání}
@@ -363,7 +370,6 @@ Nejprve se seznámíme s nejdůležitějšími body, pak se jim budeme věnovat 
     \STATE $\texttt{my-rev }s\gets\texttt{my-rev }s+(\text{spotřeba osoby }f \cdot \texttt{margin}) / n$
   \ENDFOR
 \ENDFOR
-
 \end{algorithmic}
 \end{algorithm}
 
@@ -371,6 +377,7 @@ Nejprve se seznámíme s nejdůležitějšími body, pak se jim budeme věnovat 
 \caption{Výpočet výdělků ze skupin}
 \label{alg:points}
 \begin{algorithmic}[]
+
 \STATE {\bf function} $SubnetRev( p )$
 \IF{$p$ nikoho nepřivedl}
   \STATE \texttt{srev-level} $p\gets$ podle \texttt{my-rev} $p$ odečti z tabulky \ref{tab:perc_level} procentní úroveň
@@ -393,6 +400,7 @@ Nejprve se seznámíme s nejdůležitějšími body, pak se jim budeme věnovat 
 \STATE {\bf end}
 \\
 \STATE spusť $SubnetRev($zakladatel$)$
+
 \end{algorithmic}
 \end{algorithm}
 \clearpage
@@ -700,5 +708,11 @@ MANKIW, N. Gregory; SOJKA, Milan. Zásady ekonomie. 1. vyd. Praha : Grada,  1999
 %\subsubsection{velky model}
 %\subsubsection{???zjednoduseny model}
 %bez sponzorovani - je tam lepe videt neprima umera mezi ziskem firmy a vysi margin+fee
+%\chapter*{Uživatelská příručka}
+%\addcontentsline{toc}{chapter}{Uživatelská příručka}
+%\addtocounter{chapter}{1}
+
+%\appendix
+%\chapter{CD-ROM s modelem a daty ze simulací}
 \end{document}
 

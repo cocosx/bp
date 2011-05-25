@@ -72,7 +72,7 @@ to setup
   ;]
   display
   ask persons [
-    set label exp-srev-init
+    ;set label exp-srev-init
   ]
   set last-profit -213218390218390
   set current-profit -1
@@ -491,7 +491,7 @@ monthly-fee
 monthly-fee
 0
 1000
-150
+0
 1
 1
 NIL
@@ -506,7 +506,7 @@ margin
 margin
 0.07
 1
-0.02
+0.23
 0.01
 1
 NIL
@@ -609,7 +609,7 @@ SWITCH
 455
 random-join?
 random-join?
-0
+1
 1
 -1000
 
@@ -673,7 +673,7 @@ manufacturing-cost
 manufacturing-cost
 0
 1
-0.5
+0.4
 0.01
 1
 NIL
@@ -998,7 +998,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 4.1
+NetLogo 4.1.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
