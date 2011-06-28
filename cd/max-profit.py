@@ -3,8 +3,6 @@
 import sys,csv
 
 with open(sys.argv[1], newline='') as f:
-  #for i in range(0,5):
-  #  f.readline()
   d={}
   reader = csv.DictReader(f)
   for row in reader:
@@ -41,7 +39,6 @@ with open(sys.argv[1], newline='') as f:
   for mm1 in range(10,80,5):
     mm=mm1/100.0
     print('mm',mm)
-    #print('fee',"\t",'margin',"\t",'profit05',"\t",'sale-rev',"\t",'fee-rev',"\t",'spons-cost',"\t",'members')
     for f in fee:
       margin=list(avgs[f].keys())
       margin.sort()
