@@ -108,6 +108,24 @@ a distribuovat výrobky.\\
     \framesubtitle{Doporučení pro provozovatele}
     Maximálního zisku by bylo za daného 40\% podílu výrobních nákladů na prodejní ceně výrobků dosaženo při prodejní marži 16\% a nevybírání pravidelných poplatků. Firma Oriflame v současnosti pracuje s marží 23\%, což je při pohledu na graf funkce zisku na hranici, po které již začíná rychle klesat.\\
     \begin{center}\includegraphics[width=0.8\textwidth]{max-profit-04-f0.eps}\end{center}
-  \end{frame}      
+  \end{frame}
+  \begin{frame}
+    \frametitle{Otázky}
+    Vysvětlete, proč roste výše optimální marže spolu s růstem velikosti poplatků.\\[1cm]
+    Podmínka setrvání:
+    \[ \texttt{my-rev} + \texttt{avg-srev-exp} \geq \texttt{be-point} + \texttt{monthly-fee} \]
+    růst poklatku $\Rightarrow$ pokles počtu prodejců $\Rightarrow$ pokles obratu i zisku Oriflame $\Rightarrow$ nutnost kompenzace na straně příjmu prodejců zvýšením jejich marže $\Rightarrow$ zvýšení počtu prodejců $\Rightarrow$ zvýšení obratu i zisku
+  \end{frame}
+  \begin{frame}
+    \frametitle{Otázky}
+    Vysvětlete, nakolik výsledky optimalizace idealizované sítě použít pro doporučení pro reálný Oriflame. Jaké další úpravy modelu by mohly zajistit vyšší validitu výsledků optimalizace pro Oriflame?\\[1cm]
+    \begin{itemize}
+    \item Byla by nutná přesná kalibrace parametrů podle skutečné sítě. Tyto údaje mi ale nejsou k dispozici.
+    \item Vytvoření rozmanitější sociální sítě, např. řídce spojené shluky reprezentující města i různé společenské vrstvy.
+    \item Zavedení více faktorů do rozhodování osob a možnost změny spotřeby dané osoby.
+    \end{itemize}
+  \end{frame}
+
+      
 % etc
 \end{document}
