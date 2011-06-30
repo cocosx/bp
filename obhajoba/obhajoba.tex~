@@ -9,7 +9,7 @@
 \usepackage{mathtools}
 \usepackage{url}
 \usepackage{graphicx}
-\useoutertheme[subsection=false]{smoothbars}
+%\useoutertheme[subsection=false]{smoothbars}
 \usetheme{Madrid}
 \usecolortheme[named=OliveGreen]{structure}
 %\usecolortheme[named=OliveGreen]{structure} 
@@ -79,6 +79,102 @@ a distribuovat výrobky.\\
     %\vspace{-0.8cm}
     \hspace{-0.8cm}
     \includegraphics[width=1.0\paperwidth]{screen1.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{0.png}
+  \end{frame}
+    \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{1.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{2.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{3.png}
+  \end{frame}
+    \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{4.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{5.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{6.png}
+  \end{frame}
+    \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{7.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{8.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{9.png}
+  \end{frame}
+    \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{10.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{11.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{12.png}
+  \end{frame}
+    \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{13.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{14.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{15.png}
+  \end{frame}
+    \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{16.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{17.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{18.png}
+  \end{frame}
+    \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{19.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{20.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{21.png}
+  \end{frame}
+    \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{22.png}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Běh modelu}
+    \includegraphics[width=0.6\paperwidth]{23.png}
   \end{frame}
   \begin{frame}
     \frametitle{Hlavní výsledky}
